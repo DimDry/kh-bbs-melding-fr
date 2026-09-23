@@ -542,6 +542,9 @@ footer a{ color:var(--text-dim); }
         <datalist id="abilityCmd2List"></datalist>
       </div>
     </div>
+    <div class="panel-actions" style="margin-top:12px;">
+      <button type="button" class="btn-ghost" id="abilityClear">Tout effacer</button>
+    </div>
     <div class="calc-result" id="abilityResult">
       <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -961,6 +964,7 @@ footer a{ color:var(--text-dim); }
     abilityCmd2.placeholder = "Choisis la commande à combiner…";
     if(!(prev2 && names2[prev2])) abilityCmd2.value = "";
     abilityResult.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+abilityCmd1.value+'&nbsp;».</p>';
+    if(abilityCmd2.value) runAbilitySearch();
   }
 
   function renderAbilityMatches(hits){
@@ -1004,7 +1008,49 @@ footer a{ color:var(--text-dim); }
     renderAbilityMatches(hits);
   }
 
-  abilityInput.addEventListener("input", refreshCmd1);
+  // Ability picker: clicking the field shows the whole list again; picking a new ability keeps
+  // the chosen commands only if they can still produce it (a usable command 2 moves up to 1).
+  var abilityCurrent = "";
+  function commandsForAbility(q){
+    var ok = {};
+    recipesForAbility(q).forEach(function(r){ ok[norm(r.i1)] = 1; ok[norm(r.i2)] = 1; });
+    return ok;
+  }
+  function selectAbility(name){
+    abilityCurrent = name;
+    abilityInput.value = name;
+    abilityInput.placeholder = "Tape ou choisis une capacité…";
+    var ok = commandsForAbility(norm(name));
+    var c1 = abilityCmd1.value, c2 = abilityCmd2.value;
+    if(!ok[norm(c1)]){
+      abilityCmd1.value = ok[norm(c2)] ? c2 : "";
+      abilityCmd2.value = "";
+    }
+    refreshCmd1(); // keeps command 1 if still valid, then command 2 only if the pair still gives the ability
+  }
+  function clearAbilitySearch(){
+    abilityCurrent = "";
+    abilityInput.value = "";
+    abilityInput.placeholder = "Tape ou choisis une capacité…";
+    abilityCmd1.value = "";
+    abilityCmd2.value = "";
+    refreshCmd1();
+  }
+  abilityInput.addEventListener("focus", function(){
+    if(!abilityInput.value) return;
+    abilityInput.placeholder = abilityInput.value;
+    abilityInput.value = "";
+  });
+  abilityInput.addEventListener("blur", function(){
+    // nothing (valid) picked: put the previous ability back
+    if(norm(abilityInput.value) !== norm(abilityCurrent)) abilityInput.value = abilityCurrent;
+    abilityInput.placeholder = "Tape ou choisis une capacité…";
+  });
+  abilityInput.addEventListener("input", function(){
+    var name = abilityMap[norm(abilityInput.value)];
+    if(name && name !== abilityCurrent) selectAbility(name);
+  });
+  document.getElementById("abilityClear").addEventListener("click", clearAbilitySearch);
   abilityCmd1.addEventListener("input", refreshCmd2);
   abilityCmd2.addEventListener("input", runAbilitySearch);
 
@@ -1293,8 +1339,7 @@ footer a{ color:var(--text-dim); }
     } else if(e.target.closest("[data-how]")){
       setChar(progChar);
       showTab("ability");
-      abilityInput.value = a.name;
-      refreshCmd1();
+      selectAbility(a.name);
       window.scrollTo({ top:0, behavior:"smooth" });
     }
   });
