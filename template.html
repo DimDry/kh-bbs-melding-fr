@@ -315,6 +315,9 @@ header.top{
 .variant[data-cx-open="true"] .crystal-table{ display:grid; }
 .crystal-table{ grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:8px; }
 .crystal-cell{ background:var(--surface-2); border-radius:9px; padding:7px 10px; }
+.crystal-cell.is-pickable{ border:none; font-family:inherit; color:var(--text); text-align:left; cursor:pointer; width:100%; }
+.crystal-cell.is-pickable:hover{ box-shadow:0 0 0 1.5px var(--accent) inset; }
+.crystal-cell.is-pickable:focus-visible{ outline:2px solid var(--accent); outline-offset:2px; }
 .crystal-cell .cname{ font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); font-weight:700; }
 .crystal-cell .cabil{ font-size:.85rem; margin-top:2px; font-weight:600; }
 .no-crystal-note{ font-size:.78rem; color:var(--text-faint); margin-top:8px; font-style:italic; }
@@ -788,7 +791,8 @@ footer a{ color:var(--text-dim); }
   function ingHtml(name){
     return '<span class="ingtxt">'+name+'</span>';
   }
-  function crystalTableHtml(cx, highlightKey){
+  // pickable: cells are buttons that insert (or, if already inserted, remove) that crystal
+  function crystalTableHtml(cx, highlightKey, pickable){
     if(!cx || !Object.keys(cx).length){
       return '<p class="no-crystal-note">Cette fusion n’accepte pas de cristal (commande de tir visé).</p>';
     }
@@ -796,7 +800,10 @@ footer a{ color:var(--text-dim); }
     CRYSTAL_ORDER.forEach(function(k){
       if(!cx[k]) return;
       var sel = (highlightKey && k === highlightKey) ? ' is-selected' : '';
-      html += '<div class="crystal-cell'+sel+'"><div class="cname">'+CRYSTAL_LABELS[k]+'</div><div class="cabil">'+cx[k]+'</div></div>';
+      var inner = '<div class="cname">'+CRYSTAL_LABELS[k]+'</div><div class="cabil">'+cx[k]+'</div>';
+      html += pickable
+        ? '<button type="button" class="crystal-cell is-pickable'+sel+'" data-cx="'+k+'" aria-pressed="'+(sel?'true':'false')+'" title="'+(sel?'Retirer ce cristal':'Insérer ce cristal')+'">'+inner+'</button>'
+        : '<div class="crystal-cell'+sel+'">'+inner+'</div>';
     });
     html += '</div>';
     return html;
@@ -929,7 +936,7 @@ footer a{ color:var(--text-dim); }
         + '</div>'
         + '<p style="margin:10px 0 0;color:var(--text-dim);font-size:.88rem;">'+ingHtml(r.i1)+' <span class="plus-sm">+</span> '+ingHtml(r.i2)+'</p>'
         + (selectedCrystal ? abilityCalloutHtml(r.cx, selectedCrystal) : '')
-        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal)+'</div>'
+        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal, true)+'</div>'
         + '</div>';
     });
     calcResult.innerHTML = html;
@@ -941,6 +948,16 @@ footer a{ color:var(--text-dim); }
     refreshIng2();
   });
   crystalSel.addEventListener("change", runCalc);
+  // clicking a crystal cell in a result selects it in the menu above (clicking it again removes it)
+  function wireCrystalCells(resultEl, select){
+    resultEl.addEventListener("click", function(e){
+      var cell = e.target.closest("[data-cx]");
+      if(!cell) return;
+      select.value = select.value === cell.dataset.cx ? "" : cell.dataset.cx;
+      select.dispatchEvent(new Event("change"));
+    });
+  }
+  wireCrystalCells(calcResult, crystalSel);
   refreshIng1();
 
   /* ---------- ability finder (reverse lookup) ---------- */
@@ -1233,7 +1250,7 @@ footer a{ color:var(--text-dim); }
         + '<span class="slot">'+ingHtml(r.i2)+'</span>'
         + '</div>'
         + (selectedCrystal ? abilityCalloutHtml(r.cx, selectedCrystal) : '')
-        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal)+'</div>'
+        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal, true)+'</div>'
         + '</div>';
       if(selectedCrystal && r.cx && r.cx[selectedCrystal]) targetAbilities.push(r.cx[selectedCrystal]);
     });
@@ -1261,6 +1278,7 @@ footer a{ color:var(--text-dim); }
     refreshTargetCmd1();
   });
   targetCrystalSel.addEventListener("change", runTargetSearch);
+  wireCrystalCells(targetResultEl, targetCrystalSel);
 
 
   /* ---------- progress tracker ---------- */
