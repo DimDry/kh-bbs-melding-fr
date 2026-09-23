@@ -1,0 +1,24 @@
+# Forge de Commandes
+
+> Free command melding calculator for Kingdom Hearts Birth by Sleep (KH BBS, including Final Mix), in French and English. French: « calculateur de mixage (fusion) de commandes pour Kingdom Hearts Birth by Sleep ».
+
+It covers all 296 melding recipes: which two commands meld into which command, the success rate, which characters (Terra, Ventus, Aqua) can do it, and which ability each of the 7 crystals (Shimmering, Fleeting, Pulsing, Wellspring, Soothing, Hungry, Abounding) adds. An ability becomes permanent once the resulting command is fully leveled up. English names are the official ones from the English version of the game.
+
+## Use it
+
+- [Online, French](https://dimdry.github.io/kh-bbs-melding-fr/?lang=fr): mixage de commandes, cristaux, capacités, avancement.
+- [Online, English](https://dimdry.github.io/kh-bbs-melding-fr/?lang=en): command melding, crystals, abilities, progress.
+- [Offline (ZIP of the V.1 release)](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/tags/v1.0.zip): extract it and open index.html; no install or server needed.
+
+## Features
+
+- Meld Commands: pick two commands (+ optional crystal) to get the exact result and ability; explorer of every recipe, filterable by category (Attack, Magic, Action, Shotlock) and crystal.
+- Start from an Ability: which command pairs and crystal give a wanted ability (e.g. Second Chance, Once More, EXP Walker, Leaf Bracer).
+- Get a Command: which pairs meld into a wanted command.
+- Progress: per-character tracker of permanent abilities with in-game maximums (e.g. Treasure Magnet ×5, HP Boost ×3), saved in the browser, with export/import.
+
+## Sources
+
+- [Source code and README](https://github.com/DimDry/kh-bbs-melding-fr)
+- Recipe data: [Kingdom Hearts Destiny](https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html) (French), cross-checked recipe by recipe with the [KH BBS Melding Calculator](https://khbbsmelding.com/) (English).
+- Ability maximums and descriptions: [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/).

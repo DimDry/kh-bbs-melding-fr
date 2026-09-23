@@ -1,4 +1,22 @@
-<title>Forge de Commandes</title>
+<title>Forge de Commandes – Calculateur de mixage KH Birth by Sleep</title>
+<meta name="description" content="Calculateur de mixage (fusion) de commandes pour Kingdom Hearts Birth by Sleep : les 296 recettes, les 7 cristaux et leurs capacités, par personnage (Terra, Ventus, Aqua), avec suivi d'avancement. Gratuit, en français et en anglais, en ligne ou en local.">
+<link rel="canonical" id="canonicalLink" href="https://dimdry.github.io/kh-bbs-melding-fr/?lang=fr">
+<link rel="alternate" hreflang="fr" href="https://dimdry.github.io/kh-bbs-melding-fr/?lang=fr">
+<link rel="alternate" hreflang="en" href="https://dimdry.github.io/kh-bbs-melding-fr/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://dimdry.github.io/kh-bbs-melding-fr/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Forge de Commandes">
+<meta property="og:title" content="Forge de Commandes – Calculateur de mixage KH Birth by Sleep">
+<meta property="og:description" content="Calculateur de mixage (fusion) de commandes pour Kingdom Hearts Birth by Sleep : les 296 recettes, les 7 cristaux et leurs capacités, par personnage (Terra, Ventus, Aqua), avec suivi d'avancement. Gratuit, en français et en anglais, en ligne ou en local.">
+<meta property="og:url" content="https://dimdry.github.io/kh-bbs-melding-fr/">
+<meta property="og:image" content="https://dimdry.github.io/kh-bbs-melding-fr/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Forge de Commandes – KH Birth by Sleep command melding calculator">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Forge de Commandes", "alternateName": ["KH BBS Command Melding Calculator", "Calculateur de mixage KH Birth by Sleep"], "url": "https://dimdry.github.io/kh-bbs-melding-fr/", "description": "Calculateur de mixage (fusion) de commandes pour Kingdom Hearts Birth by Sleep : les 296 recettes, les 7 cristaux et leurs capacités, par personnage (Terra, Ventus, Aqua), avec suivi d'avancement. Gratuit, en français et en anglais, en ligne ou en local.", "applicationCategory": "GameApplication", "operatingSystem": "Any (web browser)", "inLanguage": ["fr", "en"], "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "about": {"@type": "VideoGame", "name": "Kingdom Hearts Birth by Sleep", "alternateName": ["KH BBS", "Kingdom Hearts Birth by Sleep Final Mix"]}, "keywords": "Kingdom Hearts Birth by Sleep, KH BBS, mixage, fusion de commandes, command melding, meld, cristaux, crystals, capacités, abilities, Terra, Ventus, Aqua", "sameAs": ["https://github.com/DimDry/kh-bbs-melding-fr"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -359,7 +377,7 @@ footer a{ color:var(--text-dim); }
 .bar > span{ display:block; height:100%; background:var(--c, var(--accent)); border-radius:99px; transition:width .2s ease; }
 
 .prog-toolbar{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:18px 0 4px; }
-.prog-toolbar .spacer{ margin-left:auto; }
+.prog-actions{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:12px 0 4px; }
 .btn-ghost{
   border:1px solid var(--border); background:var(--surface); color:var(--text-dim); font-family:inherit;
   font-size:.8rem; font-weight:600; padding:7px 12px; border-radius:9px; cursor:pointer;
@@ -449,7 +467,7 @@ footer a{ color:var(--text-dim); }
       </svg>
       <div class="brand-text">
         <h1>Forge de Commandes</h1>
-        <p data-en="Kingdom Hearts Birth by Sleep &middot; Command Melding">Kingdom Hearts Birth by Sleep &middot; Fusions de commandes</p>
+        <p data-en="Kingdom Hearts Birth by Sleep &middot; Command Melding">Kingdom Hearts Birth by Sleep &middot; Mixage de commandes</p>
       </div>
     </div>
     <div class="lang-switch" id="langSwitch" role="group" aria-label="Langue / Language">
@@ -636,21 +654,12 @@ footer a{ color:var(--text-dim); }
 
   <section class="calc" aria-label="Avancement des capacités" data-en-aria="Ability progress">
     <h2 data-en="Ability Progress">Avancement des capacités</h2>
-    <p class="lede" data-en="Like the in-game Abilities menu: track, for each character, the abilities you've made permanent (command fully leveled up). Some abilities stack — click the boxes or use − / +. Your progress is saved in this browser.">Comme le menu «&nbsp;Capacités&nbsp;» du jeu : note, pour chaque personnage, les capacités que tu as rendues permanentes (commande montée au niveau max). Certaines se cumulent — clique sur les cases ou utilise − / +. Ta progression est enregistrée dans ce navigateur.</p>
-    <div class="prog-chars" id="progChars"></div>
-    <div class="prog-toolbar">
-      <div class="filters" id="progFilter" style="margin:0;">
-        <button class="tab" data-pf="all" aria-pressed="true" data-en="All">Toutes</button>
-        <button class="tab" data-pf="todo" aria-pressed="false" data-en="Remaining">Restantes</button>
-        <button class="tab" data-pf="done" aria-pressed="false" data-en="Completed">Complètes</button>
-      </div>
-      <span class="spacer"></span>
+    <div class="prog-actions">
       <button type="button" class="btn-ghost" id="progExportBtn" aria-expanded="false" aria-controls="progExport" data-en="Export">Exporter</button>
       <button type="button" class="btn-ghost" id="progImportBtn" aria-expanded="false" aria-controls="progImport" data-en="Import">Importer</button>
       <button type="button" class="btn-ghost" id="progReset" data-en="Reset this character">Réinitialiser ce personnage</button>
       <button type="button" class="help-btn" id="progHelpBtn" aria-expanded="false" aria-controls="progHelp" title="Comment ça marche ?" aria-label="Comment ça marche ?" data-en-title="How does it work?" data-en-aria="How does it work?">?</button>
     </div>
-
     <div class="prog-panel" id="progHelp" hidden>
       <h4 data-en="How is your progress saved?">Comment fonctionne la sauvegarde ?</h4>
       <ul data-en="<li><strong>Automatic, in this browser:</strong> every box you tick is saved right away. You get your progress back when you return to the app in the same browser, with no account or sign-in. Note: the online version and the local file each keep their own save.</li><li><strong>No syncing:</strong> nothing is saved online: your progress stays in this browser. Another browser, another device or a private window start from scratch, and clearing the browser’s data erases your progress.</li><li><strong>Export:</strong> shows a save code to copy, and also lets you download the same progress as a <span class=&quot;mono&quot;>.json</span> file. Both contain the progress of all 3 characters and are imported the same way. Keep either one as a backup, or send it to yourself to use elsewhere.</li><li><strong>Import:</strong> paste that code or pick the file on the other device. The imported progress <em>fully replaces</em> the current progress of all 3 characters.</li>">
@@ -683,6 +692,16 @@ footer a{ color:var(--text-dim); }
         <span class="panel-msg" id="progImportMsg" role="status"></span>
       </div>
     </div>
+    <p class="lede" data-en="Like the in-game Abilities menu: track, for each character, the abilities you've made permanent (command fully leveled up). Some abilities stack — click the boxes or use − / +. Your progress is saved in this browser.">Comme le menu «&nbsp;Capacités&nbsp;» du jeu : note, pour chaque personnage, les capacités que tu as rendues permanentes (commande montée au niveau max). Certaines se cumulent — clique sur les cases ou utilise − / +. Ta progression est enregistrée dans ce navigateur.</p>
+    <div class="prog-chars" id="progChars"></div>
+    <div class="prog-toolbar">
+      <div class="filters" id="progFilter" style="margin:0;">
+        <button class="tab" data-pf="all" aria-pressed="true" data-en="All">Toutes</button>
+        <button class="tab" data-pf="todo" aria-pressed="false" data-en="Remaining">Restantes</button>
+        <button class="tab" data-pf="done" aria-pressed="false" data-en="Completed">Complètes</button>
+      </div>
+    </div>
+
     <div id="progGroups"></div>
   </section>
 
@@ -705,10 +724,19 @@ footer a{ color:var(--text-dim); }
      French is the reference: data, and the progress keys used by saves and exports, stay French.
      In English, the static texts come from the data-en* attributes and the game names
      (commands, abilities) from i18n-en.json, applied once at load; switching reloads the page. */
-  var LANG = "";
-  try{ LANG = localStorage.getItem("forge-lang") || ""; }catch(e){}
+  var LANG = (location.search.match(/[?&]lang=(fr|en)\b/) || [])[1] || "";
+  if(!LANG){ try{ LANG = localStorage.getItem("forge-lang") || ""; }catch(e){} }
   if(LANG !== "fr" && LANG !== "en") LANG = /^fr/i.test(navigator.language || "") ? "fr" : "en";
   document.documentElement.lang = LANG;
+  (function(){
+    var canon = document.getElementById("canonicalLink");
+    if(canon) canon.href = canon.href.replace(/\?lang=\w+$/, "?lang=" + LANG);
+    if(LANG === "en"){
+      document.title = "Forge de Commandes – KH Birth by Sleep Command Melding Calculator";
+      var md = document.querySelector('meta[name="description"]');
+      if(md) md.content = "Command melding calculator for Kingdom Hearts Birth by Sleep: all 296 recipes, the 7 crystals and their abilities, per character (Terra, Ventus, Aqua), with ability progress tracking. Free, in English and French, online or offline.";
+    }
+  })();
   function L(fr, en){ return LANG === "en" ? en : fr; }
   function availLabel(a){ return a === "Tous" ? L("Tous", "All") : a; }
   function plural(n, one, many){ return n + " " + (n > 1 ? many : one); }
@@ -730,7 +758,8 @@ footer a{ color:var(--text-dim); }
     b.addEventListener("click", function(){
       if(b.dataset.lang === LANG) return;
       try{ localStorage.setItem("forge-lang", b.dataset.lang); }catch(e){}
-      location.reload();
+      var url = location.href.replace(/([?&])lang=\w+&?/, "$1").replace(/[?&]$/, "");
+      location.href = url + (url.indexOf("?") === -1 ? "?" : "&") + "lang=" + b.dataset.lang;
     });
   });
 
