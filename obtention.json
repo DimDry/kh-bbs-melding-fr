@@ -222,7 +222,7 @@
     "Command Shop: 1500 munny, once obtained elsewhere (Ventus)"
    ]
   },
-  "Déferlement Bras.": {
+  "Déferlement Brasier": {
    "en": "Fire Surge",
    "cat": "attaque",
    "chars": "TVA",
@@ -239,7 +239,7 @@
     "Command Board: Hunny Pot Board (all), Secret Board (all)"
    ]
   },
-  "Déferlement Barr.": {
+  "Déferlement Barrière": {
    "en": "Barrier Surge",
    "cat": "attaque",
    "chars": "A",
@@ -256,7 +256,7 @@
     "Command Board: Royal Board (Aqua)"
    ]
   },
-  "Déferlement Fdr.": {
+  "Déferlement Foudre": {
    "en": "Thunder Surge",
    "cat": "attaque",
    "chars": "TVA",
@@ -425,7 +425,7 @@
     "Command Board: Hunny Pot Board (all), Toon Board (all)"
    ]
   },
-  "Frappe étourdiss.": {
+  "Frappe étourdissante": {
    "en": "Confusion Strike",
    "cat": "attaque",
    "chars": "TVA",
@@ -1087,7 +1087,7 @@
     "Command Shop: 800 munny, once obtained elsewhere (Aqua)"
    ]
   },
-  "Aimant à Lien-D": {
+  "Aimant à liens-D": {
    "en": "D-Link Magnet",
    "cat": "magie",
    "chars": "A",
@@ -1218,7 +1218,7 @@
     "Command Shop: 1800 munny, once obtained elsewhere (Aqua)"
    ]
   },
-  "Eclatement Bras. X": {
+  "Éclatement Brasier X": {
    "en": "Firaga Burst",
    "cat": "magie",
    "chars": "A",
@@ -1920,7 +1920,7 @@
     "Mirage Arena Medal Shop: 750 medals, Arena Level 5 (all)"
    ]
   },
-  "Assaut en choeur": {
+  "Assaut en chœur": {
    "en": "Unison Rush",
    "cat": "entraide",
    "chars": "TVA",
@@ -2219,7 +2219,7 @@
     "Chest: Disney Town (Ventus)"
    ]
   },
-  "Vol plané Bras.": {
+  "Vol plané Brasier": {
    "en": "Fire Glide",
    "cat": "action",
    "chars": "V",
@@ -2237,7 +2237,7 @@
    "howFr": [],
    "howEn": []
   },
-  "Cp en traître": {
+  "Coup en traître": {
    "en": "Teleport",
    "cat": "action",
    "chars": "A",
@@ -2278,7 +2278,7 @@
     "Command Shop: 200 munny, from the start (Terra and Ventus)"
    ]
   },
-  "Parade guéris.": {
+  "Parade guérisseuse": {
    "en": "Renewal Block",
    "cat": "action",
    "chars": "TV",
@@ -2287,7 +2287,7 @@
    "howFr": [],
    "howEn": []
   },
-  "Parade conc.": {
+  "Parade concentration": {
    "en": "Focus Block",
    "cat": "action",
    "chars": "TV",
@@ -2315,7 +2315,7 @@
     "Unversed Mission: None, 3 stars (Terra and Ventus {FM})"
    ]
   },
-  "Parade venim.": {
+  "Parade venimeuse": {
    "en": "Poison Block",
    "cat": "action",
    "chars": "TV",
@@ -2339,7 +2339,7 @@
     "Command Shop: 200 munny, from the start (Aqua)"
    ]
   },
-  "Barrière guéris.": {
+  "Barrière guérisseuse": {
    "en": "Renewal Barrier",
    "cat": "action",
    "chars": "A",
@@ -2348,7 +2348,7 @@
    "howFr": [],
    "howEn": []
   },
-  "Barrière conc.": {
+  "Barrière concentration": {
    "en": "Focus Barrier",
    "cat": "action",
    "chars": "A",
@@ -2361,7 +2361,7 @@
     "Command Board: Royal Board (Aqua)"
    ]
   },
-  "Barrière étour.": {
+  "Barrière étourdissante": {
    "en": "Confuse Barrier",
    "cat": "action",
    "chars": "A",
@@ -2479,7 +2479,7 @@
     "Command Shop: 1200 munny, after clearing Olympus Coliseum or Deep Space (Aqua)"
    ]
   },
-  "Déferlement veng.": {
+  "Déferlement vengeur": {
    "en": "Payback Surge",
    "cat": "action",
    "chars": "A",
@@ -2643,7 +2643,7 @@
     "Chest: Deep Space (Aqua)"
    ]
   },
-  "Charge photoniq. (tir visé)": {
+  "Charge photonique (tir visé)": {
    "en": "Photon Charge (Shotlock)",
    "cat": "tirs-vises",
    "chars": "TVA",
