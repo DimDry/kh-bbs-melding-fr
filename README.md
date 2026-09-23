@@ -11,7 +11,7 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 - **Sélection du personnage** (Terra / Ventus / Aqua / Tous) : filtre l'ensemble de l'app sur ce que ce personnage peut réellement mixer.
 - **Onglet « Mixer des commandes »** : un calculateur (2 commandes + cristal optionnel → résultat exact) et un explorateur filtrable/triable de toutes les recettes.
 - **Onglet « Partir d'une capacité »** : choisis la capacité que tu veux obtenir, l'app te montre les paires de commandes à mixer et le cristal nécessaire.
-- **Onglet « Obtenir une commande »** : choisis la commande que tu veux obtenir, l'app te montre les paires de commandes à mixer pour y arriver, et la capacité produite si tu ajoutes un cristal.
+- **Onglet « Obtenir une commande »** : choisis la commande que tu veux obtenir, l'app te montre les paires de commandes à mixer pour y arriver, et la capacité produite si tu ajoutes un cristal. Elle indique aussi les autres moyens de l'obtenir (coffres par monde, boutique du Mog avec prix et condition, Mog de l'Arène des Mirages, Chasse aux commandes, stickers, récompenses). La case « Commande non mixable » liste les 91 commandes qu'aucune fusion ne donne (objets, glaces, commandes d'entraide, commandes d'action, tirs visés…) avec leurs moyens d'obtention. Les éléments propres à Final Mix / HD 2.5 sont marqués « FMix ».
 - **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage), avec export/import (un code à copier, ou la même progression dans un fichier .json à télécharger) pour la sauvegarder ou la transférer sur un autre appareil.
 
 - **Deux langues** : drapeaux 🇫🇷 / 🇬🇧 en haut à droite. En anglais, les noms de commandes, de capacités et de cristaux sont les noms officiels de la version anglaise du jeu (voir [plus bas](#english)). La sauvegarde et l'export gardent les noms français, donc une progression s'importe dans les deux langues.
@@ -54,9 +54,10 @@ Extraire le ZIP, puis double-cliquer sur **`index.html`**. Pour un raccourci : c
 
 `index.html` est un fichier généré, il ne doit pas être édité à la main. Les sources sont :
 
-- `template.html` — gabarit HTML/CSS/JS, avec les marqueurs `__RECIPES_JSON__` et `__I18N_EN_JSON__` à la place des données.
+- `template.html` — gabarit HTML/CSS/JS, avec les marqueurs `__RECIPES_JSON__`, `__I18N_EN_JSON__` et `__OBTENTION_JSON__` à la place des données.
 - `recipes.json` — les 296 recettes de fusion (résultat, ingrédients, personnages autorisés, taux de réussite, capacités par cristal).
 - `i18n-en.json` — noms anglais officiels des commandes et des capacités, et descriptions anglaises des capacités.
+- `obtention.json` — moyens d'obtention de chaque commande, en français et en anglais (sources : KHWiki, khdestiny.fr).
 
 ```bash
 python3 build.py
@@ -83,7 +84,7 @@ Recipe data originally copied from the melding tables of [Kingdom Hearts Destiny
 - **Character selection** (Terra / Ventus / Aqua / All): filters the whole app down to what that character can actually meld.
 - **"Meld Commands" tab**: a calculator (2 commands + optional crystal → exact result) and a filterable/sortable explorer of every recipe.
 - **"Start from an Ability" tab**: pick the ability you want, the app shows which pairs of commands to meld and the crystal to add.
-- **"Get a Command" tab**: pick the command you want, the app shows which pairs of commands to meld to get it, and the ability produced if you add a crystal.
+- **"Get a Command" tab**: pick the command you want, the app shows which pairs of commands to meld to get it, and the ability produced if you add a crystal. It also lists the other ways to get it (chests per world, Command Shop with price and unlock condition, Mirage Arena Medal Shop, Command Board, stickers, rewards). The "Non-meldable command" box lists the 91 commands no meld gives (items, ice creams, friendship commands, action commands, shotlocks…) with where to get them. Final Mix / HD 2.5-only content is marked "FMix".
 - **"Progress" tab**: like the in-game Abilities menu, tick for each character the abilities you've made permanent, stacks included (e.g. Treasure Magnet ×5, Item Boost ×3). Maximums from [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), cross-checked with [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). Progress is saved in the browser (localStorage), with export/import (a code to copy, or the same progress as a .json file to download) to back it up or move it to another device.
 - **Two languages**: 🇫🇷 / 🇬🇧 flags at the top right. Saves and exports keep the French names, so progress can be imported in either language.
 - **Record progress without leaving the tab**: in all three search tabs, as soon as an ability is involved (crystal added, or ability searched) and a character is selected at the top, a "Confirm (+1)" bar updates their progress.
@@ -125,9 +126,10 @@ Extract the ZIP, then double-click **`index.html`**. For a shortcut: right-click
 
 `index.html` is a generated file and must not be edited by hand. The sources are:
 
-- `template.html` — HTML/CSS/JS template, with `__RECIPES_JSON__` and `__I18N_EN_JSON__` markers in place of the data.
+- `template.html` — HTML/CSS/JS template, with `__RECIPES_JSON__`, `__I18N_EN_JSON__` and `__OBTENTION_JSON__` markers in place of the data.
 - `recipes.json` — the 296 melding recipes, in French (result, ingredients, allowed characters, success rate, ability per crystal).
 - `i18n-en.json` — official English names of the commands and abilities, and the English ability descriptions.
+- `obtention.json` — how to get each command, in French and English (sources: KHWiki, khdestiny.fr).
 
 ```bash
 python3 build.py

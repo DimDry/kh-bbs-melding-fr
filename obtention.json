@@ -1,0 +1,2740 @@
+{
+ "_source": "Moyens d'obtention : KHWiki (pages des commandes, boutique de commandes et boutique à médailles de BBS) recoupé avec khdestiny.fr ; noms français des plateaux : wiki Kingdom Hearts francophone et rpgsoluce. {FM} = uniquement dans Final Mix / HD 2.5.",
+ "commands": {
+  "Coup éclair rapide": {
+   "en": "Quick Blitz",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (tous)",
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau pot à miel (tous), Plateau spatial (tous), Plateau crâne (tous), Plateau secret (Terra et Ventus)"
+   ],
+   "howEn": [
+    "From the start (all)",
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (all), Hunny Pot Board (all), Spaceship Board (all), Skull Board (all), Secret Board (Terra and Ventus)"
+   ]
+  },
+  "Coup éclair": {
+   "en": "Blitz",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Ventus) ; Espace profond (Aqua)",
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Pays Imaginaire (tous)",
+    "Chasse aux commandes : Plateau spatial (tous), Plateau crâne (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Ventus); Deep Space (Aqua)",
+    "Command Shop: 1200 munny, after clearing Neverland (all)",
+    "Command Board: Spaceship Board (all), Skull Board (all), Secret Board (all)"
+   ]
+  },
+  "Pluie de météores": {
+   "en": "Meteor Crash",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2500 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 2500 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Heure magique": {
+   "en": "Magic Hour",
+   "cat": "attaque",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Estoc glissé": {
+   "en": "Sliding Dash",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Terra)",
+    "Coffre : Contrée du Départ (Ventus)",
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau spatial (tous), Plateau crâne (tous), Plateau secret (Terra et Aqua)"
+   ],
+   "howEn": [
+    "From the start (Terra)",
+    "Chest: Land of Departure (Ventus)",
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (all), Spaceship Board (all), Skull Board (all), Secret Board (Terra and Aqua)"
+   ]
+  },
+  "Estoc Brasier": {
+   "en": "Fire Dash",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 150 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Terra et Aqua), Plateau princier (tous), Plateau spatial (tous), Plateau crâne (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 150 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (Terra and Aqua), Royal Board (all), Spaceship Board (all), Skull Board (all), Secret Board (all)"
+   ]
+  },
+  "Brume sombre": {
+   "en": "Dark Haze",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1100 munnies, après avoir terminé le Pays Imaginaire (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 1100 munny, after clearing Neverland (Terra)"
+   ]
+  },
+  "Aquilon": {
+   "en": "Sonic Blade",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2000 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau spatial (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 2000 munny, once obtained elsewhere (all)",
+    "Command Board: Spaceship Board (all), Secret Board (all)"
+   ]
+  },
+  "Lame du chaos": {
+   "en": "Chaos Blade",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2500 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 2500 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Zantetsuken": {
+   "en": "Zantetsuken",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1700 munnies, après avoir terminé le Jardin Radieux (Terra)",
+    "Mog de l'Arène des Mirages : 1000 médailles, niveau d'arène 8 (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 1700 munny, after clearing Radiant Garden (Terra)",
+    "Mirage Arena Medal Shop: 1000 medals, Arena Level 8 (Terra)"
+   ]
+  },
+  "Diskobolos": {
+   "en": "Strike Raid",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Dès le début (Ventus)",
+    "Coffre : Palais des Rêves (Terra) ; Jardin Radieux (Aqua)",
+    "Boutique du Mog : 100 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau secret (Terra et Aqua)"
+   ],
+   "howEn": [
+    "From the start (Ventus)",
+    "Chest: Castle of Dreams (Terra); Radiant Garden (Aqua)",
+    "Command Shop: 100 munny, after clearing Radiant Garden (all)",
+    "Command Board: Keyblade Board (all), Secret Board (Terra and Aqua)"
+   ]
+  },
+  "Lancer bloquant": {
+   "en": "Freeze Raid",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 200 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 200 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Toon Board (all)"
+   ]
+  },
+  "Lancer aimant": {
+   "en": "Treasure Raid",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Ventus)"
+   ]
+  },
+  "Lancer étincelle": {
+   "en": "Spark Raid",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1300 munnies, une fois la commande obtenue ailleurs (Ventus)"
+   ],
+   "howEn": [
+    "Command Shop: 1300 munny, once obtained elsewhere (Ventus)"
+   ]
+  },
+  "Lancer venteux": {
+   "en": "Wind Raid",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Nécropole des Keyblades (Ventus)",
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Keyblade Graveyard (Ventus)",
+    "Command Shop: 1500 munny, once obtained elsewhere (Ventus)"
+   ]
+  },
+  "Déferlement Bras.": {
+   "en": "Fire Surge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Ventus et Aqua)",
+    "Boutique du Mog : 650 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Ventus and Aqua)",
+    "Command Shop: 650 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Secret Board (all)"
+   ]
+  },
+  "Déferlement Barr.": {
+   "en": "Barrier Surge",
+   "cat": "attaque",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Palais des Rêves (Aqua)",
+    "Boutique du Mog : 500 munnies, après avoir terminé le Jardin Radieux (Aqua)",
+    "Chasse aux commandes : Plateau princier (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Castle of Dreams (Aqua)",
+    "Command Shop: 500 munny, after clearing Radiant Garden (Aqua)",
+    "Command Board: Royal Board (Aqua)"
+   ]
+  },
+  "Déferlement Fdr.": {
+   "en": "Thunder Surge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Jardin Radieux (Terra)",
+    "Boutique du Mog : 700 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Terra)",
+    "Command Shop: 700 munny, once obtained elsewhere (all)",
+    "Command Board: Secret Board (all)"
+   ]
+  },
+  "Slam aérien": {
+   "en": "Aerial Slam",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Disneyville (tous)",
+    "Boutique du Mog : 1500 munnies, après avoir terminé le Pays Imaginaire (tous)",
+    "Chasse aux commandes : Plateau crâne (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (all)",
+    "Command Shop: 1500 munny, after clearing Neverland (all)",
+    "Command Board: Skull Board (all), Secret Board (all)"
+   ]
+  },
+  "Ars Solum": {
+   "en": "Ars Solum",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Terra)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Terra)"
+   ]
+  },
+  "Arcanes": {
+   "en": "Ars Arcanum",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Donne-Temps": {
+   "en": "Time Splicer",
+   "cat": "attaque",
+   "chars": "VA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Aqua)"
+   ]
+  },
+  "Taille venimeuse": {
+   "en": "Poison Edge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Forêt des Nains (Terra)",
+    "Boutique du Mog : 150 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau crâne (tous), Plateau secret (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Terra)",
+    "Command Shop: 150 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Skull Board (all), Secret Board (Ventus and Aqua)"
+   ]
+  },
+  "Taille miracle": {
+   "en": "Wishing Edge",
+   "cat": "attaque",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 550 munnies, une fois la commande obtenue ailleurs (Aqua)",
+    "Chasse aux commandes : Plateau princier (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 550 munny, once obtained elsewhere (Aqua)",
+    "Command Board: Royal Board (Aqua)"
+   ]
+  },
+  "Taille gelante": {
+   "en": "Blizzard Edge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 200 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 200 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Toon Board (all)"
+   ]
+  },
+  "Taille électrique": {
+   "en": "Stun Edge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Dès le début (Terra)",
+    "Coffre : Palais des Rêves (Ventus)",
+    "Boutique du Mog : 150 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Ventus et Aqua), Plateau princier (tous), Plateau spatial (tous), Plateau secret (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "From the start (Terra)",
+    "Chest: Castle of Dreams (Ventus)",
+    "Command Shop: 150 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (Ventus and Aqua), Royal Board (all), Spaceship Board (all), Secret Board (Ventus and Aqua)"
+   ]
+  },
+  "Taille jackpot": {
+   "en": "Slot Edge",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Disneyville (tous)",
+    "Boutique du Mog : 700 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau cartoon (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (all)",
+    "Command Shop: 700 munny, once obtained elsewhere (all)",
+    "Command Board: Toon Board (Ventus and Aqua)"
+   ]
+  },
+  "Frappe enflammée": {
+   "en": "Fire Strike",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Colisée de l'Olympe (tous)",
+    "Boutique du Mog : 450 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "Chest: Olympus Coliseum (all)",
+    "Command Shop: 450 munny, after clearing Radiant Garden (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all)"
+   ]
+  },
+  "Frappe étourdiss.": {
+   "en": "Confusion Strike",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Domaine Enchanté (Aqua)",
+    "Boutique du Mog : 450 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau princier (tous), Plateau pot à miel (tous), Plateau cartoon (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (Aqua)",
+    "Command Shop: 450 munny, after clearing Radiant Garden (all)",
+    "Command Board: Royal Board (all), Hunny Pot Board (all), Toon Board (all), Secret Board (all)"
+   ]
+  },
+  "Frappe d'entrave": {
+   "en": "Binding Strike",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Jardin Radieux (Ventus)",
+    "Boutique du Mog : 400 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Ventus et Aqua), Plateau pot à miel (tous), Plateau cartoon (tous), Plateau crâne (tous), Plateau secret (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Ventus)",
+    "Command Shop: 400 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (Ventus and Aqua), Hunny Pot Board (all), Toon Board (all), Skull Board (all), Secret Board (Ventus and Aqua)"
+   ]
+  },
+  "Explosion brutale": {
+   "en": "Brutal Blast",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Terra)",
+    "Boutique du Mog : 1800 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Terra)",
+    "Command Shop: 1800 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Frappe tornade": {
+   "en": "Tornado Strike",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Domaine Enchanté (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (Ventus)"
+   ]
+  },
+  "Spirale aimantée": {
+   "en": "Magnet Spiral",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2300 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 2300 munny, once obtained elsewhere (all)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Coupe-vent": {
+   "en": "Windcutter",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Nécropole des Keyblades (Terra)",
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Chest: Keyblade Graveyard (Terra)",
+    "Command Shop: 1500 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Tempête limite": {
+   "en": "Limit Storm",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Terra)",
+    "Chasse aux commandes : Plateau spatial (Terra)",
+    "Album de stickers : Terra : 60 points (70 {FM})"
+   ],
+   "howEn": [
+    "Command Shop: 1500 munny, once obtained elsewhere (Terra)",
+    "Command Board: Spaceship Board (Terra)",
+    "Sticker Album: Terra: 60 points (70 {FM})"
+   ]
+  },
+  "Salut": {
+   "en": "Salvation",
+   "cat": "attaque",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Album de stickers : Ventus : 100 points (110 {FM})"
+   ],
+   "howEn": [
+    "Sticker Album: Ventus: 100 points (110 {FM})"
+   ]
+  },
+  "Collision aimantée": {
+   "en": "Collision Magnet",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1300 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau spatial (tous)",
+    "Album de stickers : Ventus : 80 points (70 {FM})",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1300 munny, once obtained elsewhere (all)",
+    "Command Board: Spaceship Board (all)",
+    "Sticker Album: Ventus: 80 points (70 {FM})",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Géo-Impact": {
+   "en": "Geo Impact",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Terra)",
+    "Boutique du Mog : 2100 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Terra)",
+    "Command Shop: 2100 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Sacrifice": {
+   "en": "Sacrifice",
+   "cat": "attaque",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Terra)",
+    "Chasse aux commandes : Plateau pot à miel (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 1500 munny, once obtained elsewhere (Terra)",
+    "Command Board: Hunny Pot Board (Terra)"
+   ]
+  },
+  "Courte pause": {
+   "en": "Break Time",
+   "cat": "attaque",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Disneyville (tous)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (all)"
+   ]
+  },
+  "Brasier": {
+   "en": "Fire",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Forêt des Nains (tous)",
+    "Boutique du Mog : 100 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Terra et Ventus), Plateau princier (tous), Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (all)",
+    "Command Shop: 100 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (Terra and Ventus), Royal Board (all), Skull Board (all)"
+   ]
+  },
+  "Brasier +": {
+   "en": "Fira",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Jardin Radieux (Terra et Ventus) ; Disneyville (Aqua)",
+    "Boutique du Mog : 500 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (Ventus et Aqua), Plateau spatial (tous), Plateau secret (Terra et Ventus)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Terra and Ventus); Disney Town (Aqua)",
+    "Command Shop: 500 munny, after clearing Radiant Garden (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (Ventus and Aqua), Spaceship Board (all), Secret Board (Terra and Ventus)"
+   ]
+  },
+  "Brasier X": {
+   "en": "Firaga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Pays Imaginaire (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1200 munny, after clearing Neverland (all)"
+   ]
+  },
+  "Brasier X obscur": {
+   "en": "Dark Firaga",
+   "cat": "magie",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2000 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 2000 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Brasier X fission": {
+   "en": "Fission Firaga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Forêt des Nains (Terra et Aqua)",
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Terra and Aqua)",
+    "Command Shop: 1500 munny, once obtained elsewhere (all)",
+    "Command Board: Secret Board (all)"
+   ]
+  },
+  "Triple Brasier X": {
+   "en": "Triple Firaga",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Royaume des Ténèbres (Aqua {FM})",
+    "Boutique du Mog : 1800 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Realm of Darkness (Aqua {FM})",
+    "Command Shop: 1800 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Brasier rampant": {
+   "en": "Crawling Fire",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1800 munnies, une fois la commande obtenue ailleurs (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1800 munny, once obtained elsewhere (all)"
+   ]
+  },
+  "Glacier": {
+   "en": "Blizzard",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Aqua)",
+    "Coffre : Domaine Enchanté (Terra) ; Palais des Rêves (Ventus)",
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau princier (tous), Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "From the start (Aqua)",
+    "Chest: Enchanted Dominion (Terra); Castle of Dreams (Ventus)",
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (all), Royal Board (all), Toon Board (all)"
+   ]
+  },
+  "Glacier +": {
+   "en": "Blizzara",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 500 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous), Plateau secret (Terra et Ventus)"
+   ],
+   "howEn": [
+    "Command Shop: 500 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Toon Board (all), Secret Board (Terra and Ventus)"
+   ]
+  },
+  "Glacier X": {
+   "en": "Blizzaga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Pays Imaginaire (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1200 munny, after clearing Neverland (all)",
+    "Command Board: Toon Board (all)"
+   ]
+  },
+  "Triple Glacier X": {
+   "en": "Triple Blizzaga",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1800 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 1800 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Foudre": {
+   "en": "Thunder",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Aqua)",
+    "Coffre : Palais des Rêves (Terra) ; Domaine Enchanté (Ventus)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Terra et Ventus), Plateau princier (tous), Plateau spatial (tous)"
+   ],
+   "howEn": [
+    "From the start (Aqua)",
+    "Chest: Castle of Dreams (Terra); Enchanted Dominion (Ventus)",
+    "Command Shop: 150 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (Terra and Ventus), Royal Board (all), Spaceship Board (all)"
+   ]
+  },
+  "Foudre +": {
+   "en": "Thundara",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Terra et Ventus) ; Jardin Radieux (Aqua)",
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous), Plateau spatial (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Terra and Ventus); Radiant Garden (Aqua)",
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all), Spaceship Board (all), Secret Board (all)"
+   ]
+  },
+  "Foudre X": {
+   "en": "Thundaga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Aqua)",
+    "Boutique du Mog : 1300 munnies, après avoir terminé le Pays Imaginaire (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau spatial (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Aqua)",
+    "Command Shop: 1300 munny, after clearing Neverland (all)",
+    "Command Board: Hunny Pot Board (all), Spaceship Board (all), Secret Board (all)"
+   ]
+  },
+  "Tir Foudre X": {
+   "en": "Thundaga Shot",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 1500 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Soin": {
+   "en": "Cure",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Tour Mystérieuse (Terra) ; Domaine Enchanté (Ventus et Aqua)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 1 monde parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau cartoon (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: The Mysterious Tower (Terra); Enchanted Dominion (Ventus and Aqua)",
+    "Command Shop: 150 munny, after clearing 1 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Toon Board (all), Secret Board (all)"
+   ]
+  },
+  "Soin +": {
+   "en": "Cura",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Colisée de l'Olympe (Ventus et Aqua)",
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous), Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "Chest: Olympus Coliseum (Ventus and Aqua)",
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all), Skull Board (all)"
+   ]
+  },
+  "Soin X": {
+   "en": "Curaga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1300 munnies, après avoir terminé le Pays Imaginaire (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1300 munny, after clearing Neverland (all)"
+   ]
+  },
+  "Esuna": {
+   "en": "Esuna",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Jardin Radieux (Terra)",
+    "Boutique du Mog : 600 munnies, après avoir terminé le Jardin Radieux (tous)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Terra)",
+    "Command Shop: 600 munny, after clearing Radiant Garden (all)"
+   ]
+  },
+  "Bouclier mine": {
+   "en": "Mine Shield",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Ventus) ; Pays Imaginaire (Aqua)",
+    "Boutique du Mog : 1000 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau spatial (tous)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Ventus); Neverland (Aqua)",
+    "Command Shop: 1000 munny, after clearing Olympus Coliseum and Deep Space (all)",
+    "Command Board: Spaceship Board (all)"
+   ]
+  },
+  "Mine carrée": {
+   "en": "Mine Square",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Terra) ; Jardin Radieux (Aqua)",
+    "Boutique du Mog : 1000 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Terra); Radiant Garden (Aqua)",
+    "Command Shop: 1000 munny, after clearing Olympus Coliseum and Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Skull Board (all)"
+   ]
+  },
+  "Mine chercheuse": {
+   "en": "Seeker Mine",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2300 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 2300 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Gravité nulle": {
+   "en": "Zero Gravity",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Domaine Enchanté (Terra) ; Palais des Rêves (Ventus) ; Jardin Radieux (Aqua)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau princier (tous)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (Terra); Castle of Dreams (Ventus); Radiant Garden (Aqua)",
+    "Command Shop: 150 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Royal Board (all)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Gravité nulle +": {
+   "en": "Zero Gravira",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Disneyville (Terra) ; Espace profond (Ventus et Aqua)",
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous), Plateau crâne (tous), Plateau secret (tous)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (Terra); Deep Space (Ventus and Aqua)",
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all), Skull Board (all), Secret Board (all)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Gravité nulle X": {
+   "en": "Zero Graviga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Terra) ; Royaume des Ténèbres (Aqua {FM})",
+    "Boutique du Mog : 1300 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous), Plateau spatial (tous), Plateau secret (tous)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Terra); Realm of Darkness (Aqua {FM})",
+    "Command Shop: 1300 munny, once obtained elsewhere (all)",
+    "Command Board: Toon Board (all), Spaceship Board (all), Secret Board (all)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Aimant": {
+   "en": "Magnet",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Domaine Enchanté (Ventus) ; Forêt des Nains (Aqua)",
+    "Boutique du Mog : 120 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau princier (tous), Plateau cartoon (tous), Plateau spatial (tous)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (Ventus); Dwarf Woodlands (Aqua)",
+    "Command Shop: 120 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Royal Board (all), Toon Board (all), Spaceship Board (all)"
+   ]
+  },
+  "Aimant +": {
+   "en": "Magnera",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 550 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau secret (tous)",
+    "Fruitball (Disneyville) : battre Capitaine Justice ou Capitaine Dark en finale (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 550 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Secret Board (all)",
+    "Fruitball (Disney Town): beat Captain Justice or Captain Dark in the final round (all)"
+   ]
+  },
+  "Aimant X": {
+   "en": "Magnega",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Tour Mystérieuse (Ventus et Aqua)",
+    "Boutique du Mog : 1250 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau crâne (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: The Mysterious Tower (Ventus and Aqua)",
+    "Command Shop: 1250 munny, once obtained elsewhere (all)",
+    "Command Board: Skull Board (all), Secret Board (all)"
+   ]
+  },
+  "Aimant à munnies": {
+   "en": "Munny Magnet",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 800 munnies, une fois la commande obtenue ailleurs (Aqua)",
+    "Chasse aux commandes : Plateau crâne (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 800 munny, once obtained elsewhere (Aqua)",
+    "Command Board: Skull Board (Aqua)"
+   ]
+  },
+  "Aimant à énergie": {
+   "en": "Energy Magnet",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 800 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 800 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Aimant à Lien-D": {
+   "en": "D-Link Magnet",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 800 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 800 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Rafale": {
+   "en": "Aero",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Ventus)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau princier (tous), Plateau pot à miel (tous), Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "From the start (Ventus)",
+    "Command Shop: 150 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Royal Board (all), Hunny Pot Board (all), Skull Board (all)"
+   ]
+  },
+  "Rafale +": {
+   "en": "Aerora",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous), Plateau spatial (tous), Plateau crâne (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all), Spaceship Board (all), Skull Board (all), Secret Board (all)"
+   ]
+  },
+  "Rafale X": {
+   "en": "Aeroga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Ventus) ; Nécropole des Keyblades (Aqua)",
+    "Boutique du Mog : 1300 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Ventus); Keyblade Graveyard (Aqua)",
+    "Command Shop: 1300 munny, once obtained elsewhere (all)",
+    "Command Board: Secret Board (all)"
+   ]
+  },
+  "Zappeur": {
+   "en": "Warp",
+   "cat": "magie",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Espace profond (Terra)",
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Terra)",
+    "Command Shop: 1500 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Sidéral": {
+   "en": "Faith",
+   "cat": "magie",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Glaciation": {
+   "en": "Deep Freeze",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2200 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous)",
+    "Album de stickers : Aqua : 80 points (110 {FM})"
+   ],
+   "howEn": [
+    "Command Shop: 2200 munny, once obtained elsewhere (all)",
+    "Command Board: Toon Board (all)",
+    "Sticker Album: Aqua: 80 points (110 {FM})"
+   ]
+  },
+  "Art glacial": {
+   "en": "Glacier",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2500 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 2500 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Barrage de glace": {
+   "en": "Ice Barrage",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Domaine Enchanté (Aqua)",
+    "Boutique du Mog : 1800 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (Aqua)",
+    "Command Shop: 1800 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Eclatement Bras. X": {
+   "en": "Firaga Burst",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Pays Imaginaire (Aqua)",
+    "Boutique du Mog : 2500 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Neverland (Aqua)",
+    "Command Shop: 2500 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Tempête rageuse": {
+   "en": "Raging Storm",
+   "cat": "magie",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Méga Atomnium": {
+   "en": "Mega Flare",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Séisme": {
+   "en": "Quake",
+   "cat": "magie",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2500 munnies, une fois la commande obtenue ailleurs (Terra)"
+   ],
+   "howEn": [
+    "Command Shop: 2500 munny, once obtained elsewhere (Terra)"
+   ]
+  },
+  "Météore": {
+   "en": "Meteor",
+   "cat": "magie",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Tornade": {
+   "en": "Tornado",
+   "cat": "magie",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Transcendance": {
+   "en": "Transcendence",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Royaume des Ténèbres (Aqua {FM})"
+   ],
+   "howEn": [
+    "Chest: Realm of Darkness (Aqua {FM})"
+   ]
+  },
+  "Mini": {
+   "en": "Mini",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Forêt des Nains (Ventus)",
+    "Boutique du Mog : 1500 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau cartoon (tous), Plateau spatial (tous)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Ventus)",
+    "Command Shop: 1500 munny, once obtained elsewhere (all)",
+    "Command Board: Toon Board (all), Spaceship Board (all)"
+   ]
+  },
+  "Black-out": {
+   "en": "Blackout",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Jardin Radieux (Terra) ; Royaume des Ténèbres (Aqua {FM})",
+    "Boutique du Mog : 600 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau princier (tous), Plateau cartoon (tous), Plateau spatial (tous), Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Terra); Realm of Darkness (Aqua {FM})",
+    "Command Shop: 600 munny, after clearing Radiant Garden (all)",
+    "Command Board: Royal Board (all), Toon Board (all), Spaceship Board (all), Skull Board (all)"
+   ]
+  },
+  "Mise à feu": {
+   "en": "Ignite",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 600 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau spatial (tous), Plateau crâne (tous)",
+    "Album de stickers : Aqua : 20 points",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 600 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Spaceship Board (all), Skull Board (all)",
+    "Sticker Album: Aqua: 20 points",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Folie": {
+   "en": "Confuse",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau crâne (tous), Plateau secret (Terra et Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (all), Skull Board (all), Secret Board (Terra and Aqua)"
+   ]
+  },
+  "Ficelage": {
+   "en": "Bind",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Contrée du Départ (Aqua)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 1 monde parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau princier (tous), Plateau cartoon (tous), Plateau crâne (tous), Plateau secret (Terra et Ventus)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Land of Departure (Aqua)",
+    "Command Shop: 150 munny, after clearing 1 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Royal Board (all), Toon Board (all), Skull Board (all), Secret Board (Terra and Ventus)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Arsenic": {
+   "en": "Poison",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Forêt des Nains (Ventus et Aqua)",
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Ventus et Aqua), Plateau secret (Ventus et Aqua)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Ventus and Aqua)",
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (Ventus and Aqua), Secret Board (Ventus and Aqua)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Somni": {
+   "en": "Slow",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Palais des Rêves (Terra et Aqua) ; Jardin Radieux (Ventus)",
+    "Boutique du Mog : 150 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau pot à miel (tous), Plateau crâne (tous), Plateau secret (Terra et Aqua)"
+   ],
+   "howEn": [
+    "Chest: Castle of Dreams (Terra and Aqua); Radiant Garden (Ventus)",
+    "Command Shop: 150 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Keyblade Board (all), Hunny Pot Board (all), Skull Board (all), Secret Board (Terra and Aqua)"
+   ]
+  },
+  "Stop": {
+   "en": "Stop",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Contrée du Départ (Terra) ; Disneyville (Ventus)",
+    "Boutique du Mog : 100 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)",
+    "Chasse aux commandes : Plateau princier (tous)"
+   ],
+   "howEn": [
+    "Chest: Land of Departure (Terra); Disney Town (Ventus)",
+    "Command Shop: 100 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)",
+    "Command Board: Royal Board (all)"
+   ]
+  },
+  "Stop +": {
+   "en": "Stopra",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 500 munnies, après avoir terminé le Jardin Radieux (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau cartoon (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 500 munny, after clearing Radiant Garden (all)",
+    "Command Board: Hunny Pot Board (all), Toon Board (all)"
+   ]
+  },
+  "Stop X": {
+   "en": "Stopga",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Pays Imaginaire (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 1200 munny, after clearing Neverland (all)"
+   ]
+  },
+  "Morphée": {
+   "en": "Sleep",
+   "cat": "magie",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Domaine Enchanté (tous)",
+    "Boutique du Mog : 100 munnies, dès le début (tous)",
+    "Chasse aux commandes : Plateau Keyblade (Ventus et Aqua), Plateau pot à miel (tous)",
+    "Lâchée par certains ennemis (tous)"
+   ],
+   "howEn": [
+    "Chest: Enchanted Dominion (all)",
+    "Command Shop: 100 munny, from the start (all)",
+    "Command Board: Keyblade Board (Ventus and Aqua), Hunny Pot Board (all)",
+    "Dropped by some enemies (all)"
+   ]
+  },
+  "Potion": {
+   "en": "Potion",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 30 munnies, dès le début (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 30 munny, from the start (all)"
+   ]
+  },
+  "Potion +": {
+   "en": "Hi-Potion",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 80 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 80 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)"
+   ]
+  },
+  "Mégapotion": {
+   "en": "Mega-Potion",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 150 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 150 munny, after clearing Olympus Coliseum and Deep Space (all)"
+   ]
+  },
+  "Ether": {
+   "en": "Ether",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 50 munnies, dès le début (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 50 munny, from the start (all)"
+   ]
+  },
+  "Mégaéther": {
+   "en": "Mega-Ether",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 160 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 160 munny, after clearing Olympus Coliseum and Deep Space (all)"
+   ]
+  },
+  "Panacée": {
+   "en": "Panacea",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 50 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 50 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (all)"
+   ]
+  },
+  "Elixir": {
+   "en": "Elixir",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 250 munnies, après avoir terminé le Pays Imaginaire (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 250 munny, after clearing Neverland (all)"
+   ]
+  },
+  "Mégalixir": {
+   "en": "Megalixir",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 350 munnies, une fois la commande obtenue ailleurs (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 350 munny, once obtained elsewhere (all)"
+   ]
+  },
+  "Lettre-ballon": {
+   "en": "Balloon Letter",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffres dans de nombreux mondes (tous)",
+    "Boutique du Mog : 120 munnies, après avoir terminé le Jardin Radieux (tous)"
+   ],
+   "howEn": [
+    "Chests in many worlds (all)",
+    "Command Shop: 120 munny, after clearing Radiant Garden (all)"
+   ]
+  },
+  "Faste vanillé": {
+   "en": "Vanilla Glitz",
+   "cat": "objets",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Terra)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Terra)"
+   ]
+  },
+  "Miel doux": {
+   "en": "Honeybunny",
+   "cat": "objets",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Ventus)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Ventus)"
+   ]
+  },
+  "Abracadamiam": {
+   "en": "Fabracadabra",
+   "cat": "objets",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Aqua)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Aqua)"
+   ]
+  },
+  "Volcan piquant": {
+   "en": "Bueno Volcano",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (tous)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (all)"
+   ]
+  },
+  "Ours polaire": {
+   "en": "Snow Bear",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (tous)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (all)"
+   ]
+  },
+  "Citron vitaminé": {
+   "en": "Spark Lemon",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (tous)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (all)"
+   ]
+  },
+  "Baie royale": {
+   "en": "Royalberry",
+   "cat": "objets",
+   "chars": "TA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Terra et Aqua)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Terra and Aqua)"
+   ]
+  },
+  "Parfait Dingo": {
+   "en": "Goofy Parfait",
+   "cat": "objets",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Ventus)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Ventus)"
+   ]
+  },
+  "Croustirock": {
+   "en": "Rockin' Crunch",
+   "cat": "objets",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Terra)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Terra)"
+   ]
+  },
+  "Voie lactée": {
+   "en": "Sugary Skies",
+   "cat": "objets",
+   "chars": "VA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Ventus and Aqua)"
+   ]
+  },
+  "Vilain Pat": {
+   "en": "Big Bad Pete",
+   "cat": "objets",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Terra)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Terra)"
+   ]
+  },
+  "Double-croquant": {
+   "en": "Double Crunch",
+   "cat": "objets",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Ventus)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Ventus)"
+   ]
+  },
+  "Donald pétillant": {
+   "en": "Donald Fizz",
+   "cat": "objets",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (Aqua)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (Aqua)"
+   ]
+  },
+  "Sorbet Daisy": {
+   "en": "Daisy Sorbet",
+   "cat": "objets",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "À fabriquer à la Fabrique de glace de Disneyville (tous)"
+   ],
+   "howEn": [
+    "Made at the Ice Cream Shop in Disney Town (all)"
+   ]
+  },
+  "Soin collectif": {
+   "en": "Group Cure",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 180 médailles (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 180 medals (all)"
+   ]
+  },
+  "Soin + collectif": {
+   "en": "Group Cura",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 360 médailles, niveau d'arène 5 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 360 medals, Arena Level 5 (all)"
+   ]
+  },
+  "Soin X collectif": {
+   "en": "Group Curaga",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 500 médailles, niveau d'arène 10 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 500 medals, Arena Level 10 (all)"
+   ]
+  },
+  "Esuna collectif": {
+   "en": "Group Esuna",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 360 médailles, niveau d'arène 5 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 360 medals, Arena Level 5 (all)"
+   ]
+  },
+  "Confettis": {
+   "en": "Confetti",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 150 médailles (tous)",
+    "Frapper la boîte aux lettres de la place centrale de Disneyville (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 150 medals (all)",
+    "Hit the mailbox in Disney Town’s Main Plaza (all)"
+   ]
+  },
+  "Feux d'artifice": {
+   "en": "Fireworks",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 400 médailles, niveau d'arène 5 (tous)",
+    "Album de stickers : Terra : 40 points ; Ventus : 60 points (40 {FM})"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 400 medals, Arena Level 5 (all)",
+    "Sticker Album: Terra: 40 points; Ventus: 60 points (40 {FM})"
+   ]
+  },
+  "Provocation": {
+   "en": "Taunt",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 100 médailles (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 100 medals (all)"
+   ]
+  },
+  "Pose triomphale": {
+   "en": "Victory Pose",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 100 médailles (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 100 medals (all)"
+   ]
+  },
+  "Invisibilité": {
+   "en": "Vanish",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 750 médailles, niveau d'arène 5 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 750 medals, Arena Level 5 (all)"
+   ]
+  },
+  "Assaut en choeur": {
+   "en": "Unison Rush",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 3000 médailles, niveau d'arène 10 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 3000 medals, Arena Level 10 (all)"
+   ]
+  },
+  "Electrocution": {
+   "en": "Voltage Stack",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 1800 médailles, niveau d'arène 5 (tous)",
+    "Mission des Nescients : None, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 1800 medals, Arena Level 5 (all)",
+    "Unversed Mission: None, 3 stars (all {FM})"
+   ]
+  },
+  "Trinité": {
+   "en": "Trinity Limit",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 1400 médailles (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 1400 medals (all)"
+   ]
+  },
+  "Illusion-L": {
+   "en": "Illusion-F",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mission des Nescients : Nécropole des Keyblades, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Unversed Mission: Keyblade Graveyard, 3 stars (all {FM})"
+   ]
+  },
+  "Illusion-R": {
+   "en": "Illusion-L",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mission des Nescients : Palais des Rêves, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Unversed Mission: Castle of Dreams, 3 stars (all {FM})"
+   ]
+  },
+  "Illusion-S": {
+   "en": "Illusion-V",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mission des Nescients : Forêt des Nains, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Unversed Mission: Dwarf Woodlands, 3 stars (all {FM})"
+   ]
+  },
+  "Illusion-P": {
+   "en": "Illusion-R",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mission des Nescients : Disneyville, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Unversed Mission: Disney Town, 3 stars (all {FM})"
+   ]
+  },
+  "Illusion-D": {
+   "en": "Illusion-B",
+   "cat": "entraide",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mission des Nescients : Jardin Radieux, 3 étoiles (tous {FM})"
+   ],
+   "howEn": [
+    "Unversed Mission: Radiant Garden, 3 stars (all {FM})"
+   ]
+  },
+  "Saut": {
+   "en": "Jump",
+   "cat": "action",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (tous)"
+   ],
+   "howEn": [
+    "From the start (all)"
+   ]
+  },
+  "Super saut": {
+   "en": "High Jump",
+   "cat": "action",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Nécropole des Keyblades (Ventus)",
+    "Histoire : Domaine Enchanté (Aqua)",
+    "Coffre : Espace profond (Terra)",
+    "Boutique du Mog : 500 munnies, une fois la commande obtenue ailleurs (tous)",
+    "Chasse aux commandes : Plateau pot à miel (tous), Plateau spatial (tous)"
+   ],
+   "howEn": [
+    "Story: Keyblade Graveyard (Ventus)",
+    "Story: Enchanted Dominion (Aqua)",
+    "Chest: Deep Space (Terra)",
+    "Command Shop: 500 munny, once obtained elsewhere (all)",
+    "Command Board: Hunny Pot Board (all), Spaceship Board (all)"
+   ]
+  },
+  "Roulade": {
+   "en": "Dodge Roll",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Ventus)",
+    "Boutique du Mog : 200 munnies, dès le début (Ventus)"
+   ],
+   "howEn": [
+    "From the start (Ventus)",
+    "Command Shop: 200 munny, from the start (Ventus)"
+   ]
+  },
+  "Roulade Foudre": {
+   "en": "Thunder Roll",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Chasse aux commandes : Plateau pot à miel (Ventus)"
+   ],
+   "howEn": [
+    "Command Board: Hunny Pot Board (Ventus)"
+   ]
+  },
+  "Roulade rapide": {
+   "en": "Cartwheel",
+   "cat": "action",
+   "chars": "VA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Ventus et Aqua)",
+    "Boutique du Mog : 200 munnies, dès le début (Aqua)"
+   ],
+   "howEn": [
+    "From the start (Ventus and Aqua)",
+    "Command Shop: 200 munny, from the start (Aqua)"
+   ]
+  },
+  "Roulade Brasier": {
+   "en": "Firewheel",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2000 munnies, une fois la commande obtenue ailleurs (Aqua)"
+   ],
+   "howEn": [
+    "Command Shop: 2000 munny, once obtained elsewhere (Aqua)"
+   ]
+  },
+  "Glissade aérienne": {
+   "en": "Air Slide",
+   "cat": "action",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Forêt des Nains (Terra)",
+    "Histoire : Colisée de l'Olympe (Ventus)",
+    "Histoire : Espace profond (Aqua)",
+    "Boutique du Mog : 800 munnies, une fois la commande obtenue ailleurs (tous)"
+   ],
+   "howEn": [
+    "Story: Dwarf Woodlands (Terra)",
+    "Story: Olympus Coliseum (Ventus)",
+    "Story: Deep Space (Aqua)",
+    "Command Shop: 800 munny, once obtained elsewhere (all)"
+   ]
+  },
+  "Glissade glacée": {
+   "en": "Ice Slide",
+   "cat": "action",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 2000 munnies, une fois la commande obtenue ailleurs (tous)"
+   ],
+   "howEn": [
+    "Command Shop: 2000 munny, once obtained elsewhere (all)"
+   ]
+  },
+  "Impact sonique": {
+   "en": "Sonic Impact",
+   "cat": "action",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire principale (Terra)"
+   ],
+   "howEn": [
+    "Main story (Terra)"
+   ]
+  },
+  "Glissade": {
+   "en": "Slide",
+   "cat": "action",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Terra)",
+    "Boutique du Mog : 200 munnies, dès le début (Terra)"
+   ],
+   "howEn": [
+    "From the start (Terra)",
+    "Command Shop: 200 munny, from the start (Terra)"
+   ]
+  },
+  "Feinte": {
+   "en": "Reversal",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Jardin Radieux (Ventus)",
+    "Boutique du Mog : 600 munnies, une fois la commande obtenue ailleurs (Ventus)"
+   ],
+   "howEn": [
+    "Story: Radiant Garden (Ventus)",
+    "Command Shop: 600 munny, once obtained elsewhere (Ventus)"
+   ]
+  },
+  "Vol plané": {
+   "en": "Glide",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Pays Imaginaire (Ventus)",
+    "Boutique du Mog : 2000 munnies, une fois la commande obtenue ailleurs (Ventus)"
+   ],
+   "howEn": [
+    "Story: Neverland (Ventus)",
+    "Command Shop: 2000 munny, once obtained elsewhere (Ventus)"
+   ]
+  },
+  "Super vol plané": {
+   "en": "Superglide",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Disneyville (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (Ventus)"
+   ]
+  },
+  "Vol plané Bras.": {
+   "en": "Fire Glide",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Glissade visée": {
+   "en": "Homing Slide",
+   "cat": "action",
+   "chars": "VA",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Cp en traître": {
+   "en": "Teleport",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Espace profond (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Aqua)"
+   ]
+  },
+  "Double-envol": {
+   "en": "Doubleflight",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire principale (Aqua)"
+   ],
+   "howEn": [
+    "Main story (Aqua)"
+   ]
+  },
+  "Parade": {
+   "en": "Block",
+   "cat": "action",
+   "chars": "TV",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Terra et Ventus)",
+    "Boutique du Mog : 200 munnies, dès le début (Terra et Ventus)"
+   ],
+   "howEn": [
+    "From the start (Terra and Ventus)",
+    "Command Shop: 200 munny, from the start (Terra and Ventus)"
+   ]
+  },
+  "Parade guéris.": {
+   "en": "Renewal Block",
+   "cat": "action",
+   "chars": "TV",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Parade conc.": {
+   "en": "Focus Block",
+   "cat": "action",
+   "chars": "TV",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Chasse aux commandes : Plateau princier (Terra et Ventus)"
+   ],
+   "howEn": [
+    "Command Board: Royal Board (Terra and Ventus)"
+   ]
+  },
+  "Parade choc": {
+   "en": "Stun Block",
+   "cat": "action",
+   "chars": "TV",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (Terra et Ventus)",
+    "Mission des Nescients : None, 3 étoiles (Terra et Ventus {FM})"
+   ],
+   "howEn": [
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (Terra and Ventus)",
+    "Unversed Mission: None, 3 stars (Terra and Ventus {FM})"
+   ]
+  },
+  "Parade venim.": {
+   "en": "Poison Block",
+   "cat": "action",
+   "chars": "TV",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Barrière": {
+   "en": "Barrier",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Aqua)",
+    "Boutique du Mog : 200 munnies, dès le début (Aqua)"
+   ],
+   "howEn": [
+    "From the start (Aqua)",
+    "Command Shop: 200 munny, from the start (Aqua)"
+   ]
+  },
+  "Barrière guéris.": {
+   "en": "Renewal Barrier",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [],
+   "howEn": []
+  },
+  "Barrière conc.": {
+   "en": "Focus Barrier",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Chasse aux commandes : Plateau princier (Aqua)"
+   ],
+   "howEn": [
+    "Command Board: Royal Board (Aqua)"
+   ]
+  },
+  "Barrière étour.": {
+   "en": "Confuse Barrier",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Boutique du Mog : 600 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (Aqua)",
+    "Mission des Nescients : None, 3 étoiles (Aqua {FM})"
+   ],
+   "howEn": [
+    "Command Shop: 600 munny, after clearing Olympus Coliseum or Deep Space (Aqua)",
+    "Unversed Mission: None, 3 stars (Aqua {FM})"
+   ]
+  },
+  "Barrière arrêt": {
+   "en": "Stop Barrier",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Album de stickers : Aqua : 60 points (70 {FM})"
+   ],
+   "howEn": [
+    "Sticker Album: Aqua: 60 points (70 {FM})"
+   ]
+  },
+  "Contre puissant": {
+   "en": "Counter Hammer",
+   "cat": "action",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Palais des Rêves (Terra)",
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Jardin Radieux (Terra)"
+   ],
+   "howEn": [
+    "Story: Castle of Dreams (Terra)",
+    "Command Shop: 1200 munny, after clearing Radiant Garden (Terra)"
+   ]
+  },
+  "Croc vengeur": {
+   "en": "Payback Fang",
+   "cat": "action",
+   "chars": "T",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Disneyville (Terra)",
+    "Boutique du Mog : 1400 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (Terra)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (Terra)",
+    "Command Shop: 1400 munny, after clearing Olympus Coliseum and Deep Space (Terra)"
+   ]
+  },
+  "Contre assaut": {
+   "en": "Counter Rush",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Jardin Radieux (Ventus)",
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Ventus)",
+    "Command Shop: 1200 munny, after clearing Olympus Coliseum or Deep Space (Ventus)"
+   ]
+  },
+  "Frappe feintée": {
+   "en": "Reversal Slash",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Disneyville (Ventus)",
+    "Boutique du Mog : 800 munnies, après avoir terminé le Colisée de l'Olympe et l'Espace profond (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (Ventus)",
+    "Command Shop: 800 munny, after clearing Olympus Coliseum and Deep Space (Ventus)"
+   ]
+  },
+  "Lancer vengeur": {
+   "en": "Payback Raid",
+   "cat": "action",
+   "chars": "V",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Forêt des Nains (Ventus)",
+    "Boutique du Mog : 1400 munnies, après avoir terminé 2 mondes parmi Domaine Enchanté, Forêt des Nains et Palais des Rêves (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Ventus)",
+    "Command Shop: 1400 munny, after clearing 2 of Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (Ventus)"
+   ]
+  },
+  "Contre explosif": {
+   "en": "Counter Blast",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Jardin Radieux (Aqua)",
+    "Boutique du Mog : 1200 munnies, après avoir terminé le Colisée de l'Olympe ou l'Espace profond (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Radiant Garden (Aqua)",
+    "Command Shop: 1200 munny, after clearing Olympus Coliseum or Deep Space (Aqua)"
+   ]
+  },
+  "Déferlement veng.": {
+   "en": "Payback Surge",
+   "cat": "action",
+   "chars": "A",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Coffre : Forêt des Nains (Aqua)",
+    "Boutique du Mog : 1400 munnies, après avoir terminé le Domaine Enchanté, la Forêt des Nains et le Palais des Rêves (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Dwarf Woodlands (Aqua)",
+    "Command Shop: 1400 munny, after clearing Enchanted Dominion, Dwarf Woodlands and Castle of Dreams (Aqua)"
+   ]
+  },
+  "Pirouette": {
+   "en": "Aerial Recovery",
+   "cat": "action",
+   "chars": "TVA",
+   "fm": true,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 320 médailles, niveau d'arène 5 (tous {FM})"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 320 medals, Arena Level 5 (all {FM})"
+   ]
+  },
+  "Pluie de météores (tir visé)": {
+   "en": "Meteor Shower (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Chasse aux commandes : Plateau princier (tous)"
+   ],
+   "howEn": [
+    "Command Board: Royal Board (all)"
+   ]
+  },
+  "Salve enflammée (tir visé)": {
+   "en": "Flame Salvo (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Ventus)",
+    "Coffre : Forêt des Nains (Terra)",
+    "Mog de l'Arène des Mirages : 900 médailles, niveau d'arène 5 (Aqua)"
+   ],
+   "howEn": [
+    "From the start (Ventus)",
+    "Chest: Dwarf Woodlands (Terra)",
+    "Mirage Arena Medal Shop: 900 medals, Arena Level 5 (Aqua)"
+   ]
+  },
+  "Serpent du chaos (tir visé)": {
+   "en": "Chaos Snake (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Fruitball (Disneyville) : battre Capitaine Justice ou Capitaine Dark en finale (tous)"
+   ],
+   "howEn": [
+    "Fruitball (Disney Town): beat Captain Justice or Captain Dark in the final round (all)"
+   ]
+  },
+  "Tir de bulles (tir visé)": {
+   "en": "Bubble Blaster (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Aqua)"
+   ],
+   "howEn": [
+    "From the start (Aqua)"
+   ]
+  },
+  "Volée obscure (tir visé)": {
+   "en": "Dark Volley (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Histoire : Jardin Radieux (Terra)",
+    "Histoire principale — combat contre Braig (Terra)"
+   ],
+   "howEn": [
+    "Story: Radiant Garden (Terra)",
+    "Main story — battle against Braig (Terra)"
+   ]
+  },
+  "Ragnarok (tir visé)": {
+   "en": "Ragnarok (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Chasse aux commandes : Plateau Keyblade (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Command Board: Keyblade Board (all), Secret Board (all)"
+   ]
+  },
+  "Orage (tir visé)": {
+   "en": "Thunderstorm (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Palais des Rêves (tous)"
+   ],
+   "howEn": [
+    "Chest: Castle of Dreams (all)"
+   ]
+  },
+  "Bioprotection (tir visé)": {
+   "en": "Bio Barrage (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 2500 médailles, niveau d'arène 15 (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 2500 medals, Arena Level 15 (all)"
+   ]
+  },
+  "Bombe puissante (tir visé)": {
+   "en": "Pulse Bomb (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Espace profond (Ventus)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Ventus)"
+   ]
+  },
+  "Pluie multicolore (tir visé)": {
+   "en": "Prism Rain (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Espace profond (Aqua)"
+   ],
+   "howEn": [
+    "Chest: Deep Space (Aqua)"
+   ]
+  },
+  "Charge photoniq. (tir visé)": {
+   "en": "Photon Charge (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Mog de l'Arène des Mirages : 1600 médailles, niveau d'arène 10 (tous)",
+    "Chasse aux commandes : Plateau crâne (tous)"
+   ],
+   "howEn": [
+    "Mirage Arena Medal Shop: 1600 medals, Arena Level 10 (all)",
+    "Command Board: Skull Board (all)"
+   ]
+  },
+  "Zéro absolu (tir visé)": {
+   "en": "Absolute Zero (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Coffre : Disneyville (Terra) ; Domaine Enchanté (Ventus et Aqua)"
+   ],
+   "howEn": [
+    "Chest: Disney Town (Terra); Enchanted Dominion (Ventus and Aqua)"
+   ]
+  },
+  "Rayon d'éclair (tir visé)": {
+   "en": "Lightning Ray (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "TVA",
+   "fm": false,
+   "meld": true,
+   "howFr": [
+    "Chasse aux commandes : Plateau spatial (tous), Plateau secret (tous)"
+   ],
+   "howEn": [
+    "Command Board: Spaceship Board (all), Secret Board (all)"
+   ]
+  },
+  "Ombre sonique (tir visé)": {
+   "en": "Sonic Shadow (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Dès le début (Terra)"
+   ],
+   "howEn": [
+    "From the start (Terra)"
+   ]
+  },
+  "Canon Ultima (tir visé)": {
+   "en": "Ultima Cannon (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "T",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Arène des Mirages : mission « Gardiens de l'Arène » (Terra)"
+   ],
+   "howEn": [
+    "Mirage Arena: “Keepers of the Arena” mission (Terra)"
+   ]
+  },
+  "Multivortex (tir visé)": {
+   "en": "Multivortex (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "V",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Arène des Mirages : mission « Gardiens de l'Arène » (Ventus)"
+   ],
+   "howEn": [
+    "Mirage Arena: “Keepers of the Arena” mission (Ventus)"
+   ]
+  },
+  "Lumifloraison (tir visé)": {
+   "en": "Lightbloom (Shotlock)",
+   "cat": "tirs-vises",
+   "chars": "A",
+   "fm": false,
+   "meld": false,
+   "howFr": [
+    "Arène des Mirages : mission « Gardiens de l'Arène » (Aqua)"
+   ],
+   "howEn": [
+    "Mirage Arena: “Keepers of the Arena” mission (Aqua)"
+   ]
+  }
+ }
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Génère index.html à partir de template.html + recipes.json + i18n-en.json.
+"""Génère index.html à partir de template.html + recipes.json + i18n-en.json + obtention.json.
 
 Usage:
     python3 build.py            # écrit index.html (page autonome, ouvrable directement)
@@ -15,9 +15,11 @@ def build_fragment():
     json.loads(data)
     en = open("i18n-en.json", encoding="utf-8").read()
     json.loads(en)
+    ob = open("obtention.json", encoding="utf-8").read()
+    json.loads(ob)
     tpl = open("template.html", encoding="utf-8").read()
     safe = lambda t: t.replace("</script", "<\\/script")
-    return tpl.replace("__RECIPES_JSON__", safe(data)).replace("__I18N_EN_JSON__", safe(en))
+    return tpl.replace("__RECIPES_JSON__", safe(data)).replace("__I18N_EN_JSON__", safe(en)).replace("__OBTENTION_JSON__", safe(ob))
 
 def build_standalone(fragment):
     head, body = fragment.split("</style>", 1)

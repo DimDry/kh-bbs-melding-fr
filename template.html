@@ -460,6 +460,16 @@ footer a{ color:var(--text-dim); }
 .nm-toggle:hover{ border-color:var(--accent); color:var(--text); }
 .nm-toggle input{ accent-color:var(--accent); margin:0; }
 .nm-toggle:has(input:checked){ border-color:var(--accent); color:var(--accent); background:var(--accent-soft); }
+.how-title{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); font-weight:700; margin:14px 0 6px; }
+.how-list{ margin:0; padding-left:18px; display:grid; gap:5px; font-size:.88rem; color:var(--text-dim); }
+.how-list li::marker{ color:var(--text-faint); }
+.fmix{ font-size:.62rem; font-weight:600; color:var(--text-faint); border:1px solid var(--border); border-radius:4px; padding:0 4px; margin-left:4px; vertical-align:1px; letter-spacing:.02em; }
+.char-tags{ display:inline-flex; gap:4px; flex-wrap:wrap; }
+.char-tag{ font-size:.7rem; font-weight:700; border-radius:999px; padding:2px 8px; }
+.char-tag.T{ background:var(--char-terra-soft); color:var(--char-terra); }
+.char-tag.V{ background:var(--char-ventus-soft); color:var(--char-ventus); }
+.char-tag.A{ background:var(--char-aqua-soft); color:var(--char-aqua); }
+#targetOther{ margin-top:14px; border:1px solid var(--border); border-radius:14px; padding:4px 18px 16px; background:var(--surface-2); }
 .panel-msg{ font-size:.8rem; font-weight:600; }
 .panel-msg.ok{ color:var(--ok); }
 .panel-msg.bad{ color:var(--bad); }
@@ -654,6 +664,7 @@ footer a{ color:var(--text-dim); }
       <button type="button" class="btn-ghost" id="targetClear" data-en="Clear all">Tout effacer</button>
     </div>
     <div class="ab-prog-wrap" id="targetProg" hidden></div>
+    <div id="targetOther" hidden></div>
     <div class="calc-result" id="targetResult">
       <p class="empty-hint" data-en="Pick a command from the list to see how to get it.">Choisis une commande dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -719,13 +730,14 @@ footer a{ color:var(--text-dim); }
 
   </div>
 
-  <footer data-en="English command and ability names are the official ones from the English version of the game: all 296 recipes were matched one by one against the <a href=&quot;https://khbbsmelding.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KH BBS Melding Calculator</a>, and ability descriptions come from <a href=&quot;https://www.khwiki.com/Abilities_(KHBBS)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KHWiki</a>. Recipe data originally copied from <a href=&quot;https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Kingdom Hearts Destiny</a> (khdestiny.fr) and cross-checked. A crystal’s ability only takes effect once the resulting command is fully leveled up. Ability maximums: KHWiki, cross-checked with <a href=&quot;https://www.destinyislands.com/bbs-fm/abilities/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Destiny Islands</a>. A few success rates vary slightly between community compilations (Final Mix included) — check in-game before an expensive meld.">
-    Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Maximums des capacités : <a href="https://www.khwiki.com/Abilities_(KHBBS)" target="_blank" rel="noopener">KHWiki</a>, recoupés avec <a href="https://www.destinyislands.com/bbs-fm/abilities/" target="_blank" rel="noopener">Destiny Islands</a>. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse.
+  <footer data-en="English command and ability names are the official ones from the English version of the game: all 296 recipes were matched one by one against the <a href=&quot;https://khbbsmelding.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KH BBS Melding Calculator</a>, and ability descriptions come from <a href=&quot;https://www.khwiki.com/Abilities_(KHBBS)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KHWiki</a>. Recipe data originally copied from <a href=&quot;https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Kingdom Hearts Destiny</a> (khdestiny.fr) and cross-checked. A crystal’s ability only takes effect once the resulting command is fully leveled up. Ability maximums: KHWiki, cross-checked with <a href=&quot;https://www.destinyislands.com/bbs-fm/abilities/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Destiny Islands</a>. A few success rates vary slightly between community compilations (Final Mix included) — check in-game before an expensive meld. Ways to get each command (chests, shops, Command Board, rewards): &lt;a href=&quot;https://www.khwiki.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;KHWiki&lt;/a&gt;, cross-checked with khdestiny.fr. &lt;span class=&quot;fmix&quot;&gt;FMix&lt;/span&gt; = Final Mix / HD 2.5 only.">
+    Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Maximums des capacités : <a href="https://www.khwiki.com/Abilities_(KHBBS)" target="_blank" rel="noopener">KHWiki</a>, recoupés avec <a href="https://www.destinyislands.com/bbs-fm/abilities/" target="_blank" rel="noopener">Destiny Islands</a>. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse. Moyens d'obtention (coffres, boutiques, Chasse aux commandes, récompenses) : <a href="https://www.khwiki.com/" target="_blank" rel="noopener">KHWiki</a>, recoupé avec khdestiny.fr. <span class="fmix">FMix</span> = uniquement dans Final Mix / HD 2.5.
   </footer>
 </div>
 
 <script id="recipes-data" type="application/json">__RECIPES_JSON__</script>
 <script id="i18n-en-data" type="application/json">__I18N_EN_JSON__</script>
+<script id="obtention-data" type="application/json">__OBTENTION_JSON__</script>
 <script>
 (function(){
   "use strict";
@@ -842,6 +854,7 @@ footer a{ color:var(--text-dim); }
     refreshIng1();
     buildGroups();
     refreshCmd1();
+    if(nonMeldMode) fillTargetList();
     refreshTargetCmd1();
     renderAbilityProg();
     renderCalcProg();
@@ -1249,38 +1262,70 @@ footer a{ color:var(--text-dim); }
   var targetProgEl = document.getElementById("targetProg");
   var targetAbilities = []; // abilities given by the chosen pair + crystal, for the progress strip
 
-  /* "Commande non mixable": commands that are the result of no recipe (only used as ingredients).
-     They stay out of the default list; ticking the box swaps the list and hides the melding fields. */
-  var nonMeldSet = {};
-  RECIPES.forEach(function(r){ nonMeldSet[r.i1] = 1; nonMeldSet[r.i2] = 1; });
-  Object.keys(resultNamesSet).forEach(function(n){ delete nonMeldSet[n]; });
-  var nonMeldList = Object.keys(nonMeldSet).sort(function(a,b){ return a.localeCompare(b); });
-  // How to get each non-meldable command, keyed by French name: { fr:"…", en:"…" } (HTML allowed).
-  var NON_MELD_INFO = {};
-  var FR_NAME = {}; // displayed name → French name (the key used by NON_MELD_INFO)
-  Object.keys(I18N_EN.commands).forEach(function(fr){ FR_NAME[LANG === "en" ? I18N_EN.commands[fr] : fr] = fr; });
+  /* How to get every command (obtention.json, keyed by French name): chests, shops, Command Board,
+     rewards… The "Commande non mixable" box lists the ones no recipe gives (items, friendship
+     commands, base commands…) and hides the melding fields; for meldable commands the same data
+     shows under "Autres moyens d'obtention". "{FM}" marks what only exists in Final Mix / HD 2.5. */
+  var OBTENTION = JSON.parse(document.getElementById("obtention-data").textContent).commands;
+  var OB_CAT = { "attaque":L("Attaque","Attack"), "magie":L("Magie","Magic"), "action":L("Action","Action"),
+                 "tirs-vises":L("Tir visé","Shotlock"), "objets":L("Objet","Item"), "entraide":L("Entraide","Friendship") };
+  function obName(fr){ return LANG === "en" ? ((OBTENTION[fr] && OBTENTION[fr].en) || I18N_EN.commands[fr] || fr) : fr; }
+  var FR_NAME = {}; // displayed name → French name (the key used by OBTENTION)
+  Object.keys(OBTENTION).forEach(function(fr){ FR_NAME[obName(fr)] = fr; });
+  Object.keys(I18N_EN.commands).forEach(function(fr){ if(!FR_NAME[obName(fr)]) FR_NAME[obName(fr)] = fr; });
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function fmTag(){ return '<span class="fmix" title="'+L('Uniquement dans Final Mix / HD 2.5', 'Final Mix / HD 2.5 only')+'">FMix</span>'; }
+  function howHtml(entry, title){
+    var lines = LANG === "en" ? entry.howEn : entry.howFr;
+    if(!lines || !lines.length) return "";
+    return '<p class="how-title">'+title+'</p><ul class="how-list">'
+      + lines.map(function(l){ return '<li>'+esc(l).replace(/\s?\{FM\}/g, fmTag())+'</li>'; }).join("") + '</ul>';
+  }
+  function charTags(chars){
+    return '<span class="char-tags">' + [["T","Terra"],["V","Ventus"],["A","Aqua"]].filter(function(p){ return chars.indexOf(p[0]) > -1; })
+      .map(function(p){ return '<span class="char-tag '+p[0]+'">'+p[1]+'</span>'; }).join("") + '</span>';
+  }
+  function nonMeldList(){
+    var letter = { Terra:"T", Ventus:"V", Aqua:"A" }[selectedChar];
+    return Object.keys(OBTENTION).filter(function(fr){
+      var e = OBTENTION[fr];
+      return !e.meld && (!letter || e.chars.indexOf(letter) > -1);
+    }).map(obName).sort(function(a,b){ return a.localeCompare(b); });
+  }
+  var targetOtherEl = document.getElementById("targetOther");
+  function renderTargetOther(){
+    var e = !nonMeldMode && targetCmdInput.value ? OBTENTION[FR_NAME[targetCmdInput.value]] : null;
+    var html = e ? howHtml(e, L("Autres moyens d’obtention", "Other ways to get it")) : "";
+    targetOtherEl.innerHTML = html;
+    targetOtherEl.hidden = !html;
+  }
   var nonMeldToggle = document.getElementById("nonMeldToggle");
   var nonMeldMode = false;
   function renderNonMeld(){
     targetAbilities = [];
     renderTargetProg();
+    renderTargetOther();
     var name = targetCmdInput.value;
     if(!name){
       targetResultEl.innerHTML = '<p class="empty-hint">'+L('Choisis une commande non mixable dans la liste pour voir comment l’obtenir.', 'Pick a non-meldable command from the list to see how to get it.')+'</p>';
       return;
     }
-    var info = NON_MELD_INFO[FR_NAME[name] || name];
+    var e = OBTENTION[FR_NAME[name]];
+    if(!e){ targetResultEl.innerHTML = '<div class="no-match">'+L('Commande inconnue : choisis-la dans la liste.', 'Unknown command: pick it from the list.')+'</div>'; return; }
     targetResultEl.innerHTML = '<div class="match-card">'
-      + '<div class="match-head"><h3>'+name+'</h3></div>'
-      + '<p style="margin:10px 0 0;color:var(--text-dim);font-size:.9rem;">'+L('Aucune recette ne donne cette commande : elle ne s’obtient pas par mixage.', 'No recipe gives this command: it can’t be obtained by melding.')+'</p>'
-      + (info ? '<div style="margin-top:10px;font-size:.9rem;">'+L(info.fr, info.en)+'</div>' : '')
+      + '<div class="match-head"><span class="chip chip-action">'+OB_CAT[e.cat]+'</span><h3>'+esc(name)+(e.fm ? fmTag() : '')+'</h3>'+charTags(e.chars)+'</div>'
+      + '<p style="margin:10px 0 0;color:var(--text-dim);font-size:.9rem;">'+L('Ne s’obtient pas par mixage.', 'Can’t be obtained by melding.')+'</p>'
+      + howHtml(e, L("Où l’obtenir", "Where to get it"))
       + '</div>';
+  }
+  function fillTargetList(){
+    fillDatalist(document.getElementById("targetCmdList"), nonMeldMode ? nonMeldList() : resultNameList);
   }
   function setNonMeldMode(on){
     nonMeldMode = on;
     document.querySelectorAll(".target-meld-only").forEach(function(el){ el.hidden = on; });
     targetCmdInput.value = ""; targetCmd1.value = ""; targetCmd2.value = ""; targetCrystalSel.value = "";
-    fillDatalist(document.getElementById("targetCmdList"), on ? nonMeldList : resultNameList);
+    fillTargetList();
     refreshTargetCmd1();
   }
   nonMeldToggle.addEventListener("change", function(){ setNonMeldMode(nonMeldToggle.checked); });
@@ -1294,6 +1339,7 @@ footer a{ color:var(--text-dim); }
 
   function refreshTargetCmd1(){
     if(nonMeldMode){ renderNonMeld(); return; }
+    renderTargetOther();
     var target = targetCmdInput.value;
     var dl1 = document.getElementById("targetCmd1List");
     if(!target){
