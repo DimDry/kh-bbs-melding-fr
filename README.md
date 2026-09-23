@@ -21,10 +21,9 @@ python3 -m http.server 8000
 
 ### Lancement en un clic (Linux, avec environnement de bureau)
 
-- `./run.sh` démarre le serveur local (s'il ne tourne pas déjà) et ouvre l'app dans le navigateur par défaut.
-- `./stop.sh` arrête le serveur.
+`./toggle.sh` bascule l'app : démarre le serveur local et l'ouvre dans le navigateur s'il est fermé, l'arrête s'il tourne déjà.
 
-Deux raccourcis bureau (`~/Bureau/Forge de Commandes.desktop` et `~/Bureau/Fermer Forge de Commandes.desktop`) appellent ces deux scripts — pratique pour ouvrir/fermer l'app sans terminal.
+Un raccourci bureau (`~/Bureau/Forge de Commandes.desktop`) appelle ce script — pratique pour ouvrir/fermer l'app d'un double-clic, sans terminal.
 
 ## Régénérer index.html après une modification des données ou du gabarit
 
