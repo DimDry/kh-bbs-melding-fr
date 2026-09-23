@@ -15,20 +15,34 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 **En ligne, sans rien installer :** https://dimdry.github.io/kh-bbs-melding-fr/
 
-**Ou en local :**
+**Ou en local**, sans installation, sans serveur ni Python. Testé sous **Linux** et **Windows**. macOS n'a pas été testé, mais devrait fonctionner de la même façon.
 
-1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip), puis **extraire** tout le dossier (sous Windows : clic droit sur le ZIP → *Extraire tout…*). Ne rien lancer depuis l'intérieur du ZIP : les fichiers ne se trouveraient pas.
+### Windows
+
+1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip).
+2. **Extraire le ZIP** : clic droit sur le fichier téléchargé → *Extraire tout…* → *Extraire*.
+   ⚠️ Étape obligatoire : si tu ouvres le ZIP et lances un fichier depuis l'intérieur, Windows ne copie que ce fichier dans un dossier temporaire, et l'app ou le raccourci ne fonctionnent pas.
+3. Dans le **dossier extrait**, au choix :
+   - double-cliquer sur **`index.html`** pour ouvrir l'app dans le navigateur ;
+   - ou double-cliquer une fois sur **`Windows - creer le raccourci.bat`** : un raccourci « Forge de Commandes » avec son icône est créé sur le Bureau, et l'app s'ouvre. Ensuite, utilise ce raccourci.
+     Si Windows affiche « Windows a protégé votre ordinateur », clique sur *Informations complémentaires* puis *Exécuter quand même* (le script est lisible dans un éditeur de texte).
+
+Ne déplace pas le dossier après avoir créé le raccourci, sinon le raccourci ne le trouvera plus. Si tu le déplaces, relance le `.bat`.
+
+### Linux
+
+1. [Télécharger le ZIP](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip) et l'extraire (ou `git clone` le dépôt).
 2. Double-cliquer sur **`index.html`**.
+3. Optionnel : lancer une fois `bash installer-linux.sh` pour ajouter l'app au menu des applications et au Bureau (elle s'ouvre alors dans une nouvelle fenêtre).
 
-C'est tout : pas d'installation, pas de serveur, pas de Python. Testé sous Windows et Linux (macOS devrait fonctionner de la même façon), dans n'importe quel navigateur récent. `index.html` est autonome (toutes les données sont intégrées). Hors connexion, l'app fonctionne aussi, seules les polices changent.
+### macOS (non testé)
 
-> Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. Pour la sauvegarder ou la passer sur un autre appareil, utilise les boutons « Exporter » et « Importer » de l’onglet (le bouton « ? » explique le fonctionnement).
+Extraire le ZIP, puis double-cliquer sur **`index.html`**. Pour un raccourci : clic droit sur `index.html` → *Créer un alias*, puis glisser l'alias sur le Bureau ou dans le Dock.
 
-### Raccourci sur le Bureau (optionnel)
+### Bon à savoir
 
-- **Windows** : double-cliquer une fois sur `Windows - creer le raccourci.bat`. Un raccourci « Forge de Commandes » avec son icône apparaît sur le Bureau. Si Windows affiche « Windows a protégé votre ordinateur », cliquer sur *Informations complémentaires* puis *Exécuter quand même* (le script est lisible dans un éditeur de texte).
-- **Linux** : lancer une fois `bash installer-linux.sh`. L'app est ajoutée au menu des applications et au Bureau, et s'ouvre dans une nouvelle fenêtre.
-- **macOS** : clic droit sur `index.html` → *Créer un alias*, puis glisser l'alias sur le Bureau ou dans le Dock.
+- `index.html` est autonome : toutes les données sont intégrées. Hors connexion, l'app fonctionne aussi ; seules les polices changent.
+- Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. La version en ligne et la version locale ont chacune leur propre sauvegarde. Pour la sauvegarder ou la passer d'une version ou d'un appareil à l'autre, utilise les boutons « Exporter » et « Importer » de l'onglet (le bouton « ? » explique le fonctionnement).
 
 ## Régénérer index.html après une modification des données ou du gabarit
 

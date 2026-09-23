@@ -611,7 +611,7 @@ footer a{ color:var(--text-dim); }
       <h4>Comment fonctionne la sauvegarde ?</h4>
       <ul>
         <li><strong>Automatique, dans ce navigateur :</strong> chaque case cochée est enregistrée tout de suite dans ce navigateur. Attention : la version en ligne et le fichier local ont chacun leur propre sauvegarde. Tu la retrouves en revenant sur l’app avec le même navigateur, sans compte ni connexion.</li>
-        <li><strong>Pas de synchronisation :</strong> rien n’est envoyé sur Internet. Un autre navigateur, un autre appareil ou une navigation privée repartent de zéro, et vider les données du navigateur efface la progression.</li>
+        <li><strong>Pas de synchronisation :</strong> rien n’est sauvegardé en ligne : ta progression reste dans ce navigateur. Un autre navigateur, un autre appareil ou une navigation privée repartent de zéro, et vider les données du navigateur efface la progression.</li>
         <li><strong>Exporter :</strong> affiche un code de sauvegarde à copier, et propose aussi de télécharger la même progression dans un fichier <span class="mono">.json</span>. Les deux contiennent la progression des 3 personnages et s’importent de la même façon. Garde-le comme sauvegarde, ou envoie-le-toi pour l’utiliser ailleurs.</li>
         <li><strong>Importer :</strong> colle ce code ou choisis le fichier sur l’autre appareil. La progression importée <em>remplace entièrement</em> la progression actuelle des 3 personnages.</li>
       </ul>
@@ -1133,39 +1133,39 @@ footer a{ color:var(--text-dim); }
 
   /* ---------- progress tracker ---------- */
   // Maximums: KHWiki « Abilities (KHBBS) », recoupés avec destinyislands.com (BbS Final Mix).
-  // Noms et descriptions FR : khdestiny.fr. "src" = clé cristal, ou null si hors mixage.
+  // Noms et descriptions FR : khdestiny.fr (textes repris tels quels). "src" = clé cristal, ou null si hors mixage.
   var ABILITIES = [
-    { group:"prize", name:"Attraction",         max:5, src:"hun",  desc:"Attire automatiquement les récompenses alentour." },
-    { group:"prize", name:"Profusion de HP",    max:3, src:"hun",  desc:"Augmente le nombre de sphères de HP laissées par les ennemis." },
-    { group:"prize", name:"Profusion lien-D",  max:3, src:"abo", alias:"Profusion liens-D",  desc:"Augmente le nombre de cristaux de lien-D laissés par les ennemis." },
-    { group:"prize", name:"Chance",             max:5, src:"abo",  desc:"Augmente le nombre de coffres laissés par les ennemis." },
-    { group:"stat",  name:"Booster HP",         max:3, src:"soo",  desc:"Augmente vos HP." },
-    { group:"stat",  name:"Booster Feu",        max:3, src:"shim", desc:"Augmente les dégâts des commandes Brasier." },
-    { group:"stat",  name:"Booster Glace",      max:3, src:"shim", desc:"Augmente les dégâts des commandes Glacier." },
-    { group:"stat",  name:"Booster Foudre",     max:3, src:"shim", desc:"Augmente les dégâts des commandes Foudre." },
-    { group:"stat",  name:"Booster Soin",       max:3, src:"shim", desc:"Augmente les HP régénérés par les commandes Soin." },
-    { group:"stat",  name:"Booster Objet",      max:3, src:"soo",  desc:"Augmente l'efficacité des commandes d'objets de guérison." },
-    { group:"stat",  name:"Accélérateur",       max:5, src:"flee", desc:"Réduit la recharge des commandes d'attaque." },
-    { group:"stat",  name:"Accélérateur mana",  max:5, src:"flee", desc:"Réduit la recharge des commandes magiques." },
-    { group:"stat",  name:"Booster fin combo",  max:2, src:"puls", desc:"Augmente les dégâts du dernier coup des combos." },
-    { group:"stat",  name:"Booster CdG",        max:2, src:"puls", desc:"Augmente les dégâts du coup de grâce." },
-    { group:"stat",  name:"Ecran Brasier",      max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Brasier." },
-    { group:"stat",  name:"Ecran Glacier",      max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Glacier." },
-    { group:"stat",  name:"Ecran Foudre",       max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Foudre." },
-    { group:"stat",  name:"Ecran obscur",       max:2, src:"shim", desc:"Augmente la résistance aux attaques de ténèbres." },
-    { group:"stat",  name:"Recharge réduite",   max:1, src:"flee", desc:"Réduit la recharge de toutes les commandes quand les HP passent sous 25 %." },
-    { group:"stat",  name:"Défenseur",          max:1, src:"soo",  desc:"Augmente la Défense quand les HP passent sous 25 %." },
-    { group:"support", name:"Combo",            max:3, src:"well", desc:"Ajoute un coup aux combos au sol." },
-    { group:"support", name:"Combo aérien",     max:3, src:"well", desc:"Ajoute un coup aux combos aériens." },
-    { group:"support", name:"Prime EXP",        max:1, src:"abo",  desc:"Double l'EXP gagnée quand les HP passent sous 25 %." },
-    { group:"support", name:"Marche EXP",       max:1, src:"abo",  desc:"1 EXP gagné à chaque pas effectué." },
-    { group:"support", name:"Vaillance",        max:1, src:"soo",  desc:"Régénère la jauge de concentration quand vous subissez des dégâts." },
-    { group:"support", name:"Dernières forces", max:1, src:"puls", desc:"Vous conservez 1 HP après une attaque qui aurait dû vous terrasser." },
-    { group:"support", name:"Dernière chance",  max:1, src:"well", desc:"Vous conservez 1 HP tout au long d'un combo qui aurait dû vous terrasser." },
-    { group:"support", name:"Pétale garde",     max:1, src:"puls", desc:"Aucun dégât subi pendant l'utilisation des commandes Soin." },
-    { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé.", fixed:true,
+    { group:"prize", name:"Attraction",         max:5, src:"hun",  desc:"Attire automatiquement les récompenses alentour. Installez la capacité plusieurs fois pour augmenter sa portée." },
+    { group:"prize", name:"Profusion de HP",    max:3, src:"hun",  desc:"Augmente le nombre de sphères de HP laissées par les ennemis. Installez la capacité plusieurs fois pour obtenir encore plus de sphères." },
+    { group:"prize", name:"Profusion lien-D",  max:3, src:"abo", alias:"Profusion liens-D",  desc:"Augmente le nombre de cristaux de lien-D laissés par les ennemis. Installez la capacité plusieurs fois pour obtenir encore plus de sphères." },
+    { group:"prize", name:"Chance",             max:5, src:"abo",  desc:"Augmente le nombre de coffres laissés par les ennemis. Installez la capacité plusieurs fois pour obtenir encore plus de coffres." },
+    { group:"stat",  name:"Booster HP",         max:3, src:"soo",  desc:"Augmente vos HP. Installez la capacité plusieurs fois pour l'améliorer encore plus." },
+    { group:"stat",  name:"Booster Feu",        max:3, src:"shim", desc:"Augmente les dégâts infligés avec vos commandes Brasier. Installez la capacité plusieurs fois pour multiplier encore plus les dégâts." },
+    { group:"stat",  name:"Booster Glace",      max:3, src:"shim", desc:"Augmente les dégâts infligés avec vos commandes Glacier. Installez la capacité plusieurs fois pour multiplier encore plus les dégâts." },
+    { group:"stat",  name:"Booster Foudre",     max:3, src:"shim", desc:"Augmente les dégâts infligés avec vos commandes Foudre. Installez la capacité plusieurs fois pour multiplier encore plus les dégâts." },
+    { group:"stat",  name:"Booster Soin",       max:3, src:"shim", desc:"Augmente les quantité de HP régénérés avec vos commandes Soin. Installez la capacité plusieurs fois pour multiplier encore plus l'effet." },
+    { group:"stat",  name:"Booster Objet",      max:3, src:"soo",  desc:"Augmente l'effucacité des commandes d'objets de guérison. Installez la capacité plusieurs fois pour l'améliorer encore plus." },
+    { group:"stat",  name:"Accélérateur",       max:5, src:"flee", desc:"Réduit la recharge de toutes les commandes d'attaque de votre jeu. Installez la capacité plusieurs fois pour recharger plus vite." },
+    { group:"stat",  name:"Accélérateur mana",  max:5, src:"flee", desc:"Réduit la recharge de toutes les commandes magiques de votre JdC. Installez la capacité plusieurs fois pour recharger plus vite." },
+    { group:"stat",  name:"Booster fin combo",  max:2, src:"puls", desc:"Augmente les dégâts du dernier coup de vos combos. Installez la capacité plusieurs fois pour infliger encore plus de dégâts." },
+    { group:"stat",  name:"Booster CdG",        max:2, src:"puls", desc:"Augmente les dégâts infligés par votre coup de grâce. Installez la capacité plusieurs fois pour infliger encore plus de dégâts." },
+    { group:"stat",  name:"Ecran Brasier",      max:2, src:"shim", desc:"Augmente votre résistance aux attaques de type Brasier. Installez la capacité plusieurs fois pour l'augmenter encore plus." },
+    { group:"stat",  name:"Ecran Glacier",      max:2, src:"shim", desc:"Augmente votre résistance aux attaques de type Glacier. Installez la capacité plusieurs fois pour l'augmenter encore plus." },
+    { group:"stat",  name:"Ecran Foudre",       max:2, src:"shim", desc:"Augmente votre résistance aux attaques de type Foudre. Installez la capacité plusieurs fois pour l'augmenter encore plus." },
+    { group:"stat",  name:"Ecran obscur",       max:2, src:"shim", desc:"Augmente votre résistance aux attaques à base de ténèbres. Installez la capacité plusieurs fois pour l'augmenter encore plus." },
+    { group:"stat",  name:"Recharge réduite",   max:1, src:"flee", desc:"Réduit la recharge de toutes les commandes de votre JdC dès que vos HP tombent en-dessous de 25%." },
+    { group:"stat",  name:"Défenseur",          max:1, src:"soo",  desc:"Augmente votre Défense dès que vos HP tombent en-dessous de 25%" },
+    { group:"support", name:"Combo",            max:3, src:"well", desc:"Ajoute un coup à vos combos au sol. Installez la capacité plusieurs fois pour exécuter des combos encore plus longs." },
+    { group:"support", name:"Combo aérien",     max:3, src:"well", desc:"Ajoute un coup à vos combos aériens. Installez la capacité plusieurs fois pour exécuter des combos encore plus longs." },
+    { group:"support", name:"Prime EXP",        max:1, src:"abo",  desc:"Double l'EXP gagnée dès que vos HP tombent en-dessous de 25%." },
+    { group:"support", name:"Marche EXP",       max:1, src:"abo",  desc:"Vous gagnez 1 EXP à chaque pas effectué." },
+    { group:"support", name:"Vaillance",        max:1, src:"soo",  desc:"Régénère une partie de la jauge de concentration lorsque vous subissez des dégâts." },
+    { group:"support", name:"Dernières forces", max:1, src:"puls", desc:"Vous conservez 1 HP même après une attaque qui aurait dû vous terrasser, à moins de n'avoir déjà plus qu'1 HP." },
+    { group:"support", name:"Dernière chance",  max:1, src:"well", desc:"Vous conservez 1 HP même lors d'un combo qui aurait dû vous terrasser, à moins de n'avoir déjà plus qu'1 HP au premier coup reçu." },
+    { group:"support", name:"Pétale garde",     max:1, src:"puls", desc:"Vous évite de subir des dégâts lorsque vous utilisez les commandes Soin." },
+    { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé", fixed:true,
       note:"Acquise d'office : la commande de départ qui la porte (Quick Blitz en VO) est déjà au niveau max." },
-    { group:"support", name:"EXP nulle",        max:1, src:null,   desc:"Empêche de gagner de l'EXP.", optional:true,
+    { group:"support", name:"EXP nulle",        max:1, src:null,   desc:"Vous empêche de gagner de l'EXP lorsque vous battez des ennemis. (Mode Critique uniquement)", optional:true,
       note:"Mode Critique uniquement, installée d'office — non comptée dans le total." }
   ];
   var PROG_GROUPS = [
@@ -1224,7 +1224,8 @@ footer a{ color:var(--text-dim); }
       var pct = Math.round(100 * t.got / t.max);
       return '<button type="button" class="prog-char char-'+c.toLowerCase()+'" data-pc="'+c+'" aria-pressed="'+(c===progChar)+'">'
         + '<div class="prog-char-top"><h3>'+c+'</h3><span class="prog-pct">'+pct+'&nbsp;%</span></div>'
-        + '<div class="prog-sub">'+t.got+' / '+t.max+' niveaux · '+t.done+' / '+t.n+' capacités complètes</div>'
+        + '<div class="prog-sub">Capacités : '+t.got+' / '+t.max+'</div>'
+        + '<div class="prog-sub">Capacités complétées : '+t.done+' / '+t.n+'</div>'
         + '<div class="bar"><span style="width:'+pct+'%"></span></div>'
         + '</button>';
     }).join("");
@@ -1415,7 +1416,7 @@ footer a{ color:var(--text-dim); }
     if(!importArmed){
       importArmed = true;
       importGo.textContent = "Confirmer : remplacer ma progression";
-      flash(importMsg, parsed.total + " niveau" + (parsed.total>1?"x":"") + " de capacités trouvés.", true);
+      flash(importMsg, parsed.total + " capacité" + (parsed.total>1?"s":"") + " trouvée" + (parsed.total>1?"s":"") + ".", true);
       return;
     }
     progress = parsed.progress;
