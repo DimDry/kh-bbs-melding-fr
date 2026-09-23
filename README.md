@@ -9,8 +9,10 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 - **Sélection du personnage** (Terra / Ventus / Aqua / Tous) : filtre l'ensemble de l'app sur ce que ce personnage peut réellement mixer.
 - **Onglet « Mixer des commandes »** : un calculateur (2 commandes + cristal optionnel → résultat exact) et un explorateur filtrable/triable de toutes les recettes.
 - **Onglet « Partir d'une capacité »** : choisis la capacité que tu veux obtenir, l'app te montre les paires de commandes à mixer et le cristal nécessaire.
-- **Onglet « Obtenir une commande »** : choisis la commande que tu veux obtenir, l'app te montre les paires de commandes à mixer pour y arriver.
+- **Onglet « Obtenir une commande »** : choisis la commande que tu veux obtenir, l'app te montre les paires de commandes à mixer pour y arriver, et la capacité produite si tu ajoutes un cristal.
 - **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage), avec export/import (un code à copier, ou la même progression dans un fichier .json à télécharger) pour la sauvegarder ou la transférer sur un autre appareil.
+
+- **Valider l'avancement sans quitter l'onglet** : dans les trois onglets de recherche, dès qu'une capacité est en jeu (cristal inséré, ou capacité recherchée) et qu'un personnage est sélectionné en haut, un bandeau « Valider (+1) » met à jour son avancement.
 
 ## Démarrage rapide
 

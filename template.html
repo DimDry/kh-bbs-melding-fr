@@ -572,7 +572,7 @@ footer a{ color:var(--text-dim); }
 
   <section class="calc" aria-label="Obtenir une commande">
     <h2>Obtenir une commande</h2>
-    <p class="lede">Choisis la commande que tu veux obtenir : on te montre les paires à mixer pour y arriver.</p>
+    <p class="lede">Choisis la commande que tu veux obtenir : on te montre les paires à mixer pour y arriver. Ajoute un cristal pour savoir quelle capacité il produira.</p>
     <div class="ability-filters">
       <div class="field field-ability">
         <label for="targetCmdInput">1. Commande recherchée</label>
@@ -590,9 +590,18 @@ footer a{ color:var(--text-dim); }
         <datalist id="targetCmd2List"></datalist>
       </div>
     </div>
+    <div class="calc-crystal-row">
+      <div class="field field-crystal">
+        <label for="targetCrystalSel">4. Cristal inséré (optionnel)</label>
+        <select id="targetCrystalSel">
+          <option value="">Aucun — voir les 7 capacités possibles</option>
+        </select>
+      </div>
+    </div>
     <div class="panel-actions" style="margin-top:12px;">
       <button type="button" class="btn-ghost" id="targetClear">Tout effacer</button>
     </div>
+    <div class="ab-prog-wrap" id="targetProg" hidden></div>
     <div class="calc-result" id="targetResult">
       <p class="empty-hint">Choisis une commande dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -733,6 +742,7 @@ footer a{ color:var(--text-dim); }
     refreshTargetCmd1();
     renderAbilityProg();
     renderCalcProg();
+    renderTargetProg();
   }
 
   /* ---------- tab navigation ---------- */
@@ -764,6 +774,9 @@ footer a{ color:var(--text-dim); }
     var o2 = document.createElement("option");
     o2.value = k; o2.textContent = CRYSTAL_LABELS[k];
     explorerCrystalSel.appendChild(o2);
+    var o3 = document.createElement("option");
+    o3.value = k; o3.textContent = CRYSTAL_LABELS[k];
+    document.getElementById("targetCrystalSel").appendChild(o3);
   });
 
   /* ---------- helpers ---------- */
@@ -1112,6 +1125,9 @@ footer a{ color:var(--text-dim); }
   var targetCmd1 = document.getElementById("targetCmd1");
   var targetCmd2 = document.getElementById("targetCmd2");
   var targetResultEl = document.getElementById("targetResult");
+  var targetCrystalSel = document.getElementById("targetCrystalSel");
+  var targetProgEl = document.getElementById("targetProg");
+  var targetAbilities = []; // abilities given by the chosen pair + crystal, for the progress strip
 
   function recipesForResult(resultName){
     return RECIPES.filter(function(r){
@@ -1159,6 +1175,8 @@ footer a{ color:var(--text-dim); }
   }
 
   function refreshTargetCmd2(){
+    targetAbilities = [];
+    renderTargetProg();
     var target = targetCmdInput.value;
     var c1 = norm(targetCmd1.value);
     var dl2 = document.getElementById("targetCmd2List");
@@ -1195,7 +1213,10 @@ footer a{ color:var(--text-dim); }
   }
 
   function renderTargetMatches(hits){
+    targetAbilities = [];
+    renderTargetProg();
     if(!hits.length) return;
+    var selectedCrystal = targetCrystalSel.value;
     hits = hits.slice().sort(function(x,y){ return y.rate - x.rate; });
     var html = '<p class="count-line">'+hits.length+' recette'+(hits.length>1?'s':'')+' trouvée'+(hits.length>1?'s':'')+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'.</p>';
     hits.forEach(function(r){
@@ -1211,10 +1232,13 @@ footer a{ color:var(--text-dim); }
         + '<span class="plus-sm">+</span>'
         + '<span class="slot">'+ingHtml(r.i2)+'</span>'
         + '</div>'
-        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx)+'</div>'
+        + (selectedCrystal ? abilityCalloutHtml(r.cx, selectedCrystal) : '')
+        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal)+'</div>'
         + '</div>';
+      if(selectedCrystal && r.cx && r.cx[selectedCrystal]) targetAbilities.push(r.cx[selectedCrystal]);
     });
     targetResultEl.innerHTML = html;
+    renderTargetProg();
   }
 
   // Same rule as the ability tab: keep the commands that can still make the new target.
@@ -1233,9 +1257,10 @@ footer a{ color:var(--text-dim); }
   pickField(targetCmd1, refreshTargetCmd2);
   pickField(targetCmd2, runTargetSearch);
   document.getElementById("targetClear").addEventListener("click", function(){
-    targetCmdInput.value = ""; targetCmd1.value = ""; targetCmd2.value = "";
+    targetCmdInput.value = ""; targetCmd1.value = ""; targetCmd2.value = ""; targetCrystalSel.value = "";
     refreshTargetCmd1();
   });
+  targetCrystalSel.addEventListener("change", runTargetSearch);
 
 
   /* ---------- progress tracker ---------- */
@@ -1380,6 +1405,7 @@ footer a{ color:var(--text-dim); }
 
     renderAbilityProg();
     renderCalcProg();
+    renderTargetProg();
     progResetBtn.textContent = resetArmed ? "Confirmer la remise à zéro de "+progChar : "Réinitialiser "+progChar;
     progResetBtn.classList.toggle("is-danger", resetArmed);
   }
@@ -1427,7 +1453,7 @@ footer a{ color:var(--text-dim); }
   });
 
 
-  /* progress strips ("Valider (+1)") in the Mixer and "Partir d'une capacité" tabs,
+  /* progress strips ("Valider (+1)") in the three search tabs,
      for the character chosen at the top; they share the save with the Avancement tab */
   var abilityProgEl = document.getElementById("abilityProg");
   function abilityByName(name){
@@ -1462,6 +1488,7 @@ footer a{ color:var(--text-dim); }
   }
   function renderAbilityProg(){ renderStrips(abilityProgEl, [abilityInput.value]); }
   function renderCalcProg(){ renderStrips(calcProgEl, calcAbilities); }
+  function renderTargetProg(){ renderStrips(targetProgEl, targetAbilities); }
   function onStripClick(e){
     var b = e.target.closest("[data-abstep]");
     var strip = e.target.closest(".ab-prog[data-ab]");
@@ -1471,6 +1498,7 @@ footer a{ color:var(--text-dim); }
   }
   abilityProgEl.addEventListener("click", onStripClick);
   calcProgEl.addEventListener("click", onStripClick);
+  targetProgEl.addEventListener("click", onStripClick);
 
   /* export / import / help panels */
   var PANELS = [
