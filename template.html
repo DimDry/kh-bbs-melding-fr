@@ -20,9 +20,11 @@
   --cat-magic:#1f6f9c;    --cat-magic-soft:#dfeef6;
   --cat-action:#3f8f68;   --cat-action-soft:#deefe6;
   --cat-shotlock:#9c6e1f; --cat-shotlock-soft:#f3ead4;
-  --char-terra:#8a6425;  --char-terra-soft:#f2e7d1;
-  --char-ventus:#3272b8; --char-ventus-soft:#dfebf8;
-  --char-aqua:#1c8f83;   --char-aqua-soft:#dbf0ec;
+  /* character colours sampled from official BBS art: Terra's hair (brown), the Wayfinders
+     of Ventus (green) and Aqua (blue); darkened here for contrast on the light theme */
+  --char-terra:#7a5234;  --char-terra-soft:#f1e5da;  --char-terra-on:#ffffff;
+  --char-ventus:#2b7636; --char-ventus-soft:#dff0e1; --char-ventus-on:#ffffff;
+  --char-aqua:#2f559f;   --char-aqua-soft:#dfe6f6;   --char-aqua-on:#ffffff;
   --ok:#1f7a49; --ok-soft:#ddf1e3;
   --warn:#93650f; --warn-soft:#f5ead2;
   --bad:#a8392f; --bad-soft:#f7ded9;
@@ -47,9 +49,9 @@
     --cat-magic:#7ac1e6;    --cat-magic-soft:#1c313f;
     --cat-action:#7fd2a8;   --cat-action-soft:#1c3527;
     --cat-shotlock:#e2b94f; --cat-shotlock-soft:#3a3016;
-    --char-terra:#d9a752;  --char-terra-soft:#382c17;
-    --char-ventus:#7ebaef; --char-ventus-soft:#182a3c;
-    --char-aqua:#5cd9c8;   --char-aqua-soft:#123330;
+    --char-terra:#c0936f;  --char-terra-soft:#35271c;  --char-terra-on:#131025;
+    --char-ventus:#67ba70; --char-ventus-soft:#1a3320; --char-ventus-on:#131025;
+    --char-aqua:#7f9de0;   --char-aqua-soft:#1c2742;   --char-aqua-on:#131025;
     --ok:#69d69c; --ok-soft:#1c3627;
     --warn:#e4bb63; --warn-soft:#3a2f18;
     --bad:#ec8b81; --bad-soft:#3b211e;
@@ -74,9 +76,9 @@
   --cat-magic:#7ac1e6;    --cat-magic-soft:#1c313f;
   --cat-action:#7fd2a8;   --cat-action-soft:#1c3527;
   --cat-shotlock:#e2b94f; --cat-shotlock-soft:#3a3016;
-  --char-terra:#d9a752;  --char-terra-soft:#382c17;
-  --char-ventus:#7ebaef; --char-ventus-soft:#182a3c;
-  --char-aqua:#5cd9c8;   --char-aqua-soft:#123330;
+  --char-terra:#c0936f;  --char-terra-soft:#35271c;  --char-terra-on:#131025;
+  --char-ventus:#67ba70; --char-ventus-soft:#1a3320; --char-ventus-on:#131025;
+  --char-aqua:#7f9de0;   --char-aqua-soft:#1c2742;   --char-aqua-on:#131025;
   --ok:#69d69c; --ok-soft:#1c3627;
   --warn:#e4bb63; --warn-soft:#3a2f18;
   --bad:#ec8b81; --bad-soft:#3b211e;
@@ -163,9 +165,9 @@ header.top{
 .char-btn .char-dot{ width:9px; height:9px; border-radius:50%; background:currentColor; opacity:.55; }
 .char-btn:hover{ border-color:var(--accent); color:var(--text); }
 .char-btn[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); }
-.char-btn.char-terra[aria-pressed="true"]{ background:var(--char-terra); border-color:var(--char-terra); color:#1c1408; }
-.char-btn.char-ventus[aria-pressed="true"]{ background:var(--char-ventus); border-color:var(--char-ventus); color:#0d1c29; }
-.char-btn.char-aqua[aria-pressed="true"]{ background:var(--char-aqua); border-color:var(--char-aqua); color:#062522; }
+.char-btn.char-terra[aria-pressed="true"]{ background:var(--char-terra); border-color:var(--char-terra); color:var(--char-terra-on); }
+.char-btn.char-ventus[aria-pressed="true"]{ background:var(--char-ventus); border-color:var(--char-ventus); color:var(--char-ventus-on); }
+.char-btn.char-aqua[aria-pressed="true"]{ background:var(--char-aqua); border-color:var(--char-aqua); color:var(--char-aqua-on); }
 .char-btn[aria-pressed="true"] .char-dot{ opacity:1; background:currentColor; }
 @media (max-width:640px){ .char-select{ flex-direction:column; align-items:stretch; } .char-buttons{ margin-left:0; } }
 
