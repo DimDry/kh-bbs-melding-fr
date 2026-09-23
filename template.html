@@ -128,6 +128,14 @@ header.top{
 .search-box input:focus{ outline:2px solid var(--accent); outline-offset:1px; }
 .search-box svg{ position:absolute; left:10px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--text-faint); pointer-events:none; }
 
+.lang-switch{ display:flex; gap:6px; }
+.lang-btn{
+  display:inline-flex; align-items:center; justify-content:center; padding:5px; border-radius:9px; cursor:pointer;
+  border:1px solid var(--border); background:var(--surface); opacity:.55;
+}
+.lang-btn svg{ width:24px; height:16px; border-radius:3px; display:block; }
+.lang-btn:hover{ opacity:1; border-color:var(--accent); }
+.lang-btn[aria-pressed="true"]{ opacity:1; border-color:var(--accent); box-shadow:0 0 0 1.5px var(--accent) inset; }
 .theme-btn{
   border:1px solid var(--border); background:var(--surface); color:var(--text-dim);
   border-radius:10px; padding:8px 10px; cursor:pointer; font-size:.8rem; display:flex; gap:6px; align-items:center;
@@ -441,10 +449,18 @@ footer a{ color:var(--text-dim); }
       </svg>
       <div class="brand-text">
         <h1>Forge de Commandes</h1>
-        <p>Kingdom Hearts Birth by Sleep &middot; Fusions de commandes</p>
+        <p data-en="Kingdom Hearts Birth by Sleep &middot; Command Melding">Kingdom Hearts Birth by Sleep &middot; Fusions de commandes</p>
       </div>
     </div>
-    <button class="theme-btn" id="themeToggle" type="button" title="Changer de thème">
+    <div class="lang-switch" id="langSwitch" role="group" aria-label="Langue / Language">
+      <button type="button" class="lang-btn" data-lang="fr" title="Français" aria-label="Français" aria-pressed="false">
+        <svg viewBox="0 0 3 2" aria-hidden="true"><rect width="1" height="2" fill="#002654"/><rect x="1" width="1" height="2" fill="#ffffff"/><rect x="2" width="1" height="2" fill="#ce1126"/></svg>
+      </button>
+      <button type="button" class="lang-btn" data-lang="en" title="English" aria-label="English" aria-pressed="false">
+        <svg viewBox="0 0 60 30" aria-hidden="true"><clipPath id="ukS"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="ukT"><path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/></clipPath><g clip-path="url(#ukS)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#ukT)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+      </button>
+    </div>
+    <button class="theme-btn" id="themeToggle" type="button" title="Changer de thème" data-en-title="Change theme">
       <span id="themeIcon">&#9789;</span> <span id="themeLabel">Thème</span>
     </button>
   </div>
@@ -453,19 +469,19 @@ footer a{ color:var(--text-dim); }
 <div class="wrap">
 
   <nav class="tabnav" role="tablist" aria-label="Navigation">
-    <button type="button" class="tabnav-btn" role="tab" data-tab="mix" aria-selected="true">Mixer des commandes</button>
-    <button type="button" class="tabnav-btn" role="tab" data-tab="ability" aria-selected="false">Partir d'une capacité</button>
-    <button type="button" class="tabnav-btn" role="tab" data-tab="target" aria-selected="false">Obtenir une commande</button>
-    <button type="button" class="tabnav-btn" role="tab" data-tab="progress" aria-selected="false">Avancement</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="mix" aria-selected="true" data-en="Meld Commands">Mixer des commandes</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="ability" aria-selected="false" data-en="Start from an Ability">Partir d'une capacité</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="target" aria-selected="false" data-en="Get a Command">Obtenir une commande</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="progress" aria-selected="false" data-en="Progress">Avancement</button>
   </nav>
 
-  <section class="char-select" aria-label="Sélection du personnage">
+  <section class="char-select" aria-label="Sélection du personnage" data-en-aria="Character selection">
     <div class="char-label">
-      <h2>Ton personnage</h2>
-      <p>Certaines fusions ne sont accessibles qu'à un seul personnage — choisis le tien pour ne voir que ce qu'il peut réellement mixer.</p>
+      <h2 data-en="Your character">Ton personnage</h2>
+      <p data-en="Some melds are only available to one character — pick yours to see only what they can actually meld.">Certaines fusions ne sont accessibles qu'à un seul personnage — choisis le tien pour ne voir que ce qu'il peut réellement mixer.</p>
     </div>
-    <div class="char-buttons" id="charButtons" role="group" aria-label="Choisir un personnage">
-      <button type="button" class="char-btn" data-char="all" aria-pressed="true"><span class="char-dot"></span>Tous</button>
+    <div class="char-buttons" id="charButtons" role="group" aria-label="Choisir un personnage" data-en-aria="Choose a character">
+      <button type="button" class="char-btn" data-char="all" aria-pressed="true" data-en="<span class=&quot;char-dot&quot;></span>All"><span class="char-dot"></span>Tous</button>
       <button type="button" class="char-btn char-terra" data-char="Terra" aria-pressed="false"><span class="char-dot"></span>Terra</button>
       <button type="button" class="char-btn char-ventus" data-char="Ventus" aria-pressed="false"><span class="char-dot"></span>Ventus</button>
       <button type="button" class="char-btn char-aqua" data-char="Aqua" aria-pressed="false"><span class="char-dot"></span>Aqua</button>
@@ -474,101 +490,101 @@ footer a{ color:var(--text-dim); }
 
   <div class="tab-panel" data-panel="mix">
 
-  <section class="calc" aria-label="Calculateur de fusion">
-    <h2>Calculateur de fusion</h2>
-    <p class="lede">Choisis deux commandes que tu possèdes pour voir immédiatement le résultat de leur fusion. Ajoute un cristal pour savoir exactement quelle capacité il produira.</p>
+  <section class="calc" aria-label="Calculateur de fusion" data-en-aria="Meld calculator">
+    <h2 data-en="Meld Calculator">Calculateur de fusion</h2>
+    <p class="lede" data-en="Pick two commands you own to see right away what they meld into. Add a crystal to find out exactly which ability it will produce.">Choisis deux commandes que tu possèdes pour voir immédiatement le résultat de leur fusion. Ajoute un cristal pour savoir exactement quelle capacité il produira.</p>
     <div class="calc-row">
       <div class="field">
-        <label for="ing1">Commande 1</label>
-        <input id="ing1" type="text" list="ing1List" autocomplete="off" placeholder="Tape ou choisis une commande…">
+        <label for="ing1" data-en="Command 1">Commande 1</label>
+        <input id="ing1" type="text" list="ing1List" autocomplete="off" placeholder="Tape ou choisis une commande…" data-en-ph="Type or pick a command…">
         <datalist id="ing1List"></datalist>
       </div>
       <div class="calc-plus" aria-hidden="true">+</div>
       <div class="field">
-        <label for="ing2">Commande 2</label>
-        <input id="ing2" type="text" list="ing2List" autocomplete="off" disabled placeholder="Choisis d'abord la commande 1…">
+        <label for="ing2" data-en="Command 2">Commande 2</label>
+        <input id="ing2" type="text" list="ing2List" autocomplete="off" disabled placeholder="Choisis d'abord la commande 1…" data-en-ph="Pick command 1 first…">
         <datalist id="ing2List"></datalist>
       </div>
     </div>
     <div class="calc-crystal-row">
       <div class="field field-crystal">
-        <label for="crystalSel">Cristal inséré (optionnel)</label>
+        <label for="crystalSel" data-en="Crystal added (optional)">Cristal inséré (optionnel)</label>
         <select id="crystalSel">
-          <option value="">Aucun — voir les 7 capacités possibles</option>
+          <option value="" data-en="None — show all 7 possible abilities">Aucun — voir les 7 capacités possibles</option>
         </select>
       </div>
     </div>
     <div class="panel-actions" style="margin-top:12px;">
-      <button type="button" class="btn-ghost" id="calcClear">Tout effacer</button>
+      <button type="button" class="btn-ghost" id="calcClear" data-en="Clear all">Tout effacer</button>
     </div>
     <div class="ab-prog-wrap" id="calcProg" hidden></div>
     <div class="calc-result" id="calcResult">
-      <p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu'elles donnent.</p>
+      <p class="empty-hint" data-en="Select two commands to see what they meld into.">Sélectionne deux commandes pour découvrir ce qu'elles donnent.</p>
     </div>
   </section>
 
-  <section class="explorer" aria-label="Explorateur de fusions">
+  <section class="explorer" aria-label="Explorateur de fusions" data-en-aria="Meld explorer">
     <div class="explorer-head">
-      <h2>Toutes les fusions possibles</h2>
+      <h2 data-en="All Possible Melds">Toutes les fusions possibles</h2>
       <div class="search-box">
         <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.6"/><path d="M13.6 13.6 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        <input id="globalSearch" type="search" placeholder="Chercher une commande…" autocomplete="off" aria-label="Chercher une commande dans les fusions">
+        <input id="globalSearch" type="search" placeholder="Chercher une commande…" autocomplete="off" aria-label="Chercher une commande dans les fusions" data-en-ph="Search for a command…" data-en-aria="Search the melds for a command">
       </div>
       <span class="count-note" id="countNote"></span>
     </div>
     <div class="filters" id="filters">
-      <button class="tab" data-cat="all" aria-pressed="true">Toutes <span class="n" id="n-all"></span></button>
-      <button class="tab" data-cat="attack" aria-pressed="false">Attaque <span class="n" id="n-attack"></span></button>
-      <button class="tab" data-cat="magic" aria-pressed="false">Magie <span class="n" id="n-magic"></span></button>
-      <button class="tab" data-cat="action" aria-pressed="false">Action <span class="n" id="n-action"></span></button>
-      <button class="tab" data-cat="shotlock" aria-pressed="false">Tirs visés <span class="n" id="n-shotlock"></span></button>
+      <button class="tab" data-cat="all" aria-pressed="true" data-en="All &lt;span class=&quot;n&quot; id=&quot;n-all&quot;&gt;&lt;/span&gt;">Toutes <span class="n" id="n-all"></span></button>
+      <button class="tab" data-cat="attack" aria-pressed="false" data-en="Attack &lt;span class=&quot;n&quot; id=&quot;n-attack&quot;&gt;&lt;/span&gt;">Attaque <span class="n" id="n-attack"></span></button>
+      <button class="tab" data-cat="magic" aria-pressed="false" data-en="Magic &lt;span class=&quot;n&quot; id=&quot;n-magic&quot;&gt;&lt;/span&gt;">Magie <span class="n" id="n-magic"></span></button>
+      <button class="tab" data-cat="action" aria-pressed="false" data-en="Action &lt;span class=&quot;n&quot; id=&quot;n-action&quot;&gt;&lt;/span&gt;">Action <span class="n" id="n-action"></span></button>
+      <button class="tab" data-cat="shotlock" aria-pressed="false" data-en="Shotlocks &lt;span class=&quot;n&quot; id=&quot;n-shotlock&quot;&gt;&lt;/span&gt;">Tirs visés <span class="n" id="n-shotlock"></span></button>
       <div class="sortbar">
-        <label for="explorerCrystalSel" style="font-size:.78rem;color:var(--text-faint);">Cristal</label>
+        <label for="explorerCrystalSel" style="font-size:.78rem;color:var(--text-faint);" data-en="Crystal">Cristal</label>
         <select id="explorerCrystalSel">
-          <option value="">Toutes les capacités</option>
+          <option value="" data-en="All abilities">Toutes les capacités</option>
         </select>
-        <label for="sortSel" style="font-size:.78rem;color:var(--text-faint);">Trier</label>
+        <label for="sortSel" style="font-size:.78rem;color:var(--text-faint);" data-en="Sort">Trier</label>
         <select id="sortSel">
-          <option value="az">Alphabétique</option>
-          <option value="rate">Taux de réussite</option>
-          <option value="variants">Nombre de recettes</option>
+          <option value="az" data-en="Alphabetical">Alphabétique</option>
+          <option value="rate" data-en="Success rate">Taux de réussite</option>
+          <option value="variants" data-en="Number of recipes">Nombre de recettes</option>
         </select>
       </div>
     </div>
     <div class="groups" id="groups"></div>
-    <div class="empty-state" id="emptyState" style="display:none;">Aucune fusion ne correspond à ta recherche.</div>
+    <div class="empty-state" id="emptyState" style="display:none;" data-en="No meld matches your search.">Aucune fusion ne correspond à ta recherche.</div>
   </section>
 
   </div>
 
   <div class="tab-panel" data-panel="ability" hidden>
 
-  <section class="calc" aria-label="Recherche par capacité">
-    <h2>Partir d'une capacité</h2>
-    <p class="lede">Choisis la capacité que tu veux obtenir sur une commande : on te montre les paires à mixer, et avec quel cristal.</p>
+  <section class="calc" aria-label="Recherche par capacité" data-en-aria="Search by ability">
+    <h2 data-en="Start from an Ability">Partir d'une capacité</h2>
+    <p class="lede" data-en="Pick the ability you want on a command: you'll see which pairs to meld, and with which crystal.">Choisis la capacité que tu veux obtenir sur une commande : on te montre les paires à mixer, et avec quel cristal.</p>
     <div class="ability-filters">
       <div class="field field-ability">
-        <label for="abilityInput">1. Capacité recherchée</label>
-        <input id="abilityInput" type="text" list="abilityInputList" autocomplete="off" placeholder="Tape ou choisis une capacité…">
+        <label for="abilityInput" data-en="1. Ability wanted">1. Capacité recherchée</label>
+        <input id="abilityInput" type="text" list="abilityInputList" autocomplete="off" placeholder="Tape ou choisis une capacité…" data-en-ph="Type or pick an ability…">
         <datalist id="abilityInputList"></datalist>
       </div>
       <div class="field field-ability">
-        <label for="abilityCmd1">2. Première commande</label>
-        <input id="abilityCmd1" type="text" list="abilityCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une capacité…">
+        <label for="abilityCmd1" data-en="2. First command">2. Première commande</label>
+        <input id="abilityCmd1" type="text" list="abilityCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une capacité…" data-en-ph="Pick an ability first…">
         <datalist id="abilityCmd1List"></datalist>
       </div>
       <div class="field field-ability">
-        <label for="abilityCmd2">3. Commande à combiner avec elle</label>
-        <input id="abilityCmd2" type="text" list="abilityCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…">
+        <label for="abilityCmd2" data-en="3. Command to meld it with">3. Commande à combiner avec elle</label>
+        <input id="abilityCmd2" type="text" list="abilityCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…" data-en-ph="Pick the first command first…">
         <datalist id="abilityCmd2List"></datalist>
       </div>
     </div>
     <div class="panel-actions" style="margin-top:12px;">
-      <button type="button" class="btn-ghost" id="abilityClear">Tout effacer</button>
+      <button type="button" class="btn-ghost" id="abilityClear" data-en="Clear all">Tout effacer</button>
     </div>
     <div class="ab-prog-wrap" id="abilityProg" hidden></div>
     <div class="calc-result" id="abilityResult">
-      <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
+      <p class="empty-hint" data-en="Pick an ability from the list to see how to get it.">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
     </div>
   </section>
 
@@ -576,40 +592,40 @@ footer a{ color:var(--text-dim); }
 
   <div class="tab-panel" data-panel="target" hidden>
 
-  <section class="calc" aria-label="Obtenir une commande">
-    <h2>Obtenir une commande</h2>
-    <p class="lede">Choisis la commande que tu veux obtenir : on te montre les paires à mixer pour y arriver. Ajoute un cristal pour savoir quelle capacité il produira.</p>
+  <section class="calc" aria-label="Obtenir une commande" data-en-aria="Get a command">
+    <h2 data-en="Get a Command">Obtenir une commande</h2>
+    <p class="lede" data-en="Pick the command you want: you'll see which pairs to meld to get it. Add a crystal to find out which ability it will produce.">Choisis la commande que tu veux obtenir : on te montre les paires à mixer pour y arriver. Ajoute un cristal pour savoir quelle capacité il produira.</p>
     <div class="ability-filters">
       <div class="field field-ability">
-        <label for="targetCmdInput">1. Commande recherchée</label>
-        <input id="targetCmdInput" type="text" list="targetCmdList" autocomplete="off" placeholder="Tape ou choisis une commande…">
+        <label for="targetCmdInput" data-en="1. Command wanted">1. Commande recherchée</label>
+        <input id="targetCmdInput" type="text" list="targetCmdList" autocomplete="off" placeholder="Tape ou choisis une commande…" data-en-ph="Type or pick a command…">
         <datalist id="targetCmdList"></datalist>
       </div>
       <div class="field field-ability">
-        <label for="targetCmd1">2. Première commande</label>
-        <input id="targetCmd1" type="text" list="targetCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une commande…">
+        <label for="targetCmd1" data-en="2. First command">2. Première commande</label>
+        <input id="targetCmd1" type="text" list="targetCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une commande…" data-en-ph="Pick a command first…">
         <datalist id="targetCmd1List"></datalist>
       </div>
       <div class="field field-ability">
-        <label for="targetCmd2">3. Commande à combiner avec elle</label>
-        <input id="targetCmd2" type="text" list="targetCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…">
+        <label for="targetCmd2" data-en="3. Command to meld it with">3. Commande à combiner avec elle</label>
+        <input id="targetCmd2" type="text" list="targetCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…" data-en-ph="Pick the first command first…">
         <datalist id="targetCmd2List"></datalist>
       </div>
     </div>
     <div class="calc-crystal-row">
       <div class="field field-crystal">
-        <label for="targetCrystalSel">4. Cristal inséré (optionnel)</label>
+        <label for="targetCrystalSel" data-en="4. Crystal added (optional)">4. Cristal inséré (optionnel)</label>
         <select id="targetCrystalSel">
-          <option value="">Aucun — voir les 7 capacités possibles</option>
+          <option value="" data-en="None — show all 7 possible abilities">Aucun — voir les 7 capacités possibles</option>
         </select>
       </div>
     </div>
     <div class="panel-actions" style="margin-top:12px;">
-      <button type="button" class="btn-ghost" id="targetClear">Tout effacer</button>
+      <button type="button" class="btn-ghost" id="targetClear" data-en="Clear all">Tout effacer</button>
     </div>
     <div class="ab-prog-wrap" id="targetProg" hidden></div>
     <div class="calc-result" id="targetResult">
-      <p class="empty-hint">Choisis une commande dans la liste pour voir comment l'obtenir.</p>
+      <p class="empty-hint" data-en="Pick a command from the list to see how to get it.">Choisis une commande dans la liste pour voir comment l'obtenir.</p>
     </div>
   </section>
 
@@ -618,26 +634,26 @@ footer a{ color:var(--text-dim); }
 
   <div class="tab-panel" data-panel="progress" hidden>
 
-  <section class="calc" aria-label="Avancement des capacités">
-    <h2>Avancement des capacités</h2>
-    <p class="lede">Comme le menu «&nbsp;Capacités&nbsp;» du jeu : note, pour chaque personnage, les capacités que tu as rendues permanentes (commande montée au niveau max). Certaines se cumulent — clique sur les cases ou utilise − / +. Ta progression est enregistrée dans ce navigateur.</p>
+  <section class="calc" aria-label="Avancement des capacités" data-en-aria="Ability progress">
+    <h2 data-en="Ability Progress">Avancement des capacités</h2>
+    <p class="lede" data-en="Like the in-game Abilities menu: track, for each character, the abilities you've made permanent (command fully leveled up). Some abilities stack — click the boxes or use − / +. Your progress is saved in this browser.">Comme le menu «&nbsp;Capacités&nbsp;» du jeu : note, pour chaque personnage, les capacités que tu as rendues permanentes (commande montée au niveau max). Certaines se cumulent — clique sur les cases ou utilise − / +. Ta progression est enregistrée dans ce navigateur.</p>
     <div class="prog-chars" id="progChars"></div>
     <div class="prog-toolbar">
       <div class="filters" id="progFilter" style="margin:0;">
-        <button class="tab" data-pf="all" aria-pressed="true">Toutes</button>
-        <button class="tab" data-pf="todo" aria-pressed="false">Restantes</button>
-        <button class="tab" data-pf="done" aria-pressed="false">Complètes</button>
+        <button class="tab" data-pf="all" aria-pressed="true" data-en="All">Toutes</button>
+        <button class="tab" data-pf="todo" aria-pressed="false" data-en="Remaining">Restantes</button>
+        <button class="tab" data-pf="done" aria-pressed="false" data-en="Completed">Complètes</button>
       </div>
       <span class="spacer"></span>
-      <button type="button" class="btn-ghost" id="progExportBtn" aria-expanded="false" aria-controls="progExport">Exporter</button>
-      <button type="button" class="btn-ghost" id="progImportBtn" aria-expanded="false" aria-controls="progImport">Importer</button>
-      <button type="button" class="btn-ghost" id="progReset">Réinitialiser ce personnage</button>
-      <button type="button" class="help-btn" id="progHelpBtn" aria-expanded="false" aria-controls="progHelp" title="Comment ça marche ?" aria-label="Comment ça marche ?">?</button>
+      <button type="button" class="btn-ghost" id="progExportBtn" aria-expanded="false" aria-controls="progExport" data-en="Export">Exporter</button>
+      <button type="button" class="btn-ghost" id="progImportBtn" aria-expanded="false" aria-controls="progImport" data-en="Import">Importer</button>
+      <button type="button" class="btn-ghost" id="progReset" data-en="Reset this character">Réinitialiser ce personnage</button>
+      <button type="button" class="help-btn" id="progHelpBtn" aria-expanded="false" aria-controls="progHelp" title="Comment ça marche ?" aria-label="Comment ça marche ?" data-en-title="How does it work?" data-en-aria="How does it work?">?</button>
     </div>
 
     <div class="prog-panel" id="progHelp" hidden>
-      <h4>Comment fonctionne la sauvegarde ?</h4>
-      <ul>
+      <h4 data-en="How is your progress saved?">Comment fonctionne la sauvegarde ?</h4>
+      <ul data-en="<li><strong>Automatic, in this browser:</strong> every box you tick is saved right away. You get your progress back when you return to the app in the same browser, with no account or sign-in. Note: the online version and the local file each keep their own save.</li><li><strong>No syncing:</strong> nothing is saved online: your progress stays in this browser. Another browser, another device or a private window start from scratch, and clearing the browser’s data erases your progress.</li><li><strong>Export:</strong> shows a save code to copy, and also lets you download the same progress as a <span class=&quot;mono&quot;>.json</span> file. Both contain the progress of all 3 characters and are imported the same way. Keep either one as a backup, or send it to yourself to use elsewhere.</li><li><strong>Import:</strong> paste that code or pick the file on the other device. The imported progress <em>fully replaces</em> the current progress of all 3 characters.</li>">
         <li><strong>Automatique, dans ce navigateur :</strong> chaque case cochée est enregistrée tout de suite. Tu retrouves ta progression en revenant sur l’app avec le même navigateur, sans compte ni connexion. Attention : la version en ligne et le fichier local ont chacun leur propre sauvegarde.</li>
         <li><strong>Pas de synchronisation :</strong> rien n’est sauvegardé en ligne : ta progression reste dans ce navigateur. Un autre navigateur, un autre appareil ou une navigation privée repartent de zéro, et vider les données du navigateur efface la progression.</li>
         <li><strong>Exporter :</strong> affiche un code de sauvegarde à copier, et propose aussi de télécharger la même progression dans un fichier <span class="mono">.json</span>. Les deux contiennent la progression des 3 personnages et s’importent de la même façon. Garde l’un ou l’autre comme sauvegarde, ou envoie-le-toi pour l’utiliser ailleurs.</li>
@@ -646,23 +662,23 @@ footer a{ color:var(--text-dim); }
     </div>
 
     <div class="prog-panel" id="progExport" hidden>
-      <h4>Exporter ta progression</h4>
-      <p>Ce code contient la progression de Terra, Ventus et Aqua. Copie ce code, ou télécharge la même progression sous forme de fichier <span class="mono">.json</span>, puis importe l’un ou l’autre sur un autre appareil ou navigateur.</p>
-      <textarea id="progExportCode" readonly aria-label="Code de sauvegarde"></textarea>
+      <h4 data-en="Export your progress">Exporter ta progression</h4>
+      <p data-en="This code contains the progress of Terra, Ventus and Aqua. Copy this code, or download the same progress as a <span class=&quot;mono&quot;>.json</span> file, then import either one on another device or browser.">Ce code contient la progression de Terra, Ventus et Aqua. Copie ce code, ou télécharge la même progression sous forme de fichier <span class="mono">.json</span>, puis importe l’un ou l’autre sur un autre appareil ou navigateur.</p>
+      <textarea id="progExportCode" readonly aria-label="Code de sauvegarde" data-en-aria="Save code"></textarea>
       <div class="panel-actions">
-        <button type="button" class="btn-primary" id="progCopy">Copier le code</button>
-        <button type="button" class="btn-ghost" id="progDownload">Télécharger le fichier</button>
+        <button type="button" class="btn-primary" id="progCopy" data-en="Copy code">Copier le code</button>
+        <button type="button" class="btn-ghost" id="progDownload" data-en="Download file">Télécharger le fichier</button>
         <span class="panel-msg" id="progExportMsg" role="status"></span>
       </div>
     </div>
 
     <div class="prog-panel" id="progImport" hidden>
-      <h4>Importer une progression</h4>
-      <p>Colle un code de sauvegarde ou choisis un fichier exporté. Attention : la progression actuelle des 3 personnages sera remplacée.</p>
-      <textarea id="progImportCode" placeholder="Colle ton code ici…" aria-label="Code à importer"></textarea>
+      <h4 data-en="Import progress">Importer une progression</h4>
+      <p data-en="Paste a save code or pick an exported file. Note: the current progress of all 3 characters will be replaced.">Colle un code de sauvegarde ou choisis un fichier exporté. Attention : la progression actuelle des 3 personnages sera remplacée.</p>
+      <textarea id="progImportCode" placeholder="Colle ton code ici…" aria-label="Code à importer" data-en-ph="Paste your code here…" data-en-aria="Code to import"></textarea>
       <div class="panel-actions">
-        <button type="button" class="btn-primary" id="progImportGo" disabled>Importer</button>
-        <button type="button" class="btn-ghost" id="progImportFileBtn">Choisir un fichier…</button>
+        <button type="button" class="btn-primary" id="progImportGo" disabled data-en="Import">Importer</button>
+        <button type="button" class="btn-ghost" id="progImportFileBtn" data-en="Choose a file…">Choisir un fichier…</button>
         <input type="file" id="progImportFile" accept=".json,application/json,text/plain" hidden>
         <span class="panel-msg" id="progImportMsg" role="status"></span>
       </div>
@@ -672,23 +688,63 @@ footer a{ color:var(--text-dim); }
 
   </div>
 
-  <footer>
+  <footer data-en="English command and ability names are the official ones from the English version of the game: all 296 recipes were matched one by one against the <a href=&quot;https://khbbsmelding.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KH BBS Melding Calculator</a>, and ability descriptions come from <a href=&quot;https://www.khwiki.com/Abilities_(KHBBS)&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>KHWiki</a>. Recipe data originally copied from <a href=&quot;https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Kingdom Hearts Destiny</a> (khdestiny.fr) and cross-checked. A crystal’s ability only takes effect once the resulting command is fully leveled up. Ability maximums: KHWiki, cross-checked with <a href=&quot;https://www.destinyislands.com/bbs-fm/abilities/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;>Destiny Islands</a>. A few success rates vary slightly between community compilations (Final Mix included) — check in-game before an expensive meld.">
     Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Maximums des capacités : <a href="https://www.khwiki.com/Abilities_(KHBBS)" target="_blank" rel="noopener">KHWiki</a>, recoupés avec <a href="https://www.destinyislands.com/bbs-fm/abilities/" target="_blank" rel="noopener">Destiny Islands</a>. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse.
   </footer>
 </div>
 
 <script id="recipes-data" type="application/json">__RECIPES_JSON__</script>
+<script id="i18n-en-data" type="application/json">__I18N_EN_JSON__</script>
 <script>
 (function(){
   "use strict";
   var RECIPES = JSON.parse(document.getElementById("recipes-data").textContent);
+  var I18N_EN = JSON.parse(document.getElementById("i18n-en-data").textContent);
 
-  var CRYSTAL_LABELS = {
+  /* ---------- language ----------
+     French is the reference: data, and the progress keys used by saves and exports, stay French.
+     In English, the static texts come from the data-en* attributes and the game names
+     (commands, abilities) from i18n-en.json, applied once at load; switching reloads the page. */
+  var LANG = "";
+  try{ LANG = localStorage.getItem("forge-lang") || ""; }catch(e){}
+  if(LANG !== "fr" && LANG !== "en") LANG = /^fr/i.test(navigator.language || "") ? "fr" : "en";
+  document.documentElement.lang = LANG;
+  function L(fr, en){ return LANG === "en" ? en : fr; }
+  function availLabel(a){ return a === "Tous" ? L("Tous", "All") : a; }
+  function plural(n, one, many){ return n + " " + (n > 1 ? many : one); }
+  if(LANG === "en"){
+    document.querySelectorAll("[data-en]").forEach(function(el){ el.innerHTML = el.dataset.en; });
+    document.querySelectorAll("[data-en-ph]").forEach(function(el){ el.placeholder = el.dataset.enPh; });
+    document.querySelectorAll("[data-en-title]").forEach(function(el){ el.title = el.dataset.enTitle; });
+    document.querySelectorAll("[data-en-aria]").forEach(function(el){ el.setAttribute("aria-label", el.dataset.enAria); });
+    var CMD_EN = I18N_EN.commands, AB_EN = I18N_EN.abilities;
+    RECIPES = RECIPES.map(function(r){
+      var cx = {};
+      Object.keys(r.cx || {}).forEach(function(k){ cx[k] = AB_EN[r.cx[k]] || r.cx[k]; });
+      return { cat:r.cat, result:CMD_EN[r.result] || r.result, i1:CMD_EN[r.i1] || r.i1, i2:CMD_EN[r.i2] || r.i2,
+               avail:r.avail, rate:r.rate, cx:cx };
+    });
+  }
+  document.querySelectorAll(".lang-btn").forEach(function(b){
+    b.setAttribute("aria-pressed", b.dataset.lang === LANG ? "true" : "false");
+    b.addEventListener("click", function(){
+      if(b.dataset.lang === LANG) return;
+      try{ localStorage.setItem("forge-lang", b.dataset.lang); }catch(e){}
+      location.reload();
+    });
+  });
+
+  var CRYSTAL_LABELS = LANG === "en" ? {
+    shim:"Shimmering Crystal", flee:"Fleeting Crystal", puls:"Pulsing Crystal",
+    well:"Wellspring Crystal", soo:"Soothing Crystal", hun:"Hungry Crystal", abo:"Abounding Crystal"
+  } : {
     shim:"Cristal chatoyant", flee:"Cristal fugace", puls:"Cristal vibrant",
     well:"Cristal ressourçant", soo:"Cristal apaisant", hun:"Cristal affamé", abo:"Cristal abondant"
   };
   var CRYSTAL_ORDER = ["shim","flee","puls","well","soo","hun","abo"];
-  var CAT_LABEL = { attack:"Attaque", magic:"Magie", action:"Action", shotlock:"Tir visé" };
+  var CAT_LABEL = LANG === "en"
+    ? { attack:"Attack", magic:"Magic", action:"Action", shotlock:"Shotlock" }
+    : { attack:"Attaque", magic:"Magie", action:"Action", shotlock:"Tir visé" };
 
   /* ---------- theme toggle ---------- */
   var root = document.documentElement;
@@ -697,9 +753,9 @@ footer a{ color:var(--text-dim); }
   var themeLabel = document.getElementById("themeLabel");
   function applyThemeUI(){
     var t = root.getAttribute("data-theme");
-    if(t === "dark"){ themeIcon.textContent = "☀"; themeLabel.textContent = "Clair"; }
-    else if(t === "light"){ themeIcon.textContent = "☽"; themeLabel.textContent = "Sombre"; }
-    else { themeIcon.textContent = "◑"; themeLabel.textContent = "Thème"; }
+    if(t === "dark"){ themeIcon.textContent = "☀"; themeLabel.textContent = L("Clair", "Light"); }
+    else if(t === "light"){ themeIcon.textContent = "☽"; themeLabel.textContent = L("Sombre", "Dark"); }
+    else { themeIcon.textContent = "◑"; themeLabel.textContent = L("Thème", "Theme"); }
   }
   try{
     var saved = localStorage.getItem("forge-theme");
@@ -797,7 +853,7 @@ footer a{ color:var(--text-dim); }
   // pickable: cells are buttons that insert (or, if already inserted, remove) that crystal
   function crystalTableHtml(cx, highlightKey, pickable){
     if(!cx || !Object.keys(cx).length){
-      return '<p class="no-crystal-note">Cette fusion n’accepte pas de cristal (commande de tir visé).</p>';
+      return '<p class="no-crystal-note">'+L('Cette fusion n’accepte pas de cristal (commande de tir visé).', 'This meld doesn’t take a crystal (shotlock command).')+'</p>';
     }
     var html = '<div class="crystal-table" style="display:grid;">';
     CRYSTAL_ORDER.forEach(function(k){
@@ -805,7 +861,7 @@ footer a{ color:var(--text-dim); }
       var sel = (highlightKey && k === highlightKey) ? ' is-selected' : '';
       var inner = '<div class="cname">'+CRYSTAL_LABELS[k]+'</div><div class="cabil">'+cx[k]+'</div>';
       html += pickable
-        ? '<button type="button" class="crystal-cell is-pickable'+sel+'" data-cx="'+k+'" aria-pressed="'+(sel?'true':'false')+'" title="'+(sel?'Retirer ce cristal':'Insérer ce cristal')+'">'+inner+'</button>'
+        ? '<button type="button" class="crystal-cell is-pickable'+sel+'" data-cx="'+k+'" aria-pressed="'+(sel?'true':'false')+'" title="'+(sel ? L('Retirer ce cristal','Remove this crystal') : L('Insérer ce cristal','Add this crystal'))+'">'+inner+'</button>'
         : '<div class="crystal-cell'+sel+'">'+inner+'</div>';
     });
     html += '</div>';
@@ -814,10 +870,12 @@ footer a{ color:var(--text-dim); }
   function abilityCalloutHtml(cx, key){
     var ability = cx ? cx[key] : null;
     if(ability){
-      return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">'+CRYSTAL_LABELS[key]+' &rarr; capacité obtenue</div><div class="ac-ability">'+ability+'</div></div></div>';
+      return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">'+CRYSTAL_LABELS[key]+' &rarr; '+L('capacité obtenue','ability obtained')+'</div><div class="ac-ability">'+ability+'</div></div></div>';
     }
-    var reason = (cx && Object.keys(cx).length) ? 'ce cristal n’a pas été trouvé pour cette recette' : 'commande de tir visé, aucun cristal possible';
-    return '<div class="ability-callout is-empty"><span class="ac-icon">&#8212;</span><div><div class="ac-text">Aucune capacité</div><div class="ac-ability">'+reason+'</div></div></div>';
+    var reason = (cx && Object.keys(cx).length)
+      ? L('ce cristal n’a pas été trouvé pour cette recette', 'this crystal wasn’t found for this recipe')
+      : L('commande de tir visé, aucun cristal possible', 'shotlock command, no crystal possible');
+    return '<div class="ability-callout is-empty"><span class="ac-icon">&#8212;</span><div><div class="ac-text">'+L('Aucune capacité','No ability')+'</div><div class="ac-ability">'+reason+'</div></div></div>';
   }
 
   /* ---------- pick fields (text input + datalist) ----------
@@ -878,7 +936,7 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl2, []);
       ing2.disabled = true;
       ing2.value = "";
-      ing2.placeholder = "Choisis d'abord la commande 1…";
+      ing2.placeholder = L("Choisis d'abord la commande 1…", "Pick command 1 first…");
       runCalc(); // no pair: clears the result and the progress strip
       return;
     }
@@ -891,7 +949,7 @@ footer a{ color:var(--text-dim); }
     var prev = ing2.value;
     fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
     ing2.disabled = false;
-    ing2.placeholder = "Tape ou choisis une commande…";
+    ing2.placeholder = L("Tape ou choisis une commande…", "Type or pick a command…");
     if(!(prev && names2[prev])) ing2.value = "";
     runCalc();
   }
@@ -904,7 +962,7 @@ footer a{ color:var(--text-dim); }
   function showCalc(){
     var a = norm(ing1.value), b = norm(ing2.value);
     if(!a || !b){
-      calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
+      calcResult.innerHTML = '<p class="empty-hint">'+L('Sélectionne deux commandes pour découvrir ce qu’elles donnent.', 'Select two commands to see what they meld into.')+'</p>';
       return;
     }
     var pairMatches = RECIPES.filter(function(r){
@@ -920,9 +978,9 @@ footer a{ color:var(--text-dim); }
     });
     if(!uniq.length){
       if(pairMatches.length && selectedChar !== "all"){
-        calcResult.innerHTML = '<div class="no-match">Cette fusion existe, mais pas pour <strong>'+selectedChar+'</strong> — regarde l’onglet «&nbsp;Tous&nbsp;» pour voir qui peut la réaliser.</div>';
+        calcResult.innerHTML = '<div class="no-match">'+L('Cette fusion existe, mais pas pour <strong>'+selectedChar+'</strong> — regarde l’onglet «&nbsp;Tous&nbsp;» pour voir qui peut la réaliser.', 'This meld exists, but not for <strong>'+selectedChar+'</strong> — select “All” to see who can do it.')+'</div>';
       } else {
-        calcResult.innerHTML = '<div class="no-match">Aucune recette connue pour cette combinaison. Vérifie l’orthographe, ou ces deux commandes ne se combinent pas ensemble.</div>';
+        calcResult.innerHTML = '<div class="no-match">'+L('Aucune recette connue pour cette combinaison. Vérifie l’orthographe, ou ces deux commandes ne se combinent pas ensemble.', 'No known recipe for this combination. Check the spelling, or these two commands don’t meld together.')+'</div>';
       }
       return;
     }
@@ -934,8 +992,8 @@ footer a{ color:var(--text-dim); }
         + '<div class="match-head">'
         + catChip(r.cat)
         + '<h3>&#8594; '+r.result+'</h3>'
-        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
-        + '<span class="avail">'+r.avail+'</span>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+L('% de réussite','% success')+'</span>'
+        + '<span class="avail">'+availLabel(r.avail)+'</span>'
         + '</div>'
         + '<p style="margin:10px 0 0;color:var(--text-dim);font-size:.88rem;">'+ingHtml(r.i1)+' <span class="plus-sm">+</span> '+ingHtml(r.i2)+'</p>'
         + (selectedCrystal ? abilityCalloutHtml(r.cx, selectedCrystal) : '')
@@ -965,7 +1023,7 @@ footer a{ color:var(--text-dim); }
 
   /* ---------- ability finder (reverse lookup) ---------- */
   function crystalNeededHtml(key){
-    return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">Cristal à insérer</div><div class="ac-ability">'+CRYSTAL_LABELS[key]+'</div></div></div>';
+    return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">'+L('Cristal à insérer','Crystal to add')+'</div><div class="ac-ability">'+CRYSTAL_LABELS[key]+'</div></div></div>';
   }
 
   var abilityMap = {};
@@ -1010,8 +1068,8 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl1, []);
       abilityCmd1.disabled = true;
       abilityCmd1.value = "";
-      abilityCmd1.placeholder = "Choisis d'abord une capacité…";
-      abilityResult.innerHTML = '<p class="empty-hint">Choisis une capacité dans la liste pour voir comment l’obtenir.</p>';
+      abilityCmd1.placeholder = L("Choisis d'abord une capacité…", "Pick an ability first…");
+      abilityResult.innerHTML = '<p class="empty-hint">'+L('Choisis une capacité dans la liste pour voir comment l’obtenir.', 'Pick an ability from the list to see how to get it.')+'</p>';
       refreshCmd2();
       return;
     }
@@ -1020,14 +1078,14 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl1, []);
       abilityCmd1.disabled = true;
       abilityCmd1.value = "";
-      abilityCmd1.placeholder = "Aucune commande (indisponible)";
+      abilityCmd1.placeholder = L("Aucune commande (indisponible)", "No command (unavailable)");
       var existsElsewhere = RECIPES.some(function(r){
         return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
       });
       if(existsElsewhere && selectedChar !== "all"){
-        abilityResult.innerHTML = '<div class="no-match">Cette capacité s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
+        abilityResult.innerHTML = '<div class="no-match">'+L('Cette capacité s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».', 'This ability can be obtained by melding, but not for <strong>'+selectedChar+'</strong>. Try another character or “All”.')+'</div>';
       } else {
-        abilityResult.innerHTML = '<div class="no-match">Aucune fusion connue ne procure cette capacité.</div>';
+        abilityResult.innerHTML = '<div class="no-match">'+L('Aucune fusion connue ne procure cette capacité.', 'No known meld gives this ability.')+'</div>';
       }
       refreshCmd2();
       return;
@@ -1037,9 +1095,9 @@ footer a{ color:var(--text-dim); }
     var prev1 = abilityCmd1.value;
     fillDatalist(dl1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }));
     abilityCmd1.disabled = false;
-    abilityCmd1.placeholder = "Tape ou choisis une commande…";
+    abilityCmd1.placeholder = L("Tape ou choisis une commande…", "Type or pick a command…");
     if(!(prev1 && names1[prev1])) abilityCmd1.value = "";
-    abilityResult.innerHTML = '<p class="empty-hint">Choisis une première commande dans la liste ci-dessus.</p>';
+    abilityResult.innerHTML = '<p class="empty-hint">'+L('Choisis une première commande dans la liste ci-dessus.', 'Pick a first command from the list above.')+'</p>';
     refreshCmd2();
   }
 
@@ -1051,7 +1109,7 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl2, []);
       abilityCmd2.disabled = true;
       abilityCmd2.value = "";
-      abilityCmd2.placeholder = "Choisis d'abord la première commande…";
+      abilityCmd2.placeholder = L("Choisis d'abord la première commande…", "Pick the first command first…");
       renderAbilityMatches([]);
       return;
     }
@@ -1061,24 +1119,25 @@ footer a{ color:var(--text-dim); }
     var prev2 = abilityCmd2.value;
     fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
     abilityCmd2.disabled = false;
-    abilityCmd2.placeholder = "Choisis la commande à combiner…";
+    abilityCmd2.placeholder = L("Choisis la commande à combiner…", "Pick the command to meld with…");
     if(!(prev2 && names2[prev2])) abilityCmd2.value = "";
-    abilityResult.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+abilityCmd1.value+'&nbsp;».</p>';
+    abilityResult.innerHTML = '<p class="empty-hint">'+L('Choisis la commande à combiner avec «&nbsp;'+abilityCmd1.value+'&nbsp;».', 'Pick the command to meld with “'+abilityCmd1.value+'”.')+'</p>';
     if(abilityCmd2.value) runAbilitySearch();
   }
 
   function renderAbilityMatches(hits){
     if(!hits.length) return;
     hits.sort(function(x,y){ return y.r.rate - x.r.rate; });
-    var html = '<p class="count-line">'+hits.length+' recette'+(hits.length>1?'s':'')+' trouvée'+(hits.length>1?'s':'')+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'.</p>';
+    var html = '<p class="count-line">'+L(plural(hits.length,'recette trouvée','recettes trouvées')+(selectedChar!=="all" ? ' pour '+selectedChar : ''),
+                                         plural(hits.length,'recipe found','recipes found')+(selectedChar!=="all" ? ' for '+selectedChar : ''))+'.</p>';
     hits.forEach(function(h){
       var r = h.r;
       html += '<div class="match-card">'
         + '<div class="match-head">'
         + catChip(r.cat)
         + '<h3>&#8594; '+r.result+'</h3>'
-        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
-        + '<span class="avail">'+r.avail+'</span>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+L('% de réussite','% success')+'</span>'
+        + '<span class="avail">'+availLabel(r.avail)+'</span>'
         + '</div>'
         + '<div class="slot-pair">'
         + '<span class="slot">'+ingHtml(r.i1)+'</span>'
@@ -1163,8 +1222,8 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl1, []);
       targetCmd1.disabled = true;
       targetCmd1.value = "";
-      targetCmd1.placeholder = "Choisis d'abord une commande…";
-      targetResultEl.innerHTML = '<p class="empty-hint">Choisis une commande dans la liste pour voir comment l’obtenir.</p>';
+      targetCmd1.placeholder = L("Choisis d'abord une commande…", "Pick a command first…");
+      targetResultEl.innerHTML = '<p class="empty-hint">'+L('Choisis une commande dans la liste pour voir comment l’obtenir.', 'Pick a command from the list to see how to get it.')+'</p>';
       refreshTargetCmd2();
       return;
     }
@@ -1173,12 +1232,12 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl1, []);
       targetCmd1.disabled = true;
       targetCmd1.value = "";
-      targetCmd1.placeholder = "Aucune commande (indisponible)";
+      targetCmd1.placeholder = L("Aucune commande (indisponible)", "No command (unavailable)");
       var existsElsewhere = resultNamesSet[target];
       if(existsElsewhere && selectedChar !== "all"){
-        targetResultEl.innerHTML = '<div class="no-match">Cette commande s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
+        targetResultEl.innerHTML = '<div class="no-match">'+L('Cette commande s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».', 'This command can be obtained by melding, but not for <strong>'+selectedChar+'</strong>. Try another character or “All”.')+'</div>';
       } else {
-        targetResultEl.innerHTML = '<div class="no-match">Aucune fusion connue ne donne cette commande. Choisis-la dans la liste proposée.</div>';
+        targetResultEl.innerHTML = '<div class="no-match">'+L('Aucune fusion connue ne donne cette commande. Choisis-la dans la liste proposée.', 'No known meld gives this command. Pick it from the list.')+'</div>';
       }
       refreshTargetCmd2();
       return;
@@ -1188,9 +1247,9 @@ footer a{ color:var(--text-dim); }
     var prev1 = targetCmd1.value;
     fillDatalist(dl1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }));
     targetCmd1.disabled = false;
-    targetCmd1.placeholder = "Tape ou choisis une commande…";
+    targetCmd1.placeholder = L("Tape ou choisis une commande…", "Type or pick a command…");
     if(!(prev1 && names1[prev1])) targetCmd1.value = "";
-    targetResultEl.innerHTML = '<p class="empty-hint">Choisis une première commande dans la liste ci-dessus.</p>';
+    targetResultEl.innerHTML = '<p class="empty-hint">'+L('Choisis une première commande dans la liste ci-dessus.', 'Pick a first command from the list above.')+'</p>';
     refreshTargetCmd2();
   }
 
@@ -1204,7 +1263,7 @@ footer a{ color:var(--text-dim); }
       fillDatalist(dl2, []);
       targetCmd2.disabled = true;
       targetCmd2.value = "";
-      targetCmd2.placeholder = "Choisis d'abord la première commande…";
+      targetCmd2.placeholder = L("Choisis d'abord la première commande…", "Pick the first command first…");
       renderTargetMatches([]);
       return;
     }
@@ -1214,9 +1273,9 @@ footer a{ color:var(--text-dim); }
     var prev2 = targetCmd2.value;
     fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
     targetCmd2.disabled = false;
-    targetCmd2.placeholder = "Choisis la commande à combiner…";
+    targetCmd2.placeholder = L("Choisis la commande à combiner…", "Pick the command to meld with…");
     if(!(prev2 && names2[prev2])) targetCmd2.value = "";
-    targetResultEl.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+targetCmd1.value+'&nbsp;».</p>';
+    targetResultEl.innerHTML = '<p class="empty-hint">'+L('Choisis la commande à combiner avec «&nbsp;'+targetCmd1.value+'&nbsp;».', 'Pick the command to meld with “'+targetCmd1.value+'”.')+'</p>';
     if(targetCmd2.value) runTargetSearch();
   }
 
@@ -1238,14 +1297,15 @@ footer a{ color:var(--text-dim); }
     if(!hits.length) return;
     var selectedCrystal = targetCrystalSel.value;
     hits = hits.slice().sort(function(x,y){ return y.rate - x.rate; });
-    var html = '<p class="count-line">'+hits.length+' recette'+(hits.length>1?'s':'')+' trouvée'+(hits.length>1?'s':'')+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'.</p>';
+    var html = '<p class="count-line">'+L(plural(hits.length,'recette trouvée','recettes trouvées')+(selectedChar!=="all" ? ' pour '+selectedChar : ''),
+                                         plural(hits.length,'recipe found','recipes found')+(selectedChar!=="all" ? ' for '+selectedChar : ''))+'.</p>';
     hits.forEach(function(r){
       html += '<div class="match-card">'
         + '<div class="match-head">'
         + catChip(r.cat)
         + '<h3>&#8594; '+r.result+'</h3>'
-        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
-        + '<span class="avail">'+r.avail+'</span>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+L('% de réussite','% success')+'</span>'
+        + '<span class="avail">'+availLabel(r.avail)+'</span>'
         + '</div>'
         + '<div class="slot-pair">'
         + '<span class="slot">'+ingHtml(r.i1)+'</span>'
@@ -1317,14 +1377,25 @@ footer a{ color:var(--text-dim); }
     { group:"support", name:"Dernière chance",  max:1, src:"well", desc:"Vous conservez 1 HP même lors d'un combo qui aurait dû vous terrasser, à moins de n'avoir déjà plus qu'1 HP au premier coup reçu." },
     { group:"support", name:"Pétale garde",     max:1, src:"puls", desc:"Vous évite de subir des dégâts lorsque vous utilisez les commandes Soin." },
     { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé.", fixed:true,
-      note:"Acquise d'office : la commande de départ qui la porte (Quick Blitz en VO) est déjà au niveau max." },
+      note:"Acquise d'office : la commande de départ qui la porte (Quick Blitz en VO) est déjà au niveau max.",
+      noteEn:"Obtained from the start: the starting command that carries it (Quick Blitz) is already fully leveled up." },
     { group:"support", name:"EXP nulle",        max:1, src:null,   desc:"Vous empêche de gagner de l'EXP lorsque vous battez des ennemis. (Mode Critique uniquement)", optional:true,
-      note:"Mode Critique uniquement, installée d'office — non comptée dans le total." }
+      note:"Mode Critique uniquement, installée d'office — non comptée dans le total.",
+      noteEn:"Critical Mode only, pre-installed — not counted in the total." }
   ];
+  // id = French name: the key used in saves and exports, whatever the display language
+  ABILITIES.forEach(function(a){
+    a.id = a.name;
+    if(LANG === "en"){
+      a.name = I18N_EN.abilities[a.id] || a.id;
+      a.desc = I18N_EN.abilityDescriptions[a.name] || a.desc;
+      if(a.noteEn) a.note = a.noteEn;
+    }
+  });
   var PROG_GROUPS = [
-    { key:"prize",   label:"Récompenses" },
-    { key:"stat",    label:"Statistiques" },
-    { key:"support", label:"Soutien" }
+    { key:"prize",   label:L("Récompenses", "Prize") },
+    { key:"stat",    label:L("Statistiques", "Stats") },
+    { key:"support", label:L("Soutien", "Support") }
   ];
   var PROG_CHARS = ["Terra","Ventus","Aqua"];
 
@@ -1337,7 +1408,7 @@ footer a{ color:var(--text-dim); }
   PROG_CHARS.forEach(function(c){
     ABILITIES.forEach(function(a){
       if(a.alias && progress[c][a.alias] !== undefined){
-        if(progress[c][a.name] === undefined) progress[c][a.name] = progress[c][a.alias];
+        if(progress[c][a.id] === undefined) progress[c][a.id] = progress[c][a.alias];
         delete progress[c][a.alias];
       }
     });
@@ -1348,7 +1419,7 @@ footer a{ color:var(--text-dim); }
   var progChar = PROG_CHARS.indexOf(selectedChar) !== -1 ? selectedChar : "Terra";
   var progFilter = "all";
 
-  function countOf(c, a){ return a.fixed ? a.max : Math.min(progress[c][a.name] || 0, a.max); }
+  function countOf(c, a){ return a.fixed ? a.max : Math.min(progress[c][a.id] || 0, a.max); }
   function charTotals(c){
     var got = 0, max = 0, done = 0, n = 0;
     ABILITIES.forEach(function(a){
@@ -1362,7 +1433,7 @@ footer a{ color:var(--text-dim); }
   function setCount(a, value, c){
     c = c || progChar;
     var v = Math.max(0, Math.min(a.max, value));
-    if(v) progress[c][a.name] = v; else delete progress[c][a.name];
+    if(v) progress[c][a.id] = v; else delete progress[c][a.id];
     saveProgress();
     renderProgress();
   }
@@ -1378,8 +1449,8 @@ footer a{ color:var(--text-dim); }
       var pct = Math.round(100 * t.got / t.max);
       return '<button type="button" class="prog-char char-'+c.toLowerCase()+'" data-pc="'+c+'" aria-pressed="'+(c===progChar)+'">'
         + '<div class="prog-char-top"><h3>'+c+'</h3><span class="prog-pct">'+pct+'&nbsp;%</span></div>'
-        + '<div class="prog-sub">Capacités : '+t.got+' / '+t.max+'</div>'
-        + '<div class="prog-sub">Capacités complétées : '+t.done+' / '+t.n+'</div>'
+        + '<div class="prog-sub">'+L('Capacités : ','Abilities: ')+t.got+' / '+t.max+'</div>'
+        + '<div class="prog-sub">'+L('Capacités complétées : ','Abilities completed: ')+t.done+' / '+t.n+'</div>'
         + '<div class="bar"><span style="width:'+pct+'%"></span></div>'
         + '</button>';
     }).join("");
@@ -1397,37 +1468,38 @@ footer a{ color:var(--text-dim); }
       if(!list.length) return;
       var all = ABILITIES.filter(function(a){ return a.group === g.key && !a.optional; });
       var gDone = all.filter(function(a){ return countOf(progChar, a) >= a.max; }).length;
-      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' complètes</span></div>'
+      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' '+L('complètes','completed')+'</span></div>'
         + '<div class="prog-list" style="--c:'+cVar+'">';
       list.forEach(function(a){
         var k = countOf(progChar, a);
         var full = k >= a.max;
         var pips = "";
         for(var i=1;i<=a.max;i++){
-          pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+' : '+i+' sur '+a.max+'"'+(a.fixed?' disabled':'')+'></button>';
+          pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+L(' : ',': ')+i+' '+L('sur','of')+' '+a.max+'"'+(a.fixed?' disabled':'')+'></button>';
         }
         var meta = a.src
-          ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><button type="button" class="link-btn" data-how="1">Comment l’obtenir →</button>'
+          ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><button type="button" class="link-btn" data-how="1">'+L('Comment l’obtenir →','How to get it →')+'</button>'
           : '<span class="note-chip">'+a.note+'</span>';
         html += '<div class="prog-row'+(full?' is-done':'')+'" data-ab="'+ABILITIES.indexOf(a)+'">'
           + '<div><div class="prog-name">'+a.name+(full?' <span class="done-mark">&#10003;</span>':'')+'</div>'
-          + '<div class="prog-desc">'+a.desc+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</div>'
+          + '<div class="prog-desc">'+a.desc+(a.max>1 ? ' '+L('Cumulable jusqu’à '+a.max+' fois.', 'Stacks up to '+a.max+' times.') : '')+'</div>'
           + '<div class="prog-meta">'+meta+'</div></div>'
           + '<div class="prog-ctrl">'
-          + '<button type="button" class="step" data-step="-1" '+(k<=0||a.fixed?'disabled':'')+' aria-label="Retirer">−</button>'
+          + '<button type="button" class="step" data-step="-1" '+(k<=0||a.fixed?'disabled':'')+' aria-label="'+L('Retirer','Remove')+'">−</button>'
           + '<span class="pips">'+pips+'</span>'
-          + '<button type="button" class="step" data-step="1" '+(full?'disabled':'')+' aria-label="Ajouter">+</button>'
+          + '<button type="button" class="step" data-step="1" '+(full?'disabled':'')+' aria-label="'+L('Ajouter','Add')+'">+</button>'
           + '<span class="prog-count">'+k+'/'+a.max+'</span>'
           + '</div></div>';
       });
       html += '</div></div>';
     });
-    progGroupsEl.innerHTML = html || '<p class="empty-hint">Rien à afficher avec ce filtre.</p>';
+    progGroupsEl.innerHTML = html || '<p class="empty-hint">'+L('Rien à afficher avec ce filtre.','Nothing to show with this filter.')+'</p>';
 
     renderAbilityProg();
     renderCalcProg();
     renderTargetProg();
-    progResetBtn.textContent = resetArmed ? "Confirmer la remise à zéro de "+progChar : "Réinitialiser "+progChar;
+    progResetBtn.textContent = resetArmed ? L("Confirmer la remise à zéro de "+progChar, "Confirm reset of "+progChar)
+                                           : L("Réinitialiser "+progChar, "Reset "+progChar);
     progResetBtn.classList.toggle("is-danger", resetArmed);
   }
 
@@ -1484,18 +1556,18 @@ footer a{ color:var(--text-dim); }
   }
   function stripHtml(a){
     if(PROG_CHARS.indexOf(selectedChar) === -1){
-      return '<div class="ab-prog is-empty">Choisis Terra, Ventus ou Aqua en haut de la page pour noter «&nbsp;'+a.name+'&nbsp;» dans ton avancement.</div>';
+      return '<div class="ab-prog is-empty">'+L('Choisis Terra, Ventus ou Aqua en haut de la page pour noter «&nbsp;'+a.name+'&nbsp;» dans ton avancement.', 'Choose Terra, Ventus or Aqua at the top of the page to record “'+a.name+'” in your progress.')+'</div>';
     }
     var c = selectedChar, k = countOf(c, a), full = k >= a.max, pips = "";
     for(var i=1;i<=a.max;i++) pips += '<span class="pip'+(i<=k?' on':'')+'" aria-hidden="true"></span>';
     return '<div class="ab-prog char-'+c.toLowerCase()+'" data-ab="'+a.name+'">'
-      + '<span class="ab-prog-label">Avancement de '+c+'</span>'
+      + '<span class="ab-prog-label">'+L('Avancement de '+c, c+'’s progress')+'</span>'
       + '<span class="ab-prog-name">'+a.name+'</span>'
       + '<span class="pips">'+pips+'</span>'
       + '<span class="prog-count">'+k+'/'+a.max+'</span>'
-      + '<button type="button" class="step" data-abstep="-1" '+(k<=0?'disabled':'')+' aria-label="Retirer">−</button>'
-      + '<button type="button" class="btn-primary" data-abstep="1" '+(full?'disabled':'')+'>'+(full ? 'Complète ✓' : 'Valider (+1)')+'</button>'
-      + '<p class="ab-prog-hint">Valide une fois la commande qui porte la capacité montée au niveau max.'+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</p>'
+      + '<button type="button" class="step" data-abstep="-1" '+(k<=0?'disabled':'')+' aria-label="'+L('Retirer','Remove')+'">−</button>'
+      + '<button type="button" class="btn-primary" data-abstep="1" '+(full?'disabled':'')+'>'+(full ? L('Complète ✓','Completed ✓') : L('Valider (+1)','Confirm (+1)'))+'</button>'
+      + '<p class="ab-prog-hint">'+L('Valide une fois la commande qui porte la capacité montée au niveau max.', 'Confirm once the command carrying this ability is fully leveled up.')+(a.max>1 ? ' '+L('Cumulable jusqu’à '+a.max+' fois.', 'Stacks up to '+a.max+' times.') : '')+'</p>'
       + '</div>';
   }
   function renderStrips(el, names){
@@ -1562,9 +1634,9 @@ footer a{ color:var(--text-dim); }
     PROG_CHARS.forEach(function(c){
       var cp = src[c] || {};
       ABILITIES.forEach(function(a){
-        var n = Math.floor(Number(cp[a.name] !== undefined ? cp[a.name] : cp[a.alias]) || 0);
+        var n = Math.floor(Number(cp[a.id] !== undefined ? cp[a.id] : cp[a.alias]) || 0);
         n = Math.max(0, Math.min(a.max, n));
-        if(n){ clean[c][a.name] = n; total += n; }
+        if(n){ clean[c][a.id] = n; total += n; }
       });
     });
     return { progress:clean, total:total };
@@ -1576,23 +1648,23 @@ footer a{ color:var(--text-dim); }
   function flash(el, text, ok){ el.textContent = text; el.className = "panel-msg " + (ok ? "ok" : "bad"); }
   document.getElementById("progCopy").addEventListener("click", function(){
     fillExport();
-    var done = function(){ flash(exportMsg, "Code copié ✓", true); };
+    var done = function(){ flash(exportMsg, L("Code copié ✓", "Code copied ✓"), true); };
     if(navigator.clipboard && navigator.clipboard.writeText){
       navigator.clipboard.writeText(exportCode.value).then(done, function(){
-        exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, "Copie impossible : sélectionne le code et fais Ctrl+C.", false);
+        exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, L("Copie impossible : sélectionne le code et fais Ctrl+C.", "Couldn’t copy: select the code and press Ctrl+C."), false);
       });
     } else {
-      exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, "Copie impossible : sélectionne le code et fais Ctrl+C.", false);
+      exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, L("Copie impossible : sélectionne le code et fais Ctrl+C.", "Couldn’t copy: select the code and press Ctrl+C."), false);
     }
   });
   document.getElementById("progDownload").addEventListener("click", function(){
     var json = JSON.stringify({ app:"forge-de-commandes", v:1, progress:progress }, null, 2);
     var url = URL.createObjectURL(new Blob([json], { type:"application/json" }));
     var a = document.createElement("a");
-    a.href = url; a.download = "forge-progression-" + new Date().toISOString().slice(0,10) + ".json";
+    a.href = url; a.download = L("forge-progression-", "forge-progress-") + new Date().toISOString().slice(0,10) + ".json";
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
-    flash(exportMsg, "Fichier téléchargé ✓", true);
+    flash(exportMsg, L("Fichier téléchargé ✓", "File downloaded ✓"), true);
   });
 
   var importCode = document.getElementById("progImportCode");
@@ -1602,7 +1674,7 @@ footer a{ color:var(--text-dim); }
   var importArmed = false;
   function resetImport(){
     importArmed = false;
-    importGo.textContent = "Importer";
+    importGo.textContent = L("Importer", "Import");
     importGo.disabled = !importCode.value.trim();
     importMsg.textContent = "";
   }
@@ -1616,11 +1688,11 @@ footer a{ color:var(--text-dim); }
   importGo.addEventListener("click", function(){
     var parsed;
     try{ parsed = decodeProgress(importCode.value); }
-    catch(e){ flash(importMsg, "Code invalide : vérifie qu’il a été copié en entier.", false); return; }
+    catch(e){ flash(importMsg, L("Code invalide : vérifie qu’il a été copié en entier.", "Invalid code: make sure it was copied in full."), false); return; }
     if(!importArmed){
       importArmed = true;
-      importGo.textContent = "Confirmer : remplacer ma progression";
-      flash(importMsg, parsed.total + " capacité" + (parsed.total>1?"s":"") + " trouvée" + (parsed.total>1?"s":"") + ".", true);
+      importGo.textContent = L("Confirmer : remplacer ma progression", "Confirm: replace my progress");
+      flash(importMsg, L(plural(parsed.total, "capacité trouvée", "capacités trouvées"), plural(parsed.total, "ability found", "abilities found")) + ".", true);
       return;
     }
     progress = parsed.progress;
@@ -1629,7 +1701,7 @@ footer a{ color:var(--text-dim); }
     renderProgress();
     importCode.value = "";
     resetImport();
-    flash(importMsg, "Progression importée ✓", true);
+    flash(importMsg, L("Progression importée ✓", "Progress imported ✓"), true);
   });
   renderProgress();
 
@@ -1680,8 +1752,9 @@ footer a{ color:var(--text-dim); }
       groupsArr.sort(function(a,b){ return b.variants.length - a.variants.length; });
     }
 
-    var charNote = state.char !== "all" ? " • personnage : " + state.char : "";
-    countNote.textContent = filtered.length + " recette" + (filtered.length>1?"s":"") + " • " + groupsArr.length + " commande" + (groupsArr.length>1?"s":"") + " obtenable" + (groupsArr.length>1?"s":"") + charNote;
+    var charNote = state.char !== "all" ? L(" • personnage : ", " • character: ") + state.char : "";
+    countNote.textContent = L(plural(filtered.length, "recette", "recettes") + " • " + plural(groupsArr.length, "commande obtenable", "commandes obtenables"),
+                              plural(filtered.length, "recipe", "recipes") + " • " + plural(groupsArr.length, "command obtainable", "commands obtainable")) + charNote;
 
     if(!groupsArr.length){
       groupsEl.innerHTML = "";
@@ -1697,7 +1770,7 @@ footer a{ color:var(--text-dim); }
         + '<svg class="caret" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3 L11 8 L6 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
         + catChip(g.cat)
         + '<h3>'+g.result+'</h3>'
-        + '<span class="count-note">'+g.variants.length+' recette'+(g.variants.length>1?'s':'')+'</span>'
+        + '<span class="count-note">'+L(plural(g.variants.length,'recette','recettes'), plural(g.variants.length,'recipe','recipes'))+'</span>'
         + '</button>'
         + '<div class="group-body">';
       g.variants.forEach(function(v, vi){
@@ -1707,16 +1780,16 @@ footer a{ color:var(--text-dim); }
           var ability = v.cx && v.cx[state.crystal];
           metaExtra = ability
             ? '<span class="ability-chip">&#9670; '+ability+'</span>'
-            : '<span class="ability-chip is-empty">&#8212; pas de cristal</span>';
+            : '<span class="ability-chip is-empty">&#8212; '+L('pas de cristal','no crystal')+'</span>';
         } else {
-          metaExtra = hasCx ? '<button type="button" class="crystal-toggle">Cristaux</button>' : '';
+          metaExtra = hasCx ? '<button type="button" class="crystal-toggle">'+L('Cristaux','Crystals')+'</button>' : '';
         }
         html += '<div class="variant" data-open-cx="false" data-gi="'+gi+'" data-vi="'+vi+'">'
           + '<div class="variant-top">'
           + '<span class="variant-ing">'+ingHtml(v.i1)+'<span class="plus-sm">+</span>'+ingHtml(v.i2)+'</span>'
           + '<span class="variant-meta">'
           + '<span class="rate '+rateClass(v.rate)+'">'+v.rate+'%</span>'
-          + '<span class="avail">'+v.avail+'</span>'
+          + '<span class="avail">'+availLabel(v.avail)+'</span>'
           + metaExtra
           + '</span>'
           + '</div>'
@@ -1749,7 +1822,7 @@ footer a{ color:var(--text-dim); }
         if(!built){ wrap.innerHTML = crystalTableHtml(v.cx); built = true; }
         vEl.setAttribute("data-cx-open", isOpen ? "false" : "true");
         wrap.querySelector(".crystal-table") && (wrap.querySelector(".crystal-table").style.display = isOpen ? "none" : "grid");
-        toggle.textContent = isOpen ? "Cristaux" : "Masquer";
+        toggle.textContent = isOpen ? L("Cristaux", "Crystals") : L("Masquer", "Hide");
       });
     });
   }
