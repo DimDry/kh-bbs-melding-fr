@@ -235,7 +235,7 @@ header.top{
 .count-line{ color:var(--text-faint); font-size:.82rem; margin:2px 0 12px; }
 .ability-filters{ display:flex; gap:16px; flex-wrap:wrap; }
 .field-ability{ flex:1 1 220px; max-width:320px; }
-.field select:disabled{ opacity:.5; cursor:not-allowed; }
+.field select:disabled, .field input:disabled{ opacity:.5; cursor:not-allowed; }
 
 /* badges & pills */
 .chip{
@@ -377,16 +377,14 @@ footer a{ color:var(--text-dim); }
     <div class="calc-row">
       <div class="field">
         <label for="ing1">Commande 1</label>
-        <select id="ing1">
-          <option value="">Choisis une commande…</option>
-        </select>
+        <input id="ing1" type="text" list="ing1List" autocomplete="off" placeholder="Tape ou choisis une commande…">
+        <datalist id="ing1List"></datalist>
       </div>
       <div class="calc-plus" aria-hidden="true">+</div>
       <div class="field">
         <label for="ing2">Commande 2</label>
-        <select id="ing2" disabled>
-          <option value="">Choisis d'abord la commande 1…</option>
-        </select>
+        <input id="ing2" type="text" list="ing2List" autocomplete="off" disabled placeholder="Choisis d'abord la commande 1…">
+        <datalist id="ing2List"></datalist>
       </div>
     </div>
     <div class="calc-crystal-row">
@@ -440,21 +438,18 @@ footer a{ color:var(--text-dim); }
     <div class="ability-filters">
       <div class="field field-ability">
         <label for="abilityInput">1. Capacité recherchée</label>
-        <select id="abilityInput">
-          <option value="">Choisis une capacité…</option>
-        </select>
+        <input id="abilityInput" type="text" list="abilityInputList" autocomplete="off" placeholder="Tape ou choisis une capacité…">
+        <datalist id="abilityInputList"></datalist>
       </div>
       <div class="field field-ability">
         <label for="abilityCmd1">2. Première commande</label>
-        <select id="abilityCmd1" disabled>
-          <option value="">Choisis d'abord une capacité…</option>
-        </select>
+        <input id="abilityCmd1" type="text" list="abilityCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une capacité…">
+        <datalist id="abilityCmd1List"></datalist>
       </div>
       <div class="field field-ability">
         <label for="abilityCmd2">3. Commande à combiner avec elle</label>
-        <select id="abilityCmd2" disabled>
-          <option value="">Choisis d'abord la première commande…</option>
-        </select>
+        <input id="abilityCmd2" type="text" list="abilityCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…">
+        <datalist id="abilityCmd2List"></datalist>
       </div>
     </div>
     <div class="calc-result" id="abilityResult">
@@ -599,16 +594,19 @@ footer a{ color:var(--text-dim); }
     var names1 = {};
     pool.forEach(function(r){ names1[r.i1]=1; names1[r.i2]=1; });
     var prev = ing1.value;
-    fillSelect(ing1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
-    if(prev && names1[prev]) ing1.value = prev;
+    fillDatalist(document.getElementById("ing1List"), Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }));
+    if(!(prev && names1[prev])) ing1.value = "";
     refreshIng2();
   }
 
   function refreshIng2(){
     var c1 = norm(ing1.value);
+    var dl2 = document.getElementById("ing2List");
     if(!c1){
-      fillSelect(ing2, [], "Choisis d'abord la commande 1…");
+      fillDatalist(dl2, []);
       ing2.disabled = true;
+      ing2.value = "";
+      ing2.placeholder = "Choisis d'abord la commande 1…";
       calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
       return;
     }
@@ -619,9 +617,10 @@ footer a{ color:var(--text-dim); }
     var names2 = {};
     pool.forEach(function(r){ names2[norm(r.i1)===c1 ? r.i2 : r.i1] = 1; });
     var prev = ing2.value;
-    fillSelect(ing2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
+    fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
     ing2.disabled = false;
-    if(prev && names2[prev]) ing2.value = prev;
+    ing2.placeholder = "Tape ou choisis une commande…";
+    if(!(prev && names2[prev])) ing2.value = "";
     runCalc();
   }
 
@@ -667,8 +666,8 @@ footer a{ color:var(--text-dim); }
     });
     calcResult.innerHTML = html;
   }
-  ing1.addEventListener("change", refreshIng2);
-  ing2.addEventListener("change", runCalc);
+  ing1.addEventListener("input", refreshIng2);
+  ing2.addEventListener("input", runCalc);
   crystalSel.addEventListener("change", runCalc);
   refreshIng1();
 
@@ -686,7 +685,7 @@ footer a{ color:var(--text-dim); }
   });
   var abilityNames = Object.keys(abilityMap).map(function(n){ return abilityMap[n]; }).sort(function(a,b){ return a.localeCompare(b); });
   var abilityInput = document.getElementById("abilityInput");
-  abilityNames.forEach(function(a){ var o=document.createElement("option"); o.value=a; o.textContent=a; abilityInput.appendChild(o); });
+  fillDatalist(document.getElementById("abilityInputList"), abilityNames);
 
   var abilityCmd1 = document.getElementById("abilityCmd1");
   var abilityCmd2 = document.getElementById("abilityCmd2");
@@ -699,6 +698,10 @@ footer a{ color:var(--text-dim); }
     select.appendChild(ph);
     options.forEach(function(n){ var o=document.createElement("option"); o.value=n; o.textContent=n; select.appendChild(o); });
   }
+  function fillDatalist(datalist, options){
+    datalist.innerHTML = "";
+    options.forEach(function(n){ var o=document.createElement("option"); o.value=n; datalist.appendChild(o); });
+  }
 
   // recipes granting the currently selected ability, for the current character
   function recipesForAbility(q){
@@ -710,17 +713,22 @@ footer a{ color:var(--text-dim); }
 
   function refreshCmd1(){
     var q = norm(abilityInput.value);
+    var dl1 = document.getElementById("abilityCmd1List");
     if(!q){
-      fillSelect(abilityCmd1, [], "Choisis d'abord une capacité…");
+      fillDatalist(dl1, []);
       abilityCmd1.disabled = true;
+      abilityCmd1.value = "";
+      abilityCmd1.placeholder = "Choisis d'abord une capacité…";
       abilityResult.innerHTML = '<p class="empty-hint">Choisis une capacité dans la liste pour voir comment l’obtenir.</p>';
       refreshCmd2();
       return;
     }
     var pool = recipesForAbility(q);
     if(!pool.length){
-      fillSelect(abilityCmd1, [], "Aucune commande (indisponible)");
+      fillDatalist(dl1, []);
       abilityCmd1.disabled = true;
+      abilityCmd1.value = "";
+      abilityCmd1.placeholder = "Aucune commande (indisponible)";
       var existsElsewhere = RECIPES.some(function(r){
         return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
       });
@@ -734,8 +742,11 @@ footer a{ color:var(--text-dim); }
     }
     var names1 = {};
     pool.forEach(function(r){ names1[r.i1]=1; names1[r.i2]=1; });
-    fillSelect(abilityCmd1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
+    var prev1 = abilityCmd1.value;
+    fillDatalist(dl1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }));
     abilityCmd1.disabled = false;
+    abilityCmd1.placeholder = "Tape ou choisis une commande…";
+    if(!(prev1 && names1[prev1])) abilityCmd1.value = "";
     abilityResult.innerHTML = '<p class="empty-hint">Choisis une première commande dans la liste ci-dessus.</p>';
     refreshCmd2();
   }
@@ -743,17 +754,23 @@ footer a{ color:var(--text-dim); }
   function refreshCmd2(){
     var q = norm(abilityInput.value);
     var c1 = norm(abilityCmd1.value);
+    var dl2 = document.getElementById("abilityCmd2List");
     if(!q || !c1){
-      fillSelect(abilityCmd2, [], "Choisis d'abord la première commande…");
+      fillDatalist(dl2, []);
       abilityCmd2.disabled = true;
+      abilityCmd2.value = "";
+      abilityCmd2.placeholder = "Choisis d'abord la première commande…";
       renderAbilityMatches([]);
       return;
     }
     var pool = recipesForAbility(q).filter(function(r){ return norm(r.i1)===c1 || norm(r.i2)===c1; });
     var names2 = {};
     pool.forEach(function(r){ names2[norm(r.i1)===c1 ? r.i2 : r.i1] = 1; });
-    fillSelect(abilityCmd2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }), "Choisis la commande à combiner…");
+    var prev2 = abilityCmd2.value;
+    fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
     abilityCmd2.disabled = false;
+    abilityCmd2.placeholder = "Choisis la commande à combiner…";
+    if(!(prev2 && names2[prev2])) abilityCmd2.value = "";
     abilityResult.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+abilityCmd1.value+'&nbsp;».</p>';
   }
 
@@ -798,9 +815,9 @@ footer a{ color:var(--text-dim); }
     renderAbilityMatches(hits);
   }
 
-  abilityInput.addEventListener("change", refreshCmd1);
-  abilityCmd1.addEventListener("change", refreshCmd2);
-  abilityCmd2.addEventListener("change", runAbilitySearch);
+  abilityInput.addEventListener("input", refreshCmd1);
+  abilityCmd1.addEventListener("input", refreshCmd2);
+  abilityCmd2.addEventListener("input", runAbilitySearch);
 
   /* ---------- explorer ---------- */
   var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };
