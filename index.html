@@ -415,10 +415,12 @@ footer a{ color:var(--text-dim); }
 .prog-panel textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; }
 .panel-actions{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
 .ab-prog{
-  margin-top:14px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2);
+  margin-top:10px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2);
   display:flex; align-items:center; gap:10px 16px; flex-wrap:wrap; --c:var(--accent);
 }
 .ab-prog.char-terra{ --c:var(--char-terra); } .ab-prog.char-ventus{ --c:var(--char-ventus); } .ab-prog.char-aqua{ --c:var(--char-aqua); }
+.ab-prog-wrap{ margin-top:14px; }
+.ab-prog-wrap > .ab-prog:first-child{ margin-top:0; }
 .ab-prog-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; color:var(--c); }
 .ab-prog-name{ font-weight:700; }
 .ab-prog-hint{ flex-basis:100%; font-size:.78rem; color:var(--text-faint); margin:0; }
@@ -506,6 +508,7 @@ footer a{ color:var(--text-dim); }
     <div class="panel-actions" style="margin-top:12px;">
       <button type="button" class="btn-ghost" id="calcClear">Tout effacer</button>
     </div>
+    <div class="ab-prog-wrap" id="calcProg" hidden></div>
     <div class="calc-result" id="calcResult">
       <p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu'elles donnent.</p>
     </div>
@@ -566,7 +569,7 @@ footer a{ color:var(--text-dim); }
     <div class="panel-actions" style="margin-top:12px;">
       <button type="button" class="btn-ghost" id="abilityClear">Tout effacer</button>
     </div>
-    <div class="ab-prog" id="abilityProg" hidden></div>
+    <div class="ab-prog-wrap" id="abilityProg" hidden></div>
     <div class="calc-result" id="abilityResult">
       <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -738,6 +741,7 @@ footer a{ color:var(--text-dim); }
     refreshCmd1();
     refreshTargetCmd1();
     renderAbilityProg();
+    renderCalcProg();
   }
 
   /* ---------- tab navigation ---------- */
@@ -840,6 +844,8 @@ footer a{ color:var(--text-dim); }
   var ing1 = document.getElementById("ing1");
   var ing2 = document.getElementById("ing2");
   var calcResult = document.getElementById("calcResult");
+  var calcProgEl = document.getElementById("calcProg");
+  var calcAbilities = []; // abilities given by the chosen pair + crystal, for the progress strip
 
   function refreshIng1(){
     var pool = RECIPES.filter(function(r){ return matchesChar(r.avail, selectedChar); });
@@ -859,7 +865,7 @@ footer a{ color:var(--text-dim); }
       ing2.disabled = true;
       ing2.value = "";
       ing2.placeholder = "Choisis d'abord la commande 1…";
-      calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
+      runCalc(); // no pair: clears the result and the progress strip
       return;
     }
     var pool = RECIPES.filter(function(r){
@@ -877,6 +883,11 @@ footer a{ color:var(--text-dim); }
   }
 
   function runCalc(){
+    calcAbilities = [];
+    showCalc();
+    renderCalcProg();
+  }
+  function showCalc(){
     var a = norm(ing1.value), b = norm(ing2.value);
     if(!a || !b){
       calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
@@ -904,6 +915,7 @@ footer a{ color:var(--text-dim); }
     var selectedCrystal = crystalSel.value;
     var html = "";
     uniq.forEach(function(r){
+      if(selectedCrystal && r.cx && r.cx[selectedCrystal]) calcAbilities.push(r.cx[selectedCrystal]);
       html += '<div class="match-card">'
         + '<div class="match-head">'
         + catChip(r.cat)
@@ -1376,6 +1388,7 @@ footer a{ color:var(--text-dim); }
     progGroupsEl.innerHTML = html || '<p class="empty-hint">Rien à afficher avec ce filtre.</p>';
 
     renderAbilityProg();
+    renderCalcProg();
     progResetBtn.textContent = resetArmed ? "Confirmer la remise à zéro de "+progChar : "Réinitialiser "+progChar;
     progResetBtn.classList.toggle("is-danger", resetArmed);
   }
@@ -1423,40 +1436,50 @@ footer a{ color:var(--text-dim); }
   });
 
 
-  /* progress strip in the "Partir d'une capacité" tab, for the character chosen at the top */
+  /* progress strips ("Valider (+1)") in the Mixer and "Partir d'une capacité" tabs,
+     for the character chosen at the top; they share the save with the Avancement tab */
   var abilityProgEl = document.getElementById("abilityProg");
   function abilityByName(name){
     var n = norm(name), hit = null;
     ABILITIES.some(function(a){ if(norm(a.name) === n){ hit = a; return true; } });
     return hit;
   }
-  function renderAbilityProg(){
-    var a = abilityByName(abilityInput.value);
-    abilityProgEl.hidden = !a;
-    if(!a) return;
+  function stripHtml(a){
     if(PROG_CHARS.indexOf(selectedChar) === -1){
-      abilityProgEl.className = "ab-prog is-empty";
-      abilityProgEl.innerHTML = 'Choisis Terra, Ventus ou Aqua en haut de la page pour noter «&nbsp;'+a.name+'&nbsp;» dans ton avancement.';
-      return;
+      return '<div class="ab-prog is-empty">Choisis Terra, Ventus ou Aqua en haut de la page pour noter «&nbsp;'+a.name+'&nbsp;» dans ton avancement.</div>';
     }
     var c = selectedChar, k = countOf(c, a), full = k >= a.max, pips = "";
     for(var i=1;i<=a.max;i++) pips += '<span class="pip'+(i<=k?' on':'')+'" aria-hidden="true"></span>';
-    abilityProgEl.className = "ab-prog char-" + c.toLowerCase();
-    abilityProgEl.innerHTML =
-        '<span class="ab-prog-label">Avancement de '+c+'</span>'
+    return '<div class="ab-prog char-'+c.toLowerCase()+'" data-ab="'+a.name+'">'
+      + '<span class="ab-prog-label">Avancement de '+c+'</span>'
       + '<span class="ab-prog-name">'+a.name+'</span>'
       + '<span class="pips">'+pips+'</span>'
       + '<span class="prog-count">'+k+'/'+a.max+'</span>'
       + '<button type="button" class="step" data-abstep="-1" '+(k<=0?'disabled':'')+' aria-label="Retirer">−</button>'
       + '<button type="button" class="btn-primary" data-abstep="1" '+(full?'disabled':'')+'>'+(full ? 'Complète ✓' : 'Valider (+1)')+'</button>'
-      + '<p class="ab-prog-hint">Valide une fois la commande qui porte la capacité montée au niveau max.'+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</p>';
+      + '<p class="ab-prog-hint">Valide une fois la commande qui porte la capacité montée au niveau max.'+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</p>'
+      + '</div>';
   }
-  abilityProgEl.addEventListener("click", function(e){
+  function renderStrips(el, names){
+    var seen = {}, list = [];
+    names.forEach(function(n){
+      var a = n && abilityByName(n);
+      if(a && !seen[a.name]){ seen[a.name] = 1; list.push(a); }
+    });
+    el.hidden = !list.length;
+    el.innerHTML = list.map(stripHtml).join("");
+  }
+  function renderAbilityProg(){ renderStrips(abilityProgEl, [abilityInput.value]); }
+  function renderCalcProg(){ renderStrips(calcProgEl, calcAbilities); }
+  function onStripClick(e){
     var b = e.target.closest("[data-abstep]");
-    var a = abilityByName(abilityInput.value);
-    if(!b || !a || PROG_CHARS.indexOf(selectedChar) === -1) return;
+    var strip = e.target.closest(".ab-prog[data-ab]");
+    if(!b || !strip || PROG_CHARS.indexOf(selectedChar) === -1) return;
+    var a = abilityByName(strip.dataset.ab);
     setCount(a, countOf(selectedChar, a) + (+b.dataset.abstep), selectedChar);
-  });
+  }
+  abilityProgEl.addEventListener("click", onStripClick);
+  calcProgEl.addEventListener("click", onStripClick);
 
   /* export / import / help panels */
   var PANELS = [
