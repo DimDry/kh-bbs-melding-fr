@@ -393,7 +393,16 @@ footer a{ color:var(--text-dim); }
 
 .prog-group{ margin-top:22px; }
 .prog-group-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
-.prog-group-head h3{ font-size:1.1rem; font-weight:700; }
+.prog-group-head h3{ font-size:1.1rem; font-weight:700; display:flex; align-items:center; gap:8px; }
+.orb{
+  width:13px; height:13px; border-radius:50%; flex:none;
+  background:radial-gradient(circle at 34% 30%, #fff 0 14%, var(--orb) 48%, color-mix(in srgb, var(--orb) 55%, #000) 100%);
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--orb) 60%, #000), 0 0 6px color-mix(in srgb, var(--orb) 45%, transparent);
+}
+.prog-group .prog-name{
+  display:inline-flex; padding-bottom:3px;
+  background:linear-gradient(90deg, color-mix(in srgb, var(--orb) 75%, transparent), transparent) left bottom / 100% 2px no-repeat;
+}
 .prog-list{ background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }
 .prog-row{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 16px; align-items:center; padding:12px 16px; border-top:1px solid var(--border); }
 .prog-row:first-child{ border-top:none; }
@@ -4457,9 +4466,10 @@ footer a{ color:var(--text-dim); }
     }
   });
   var PROG_GROUPS = [
-    { key:"prize",   label:L("Récompenses", "Prize") },
-    { key:"stat",    label:L("Statistiques", "Stats") },
-    { key:"support", label:L("Soutien", "Support") }
+    // orb colours taken from the in-game Abilities menu (yellow = prizes, blue = stats, red = support)
+    { key:"prize",   label:L("Gains", "Prize"),          orb:"#d4b508" },
+    { key:"stat",    label:L("Statistiques", "Stats"),   orb:"#039bf9" },
+    { key:"support", label:L("Soutien", "Support"),      orb:"#e5392f" }
   ];
   var PROG_CHARS = ["Terra","Ventus","Aqua"];
 
@@ -4532,7 +4542,7 @@ footer a{ color:var(--text-dim); }
       if(!list.length) return;
       var all = ABILITIES.filter(function(a){ return a.group === g.key && !a.optional; });
       var gDone = all.filter(function(a){ return countOf(progChar, a) >= a.max; }).length;
-      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' '+L('complètes','completed')+'</span></div>'
+      html += '<div class="prog-group" style="--orb:'+g.orb+'"><div class="prog-group-head"><h3><span class="orb" aria-hidden="true"></span>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' '+L('complètes','completed')+'</span></div>'
         + '<div class="prog-list" style="--c:'+cVar+'">';
       list.forEach(function(a){
         var k = countOf(progChar, a);
