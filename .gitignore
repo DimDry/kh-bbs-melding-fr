@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 fragment.html
+.server.pid
+.server.log

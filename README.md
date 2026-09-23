@@ -19,6 +19,13 @@ python3 -m http.server 8000
 # puis ouvrir http://localhost:8000
 ```
 
+### Lancement en un clic (Linux, avec environnement de bureau)
+
+- `./run.sh` démarre le serveur local (s'il ne tourne pas déjà) et ouvre l'app dans le navigateur par défaut.
+- `./stop.sh` arrête le serveur.
+
+Deux raccourcis bureau (`~/Bureau/Forge de Commandes.desktop` et `~/Bureau/Fermer Forge de Commandes.desktop`) appellent ces deux scripts — pratique pour ouvrir/fermer l'app sans terminal.
+
 ## Régénérer index.html après une modification des données ou du gabarit
 
 `index.html` est un fichier généré, il ne doit pas être édité à la main. Les sources sont :
