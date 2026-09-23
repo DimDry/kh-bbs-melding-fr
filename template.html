@@ -600,16 +600,16 @@ footer a{ color:var(--text-dim); }
     <div class="prog-panel" id="progHelp" hidden>
       <h4>Comment fonctionne la sauvegarde ?</h4>
       <ul>
-        <li><strong>Automatique, dans ce navigateur :</strong> chaque case cochée est enregistrée tout de suite sur cet appareil. Tu la retrouves en revenant sur l’app avec le même navigateur, sans compte ni connexion.</li>
+        <li><strong>Automatique, dans ce navigateur :</strong> chaque case cochée est enregistrée tout de suite dans ce navigateur. Attention : la version en ligne et le fichier local ont chacun leur propre sauvegarde. Tu la retrouves en revenant sur l’app avec le même navigateur, sans compte ni connexion.</li>
         <li><strong>Pas de synchronisation :</strong> rien n’est envoyé sur Internet. Un autre navigateur, un autre appareil ou une navigation privée repartent de zéro, et vider les données du navigateur efface la progression.</li>
-        <li><strong>Exporter :</strong> produit un code (à copier) ou un fichier <span class="mono">.json</span> qui contient la progression des 3 personnages. Garde-le comme sauvegarde, ou envoie-le-toi pour l’utiliser ailleurs.</li>
-        <li><strong>Importer :</strong> colle ce code ou choisis le fichier sur l’autre appareil. La progression importée <em>remplace</em> celle déjà présente.</li>
+        <li><strong>Exporter :</strong> affiche un code de sauvegarde à copier, et propose aussi de télécharger la même progression dans un fichier <span class="mono">.json</span>. Les deux contiennent la progression des 3 personnages et s’importent de la même façon. Garde-le comme sauvegarde, ou envoie-le-toi pour l’utiliser ailleurs.</li>
+        <li><strong>Importer :</strong> colle ce code ou choisis le fichier sur l’autre appareil. La progression importée <em>remplace entièrement</em> la progression actuelle des 3 personnages.</li>
       </ul>
     </div>
 
     <div class="prog-panel" id="progExport" hidden>
       <h4>Exporter ta progression</h4>
-      <p>Ce code contient la progression de Terra, Ventus et Aqua. Copie-le ou télécharge-le, puis importe-le sur un autre appareil ou navigateur.</p>
+      <p>Ce code contient la progression de Terra, Ventus et Aqua. Copie ce code, ou télécharge la même progression sous forme de fichier <span class="mono">.json</span>, puis importe-le sur un autre appareil ou navigateur.</p>
       <textarea id="progExportCode" readonly aria-label="Code de sauvegarde"></textarea>
       <div class="panel-actions">
         <button type="button" class="btn-primary" id="progCopy">Copier le code</button>
@@ -1127,7 +1127,7 @@ footer a{ color:var(--text-dim); }
   var ABILITIES = [
     { group:"prize", name:"Attraction",         max:5, src:"hun",  desc:"Attire automatiquement les récompenses alentour." },
     { group:"prize", name:"Profusion de HP",    max:3, src:"hun",  desc:"Augmente le nombre de sphères de HP laissées par les ennemis." },
-    { group:"prize", name:"Profusion liens-D",  max:3, src:"abo",  desc:"Augmente le nombre de cristaux de lien-D laissés par les ennemis." },
+    { group:"prize", name:"Profusion lien-D",  max:3, src:"abo", alias:"Profusion liens-D",  desc:"Augmente le nombre de cristaux de lien-D laissés par les ennemis." },
     { group:"prize", name:"Chance",             max:5, src:"abo",  desc:"Augmente le nombre de coffres laissés par les ennemis." },
     { group:"stat",  name:"Booster HP",         max:3, src:"soo",  desc:"Augmente vos HP." },
     { group:"stat",  name:"Booster Feu",        max:3, src:"shim", desc:"Augmente les dégâts des commandes Brasier." },
@@ -1170,6 +1170,15 @@ footer a{ color:var(--text-dim); }
     var savedProg = JSON.parse(localStorage.getItem("forge-progress") || "null");
     if(savedProg) PROG_CHARS.forEach(function(c){ if(savedProg[c]) progress[c] = savedProg[c]; });
   }catch(e){}
+  // ability renamed since earlier saves: carry the old key over
+  PROG_CHARS.forEach(function(c){
+    ABILITIES.forEach(function(a){
+      if(a.alias && progress[c][a.alias] !== undefined){
+        if(progress[c][a.name] === undefined) progress[c][a.name] = progress[c][a.alias];
+        delete progress[c][a.alias];
+      }
+    });
+  });
   function saveProgress(){
     try{ localStorage.setItem("forge-progress", JSON.stringify(progress)); }catch(e){}
   }
@@ -1205,7 +1214,7 @@ footer a{ color:var(--text-dim); }
       var pct = Math.round(100 * t.got / t.max);
       return '<button type="button" class="prog-char char-'+c.toLowerCase()+'" data-pc="'+c+'" aria-pressed="'+(c===progChar)+'">'
         + '<div class="prog-char-top"><h3>'+c+'</h3><span class="prog-pct">'+pct+'&nbsp;%</span></div>'
-        + '<div class="prog-sub">'+t.got+' / '+t.max+' niveaux · '+t.done+' / '+t.n+' capacités au max</div>'
+        + '<div class="prog-sub">'+t.got+' / '+t.max+' niveaux · '+t.done+' / '+t.n+' capacités complètes</div>'
         + '<div class="bar"><span style="width:'+pct+'%"></span></div>'
         + '</button>';
     }).join("");
@@ -1223,7 +1232,7 @@ footer a{ color:var(--text-dim); }
       if(!list.length) return;
       var all = ABILITIES.filter(function(a){ return a.group === g.key && !a.optional; });
       var gDone = all.filter(function(a){ return countOf(progChar, a) >= a.max; }).length;
-      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' au max</span></div>'
+      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' complètes</span></div>'
         + '<div class="prog-list" style="--c:'+cVar+'">';
       list.forEach(function(a){
         var k = countOf(progChar, a);
@@ -1337,7 +1346,7 @@ footer a{ color:var(--text-dim); }
     PROG_CHARS.forEach(function(c){
       var cp = src[c] || {};
       ABILITIES.forEach(function(a){
-        var n = Math.floor(Number(cp[a.name]) || 0);
+        var n = Math.floor(Number(cp[a.name] !== undefined ? cp[a.name] : cp[a.alias]) || 0);
         n = Math.max(0, Math.min(a.max, n));
         if(n){ clean[c][a.name] = n; total += n; }
       });
