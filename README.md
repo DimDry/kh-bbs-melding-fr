@@ -13,6 +13,10 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 ## Démarrage rapide
 
+**En ligne, sans rien installer :** https://dimdry.github.io/kh-bbs-melding-fr/
+
+**Ou en local :**
+
 1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip), puis extraire le dossier.
 2. Double-cliquer sur **`index.html`**.
 
