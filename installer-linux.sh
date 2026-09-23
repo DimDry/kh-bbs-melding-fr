@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Linux uniquement (sous Windows : « Windows - creer le raccourci.bat »).
 # Ajoute « Forge de Commandes » au menu des applications et sur le Bureau.
 # À lancer une seule fois :  bash installer-linux.sh
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
