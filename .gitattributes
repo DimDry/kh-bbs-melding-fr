@@ -1,2 +1,3 @@
+# Fins de ligne : CRLF pour le script Windows, LF pour les scripts Linux
 *.bat text eol=crlf
 *.sh text eol=lf
