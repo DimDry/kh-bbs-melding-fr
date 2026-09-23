@@ -17,10 +17,10 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 **Ou en local :**
 
-1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip), puis extraire le dossier.
+1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip), puis **extraire** tout le dossier (sous Windows : clic droit sur le ZIP → *Extraire tout…*). Ne rien lancer depuis l'intérieur du ZIP : les fichiers ne se trouveraient pas.
 2. Double-cliquer sur **`index.html`**.
 
-C'est tout : pas d'installation, pas de serveur, pas de Python. Ça marche sous Windows, Linux et macOS, dans n'importe quel navigateur récent. `index.html` est autonome (toutes les données sont intégrées). Hors connexion, l'app fonctionne aussi, seules les polices changent.
+C'est tout : pas d'installation, pas de serveur, pas de Python. Testé sous Windows et Linux (macOS devrait fonctionner de la même façon), dans n'importe quel navigateur récent. `index.html` est autonome (toutes les données sont intégrées). Hors connexion, l'app fonctionne aussi, seules les polices changent.
 
 > Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. Pour la sauvegarder ou la passer sur un autre appareil, utilise les boutons « Exporter » et « Importer » de l’onglet (le bouton « ? » explique le fonctionnement).
 

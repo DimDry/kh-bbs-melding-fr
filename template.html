@@ -377,6 +377,7 @@ footer a{ color:var(--text-dim); }
 .step:disabled{ opacity:.35; cursor:default; }
 .pips{ display:flex; gap:4px; }
 .pip{ width:14px; height:14px; border-radius:4px; border:1.5px solid var(--border); background:transparent; cursor:pointer; padding:0; }
+.pip:disabled{ cursor:default; }
 .pip.on{ background:var(--c, var(--accent)); border-color:var(--c, var(--accent)); }
 .prog-count{ font-family:"JetBrains Mono", monospace; font-size:.85rem; min-width:3ch; text-align:right; color:var(--text-dim); }
 @media (max-width:560px){ .prog-row{ grid-template-columns:1fr; } .prog-ctrl{ justify-content:flex-end; } }
@@ -1153,8 +1154,8 @@ footer a{ color:var(--text-dim); }
     { group:"support", name:"Dernières forces", max:1, src:"puls", desc:"Vous conservez 1 HP après une attaque qui aurait dû vous terrasser." },
     { group:"support", name:"Dernière chance",  max:1, src:"well", desc:"Vous conservez 1 HP tout au long d'un combo qui aurait dû vous terrasser." },
     { group:"support", name:"Pétale garde",     max:1, src:"puls", desc:"Aucun dégât subi pendant l'utilisation des commandes Soin." },
-    { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé.",
-      note:"Pas de mixage : déjà installée sur la commande de départ (Quick Blitz en VO)." },
+    { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé.", fixed:true,
+      note:"Acquise d'office : la commande de départ qui la porte (Quick Blitz en VO) est déjà au niveau max." },
     { group:"support", name:"EXP nulle",        max:1, src:null,   desc:"Empêche de gagner de l'EXP.", optional:true,
       note:"Mode Critique uniquement, installée d'office — non comptée dans le total." }
   ];
@@ -1185,7 +1186,7 @@ footer a{ color:var(--text-dim); }
   var progChar = PROG_CHARS.indexOf(selectedChar) !== -1 ? selectedChar : "Terra";
   var progFilter = "all";
 
-  function countOf(c, a){ return Math.min(progress[c][a.name] || 0, a.max); }
+  function countOf(c, a){ return a.fixed ? a.max : Math.min(progress[c][a.name] || 0, a.max); }
   function charTotals(c){
     var got = 0, max = 0, done = 0, n = 0;
     ABILITIES.forEach(function(a){
@@ -1239,7 +1240,7 @@ footer a{ color:var(--text-dim); }
         var full = k >= a.max;
         var pips = "";
         for(var i=1;i<=a.max;i++){
-          pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+' : '+i+' sur '+a.max+'"></button>';
+          pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+' : '+i+' sur '+a.max+'"'+(a.fixed?' disabled':'')+'></button>';
         }
         var meta = a.src
           ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><button type="button" class="link-btn" data-how="1">Comment l’obtenir →</button>'
@@ -1249,7 +1250,7 @@ footer a{ color:var(--text-dim); }
           + '<div class="prog-desc">'+a.desc+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</div>'
           + '<div class="prog-meta">'+meta+'</div></div>'
           + '<div class="prog-ctrl">'
-          + '<button type="button" class="step" data-step="-1" '+(k<=0?'disabled':'')+' aria-label="Retirer">−</button>'
+          + '<button type="button" class="step" data-step="-1" '+(k<=0||a.fixed?'disabled':'')+' aria-label="Retirer">−</button>'
           + '<span class="pips">'+pips+'</span>'
           + '<button type="button" class="step" data-step="1" '+(full?'disabled':'')+' aria-label="Ajouter">+</button>'
           + '<span class="prog-count">'+k+'/'+a.max+'</span>'
@@ -1274,6 +1275,7 @@ footer a{ color:var(--text-dim); }
     var row = e.target.closest(".prog-row");
     if(!row) return;
     var a = ABILITIES[+row.dataset.ab];
+    if(a.fixed) return;
     var k = countOf(progChar, a);
     var pip = e.target.closest(".pip");
     var step = e.target.closest(".step");
