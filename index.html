@@ -238,7 +238,8 @@ header.top{
 }
 .slot-pair .plus-sm{ display:flex; align-items:center; }
 .count-line{ color:var(--text-faint); font-size:.82rem; margin:2px 0 12px; }
-.field-ability{ max-width:420px; }
+.ability-filters{ display:flex; gap:16px; flex-wrap:wrap; }
+.field-ability{ flex:1 1 260px; max-width:420px; }
 
 /* badges & pills */
 .chip{
@@ -440,11 +441,20 @@ footer a{ color:var(--text-dim); }
   <section class="calc" aria-label="Recherche par capacité">
     <h2>Partir d'une capacité</h2>
     <p class="lede">Choisis la capacité que tu veux obtenir sur une commande : on te montre les paires à mixer, et avec quel cristal.</p>
-    <div class="field field-ability">
-      <label for="abilityInput">Capacité recherchée</label>
-      <input id="abilityInput" type="text" list="abilityList" placeholder="ex. Combo aérien" autocomplete="off">
+    <div class="ability-filters">
+      <div class="field field-ability">
+        <label for="abilityInput">Capacité recherchée</label>
+        <select id="abilityInput">
+          <option value="">Choisis une capacité…</option>
+        </select>
+      </div>
+      <div class="field field-ability">
+        <label for="abilityCmdFilter">Filtrer par commande possédée (optionnel)</label>
+        <select id="abilityCmdFilter">
+          <option value="">Toutes les commandes</option>
+        </select>
+      </div>
     </div>
-    <datalist id="abilityList"></datalist>
     <div class="calc-result" id="abilityResult">
       <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -648,14 +658,17 @@ footer a{ color:var(--text-dim); }
     });
   });
   var abilityNames = Object.keys(abilityMap).map(function(n){ return abilityMap[n]; }).sort(function(a,b){ return a.localeCompare(b); });
-  var abilityDL = document.getElementById("abilityList");
-  abilityNames.forEach(function(a){ var o=document.createElement("option"); o.value=a; abilityDL.appendChild(o); });
-
   var abilityInput = document.getElementById("abilityInput");
+  abilityNames.forEach(function(a){ var o=document.createElement("option"); o.value=a; o.textContent=a; abilityInput.appendChild(o); });
+
+  var abilityCmdFilter = document.getElementById("abilityCmdFilter");
+  nameList.forEach(function(n){ var o=document.createElement("option"); o.value=n; o.textContent=n; abilityCmdFilter.appendChild(o); });
+
   var abilityResult = document.getElementById("abilityResult");
 
   function runAbilitySearch(){
     var q = norm(abilityInput.value);
+    var cmdFilter = norm(abilityCmdFilter.value);
     if(!q){
       abilityResult.innerHTML = '<p class="empty-hint">Choisis une capacité dans la liste pour voir comment l’obtenir.</p>';
       return;
@@ -663,6 +676,7 @@ footer a{ color:var(--text-dim); }
     var hits = [];
     RECIPES.forEach(function(r){
       if(!matchesChar(r.avail, selectedChar)) return;
+      if(cmdFilter && norm(r.i1) !== cmdFilter && norm(r.i2) !== cmdFilter) return;
       Object.keys(r.cx||{}).forEach(function(k){
         if(norm(r.cx[k]) === q) hits.push({ r:r, key:k });
       });
@@ -671,10 +685,12 @@ footer a{ color:var(--text-dim); }
       var existsElsewhere = RECIPES.some(function(r){
         return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
       });
-      if(existsElsewhere && selectedChar !== "all"){
+      if(cmdFilter){
+        abilityResult.innerHTML = '<div class="no-match">Aucune fusion avec <strong>'+abilityCmdFilter.value+'</strong> ne procure cette capacité'+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'. Essaie sans ce filtre.</div>';
+      } else if(existsElsewhere && selectedChar !== "all"){
         abilityResult.innerHTML = '<div class="no-match">Cette capacité s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
       } else {
-        abilityResult.innerHTML = '<div class="no-match">Aucune fusion connue ne procure cette capacité. Choisis-la dans la liste proposée pour être sûr de l’orthographe exacte.</div>';
+        abilityResult.innerHTML = '<div class="no-match">Aucune fusion connue ne procure cette capacité.</div>';
       }
       return;
     }
@@ -699,7 +715,8 @@ footer a{ color:var(--text-dim); }
     });
     abilityResult.innerHTML = html;
   }
-  abilityInput.addEventListener("input", runAbilitySearch);
+  abilityInput.addEventListener("change", runAbilitySearch);
+  abilityCmdFilter.addEventListener("change", runAbilitySearch);
 
   /* ---------- explorer ---------- */
   var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };
