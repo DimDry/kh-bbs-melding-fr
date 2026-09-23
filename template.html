@@ -234,7 +234,8 @@ header.top{
 .slot-pair .plus-sm{ display:flex; align-items:center; }
 .count-line{ color:var(--text-faint); font-size:.82rem; margin:2px 0 12px; }
 .ability-filters{ display:flex; gap:16px; flex-wrap:wrap; }
-.field-ability{ flex:1 1 260px; max-width:420px; }
+.field-ability{ flex:1 1 220px; max-width:320px; }
+.field select:disabled{ opacity:.5; cursor:not-allowed; }
 
 /* badges & pills */
 .chip{
@@ -435,15 +436,21 @@ footer a{ color:var(--text-dim); }
     <p class="lede">Choisis la capacité que tu veux obtenir sur une commande : on te montre les paires à mixer, et avec quel cristal.</p>
     <div class="ability-filters">
       <div class="field field-ability">
-        <label for="abilityInput">Capacité recherchée</label>
+        <label for="abilityInput">1. Capacité recherchée</label>
         <select id="abilityInput">
           <option value="">Choisis une capacité…</option>
         </select>
       </div>
       <div class="field field-ability">
-        <label for="abilityCmdFilter">Filtrer par commande possédée (optionnel)</label>
-        <select id="abilityCmdFilter">
-          <option value="">Toutes les commandes</option>
+        <label for="abilityCmd1">2. Première commande</label>
+        <select id="abilityCmd1" disabled>
+          <option value="">Choisis d'abord une capacité…</option>
+        </select>
+      </div>
+      <div class="field field-ability">
+        <label for="abilityCmd2">3. Commande à combiner avec elle</label>
+        <select id="abilityCmd2" disabled>
+          <option value="">Choisis d'abord la première commande…</option>
         </select>
       </div>
     </div>
@@ -523,7 +530,7 @@ footer a{ color:var(--text-dim); }
     state.char = selectedChar;
     runCalc();
     buildGroups();
-    runAbilitySearch();
+    refreshCmd1();
   });
 
   /* ---------- tab navigation ---------- */
@@ -653,41 +660,79 @@ footer a{ color:var(--text-dim); }
   var abilityInput = document.getElementById("abilityInput");
   abilityNames.forEach(function(a){ var o=document.createElement("option"); o.value=a; o.textContent=a; abilityInput.appendChild(o); });
 
-  var abilityCmdFilter = document.getElementById("abilityCmdFilter");
-  nameList.forEach(function(n){ var o=document.createElement("option"); o.value=n; o.textContent=n; abilityCmdFilter.appendChild(o); });
-
+  var abilityCmd1 = document.getElementById("abilityCmd1");
+  var abilityCmd2 = document.getElementById("abilityCmd2");
   var abilityResult = document.getElementById("abilityResult");
 
-  function runAbilitySearch(){
+  function fillSelect(select, options, placeholder){
+    select.innerHTML = "";
+    var ph = document.createElement("option");
+    ph.value = ""; ph.textContent = placeholder;
+    select.appendChild(ph);
+    options.forEach(function(n){ var o=document.createElement("option"); o.value=n; o.textContent=n; select.appendChild(o); });
+  }
+
+  // recipes granting the currently selected ability, for the current character
+  function recipesForAbility(q){
+    return RECIPES.filter(function(r){
+      if(!matchesChar(r.avail, selectedChar)) return false;
+      return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
+    });
+  }
+
+  function refreshCmd1(){
     var q = norm(abilityInput.value);
-    var cmdFilter = norm(abilityCmdFilter.value);
     if(!q){
+      fillSelect(abilityCmd1, [], "Choisis d'abord une capacité…");
+      abilityCmd1.disabled = true;
       abilityResult.innerHTML = '<p class="empty-hint">Choisis une capacité dans la liste pour voir comment l’obtenir.</p>';
+      refreshCmd2();
       return;
     }
-    var hits = [];
-    RECIPES.forEach(function(r){
-      if(!matchesChar(r.avail, selectedChar)) return;
-      if(cmdFilter && norm(r.i1) !== cmdFilter && norm(r.i2) !== cmdFilter) return;
-      Object.keys(r.cx||{}).forEach(function(k){
-        if(norm(r.cx[k]) === q) hits.push({ r:r, key:k });
-      });
-    });
-    if(!hits.length){
+    var pool = recipesForAbility(q);
+    if(!pool.length){
+      fillSelect(abilityCmd1, [], "Aucune commande (indisponible)");
+      abilityCmd1.disabled = true;
       var existsElsewhere = RECIPES.some(function(r){
         return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
       });
-      if(cmdFilter){
-        abilityResult.innerHTML = '<div class="no-match">Aucune fusion avec <strong>'+abilityCmdFilter.value+'</strong> ne procure cette capacité'+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'. Essaie sans ce filtre.</div>';
-      } else if(existsElsewhere && selectedChar !== "all"){
+      if(existsElsewhere && selectedChar !== "all"){
         abilityResult.innerHTML = '<div class="no-match">Cette capacité s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
       } else {
         abilityResult.innerHTML = '<div class="no-match">Aucune fusion connue ne procure cette capacité.</div>';
       }
+      refreshCmd2();
       return;
     }
+    var names1 = {};
+    pool.forEach(function(r){ names1[r.i1]=1; names1[r.i2]=1; });
+    fillSelect(abilityCmd1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
+    abilityCmd1.disabled = false;
+    abilityResult.innerHTML = '<p class="empty-hint">Choisis une première commande dans la liste ci-dessus.</p>';
+    refreshCmd2();
+  }
+
+  function refreshCmd2(){
+    var q = norm(abilityInput.value);
+    var c1 = norm(abilityCmd1.value);
+    if(!q || !c1){
+      fillSelect(abilityCmd2, [], "Choisis d'abord la première commande…");
+      abilityCmd2.disabled = true;
+      renderAbilityMatches([]);
+      return;
+    }
+    var pool = recipesForAbility(q).filter(function(r){ return norm(r.i1)===c1 || norm(r.i2)===c1; });
+    var names2 = {};
+    pool.forEach(function(r){ names2[norm(r.i1)===c1 ? r.i2 : r.i1] = 1; });
+    fillSelect(abilityCmd2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }), "Choisis la commande à combiner…");
+    abilityCmd2.disabled = false;
+    abilityResult.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+abilityCmd1.value+'&nbsp;».</p>';
+  }
+
+  function renderAbilityMatches(hits){
+    if(!hits.length) return;
     hits.sort(function(x,y){ return y.r.rate - x.r.rate; });
-    var html = '<p class="count-line">'+hits.length+' façon'+(hits.length>1?'s':'')+' d’obtenir cette capacité'+(selectedChar!=="all" ? ' avec '+selectedChar : '')+'.</p>';
+    var html = '<p class="count-line">'+hits.length+' recette'+(hits.length>1?'s':'')+' trouvée'+(hits.length>1?'s':'')+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'.</p>';
     hits.forEach(function(h){
       var r = h.r;
       html += '<div class="match-card">'
@@ -707,8 +752,27 @@ footer a{ color:var(--text-dim); }
     });
     abilityResult.innerHTML = html;
   }
-  abilityInput.addEventListener("change", runAbilitySearch);
-  abilityCmdFilter.addEventListener("change", runAbilitySearch);
+
+  function runAbilitySearch(){
+    var q = norm(abilityInput.value);
+    var c1 = norm(abilityCmd1.value);
+    var c2 = norm(abilityCmd2.value);
+    if(!q || !c1 || !c2) return;
+    var hits = [];
+    recipesForAbility(q).forEach(function(r){
+      var ra = norm(r.i1), rb = norm(r.i2);
+      var pairOk = (ra===c1 && rb===c2) || (ra===c2 && rb===c1);
+      if(!pairOk) return;
+      Object.keys(r.cx||{}).forEach(function(k){
+        if(norm(r.cx[k]) === q) hits.push({ r:r, key:k });
+      });
+    });
+    renderAbilityMatches(hits);
+  }
+
+  abilityInput.addEventListener("change", refreshCmd1);
+  abilityCmd1.addEventListener("change", refreshCmd2);
+  abilityCmd2.addEventListener("change", runAbilitySearch);
 
   /* ---------- explorer ---------- */
   var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };
