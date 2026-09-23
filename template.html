@@ -409,6 +409,7 @@ footer a{ color:var(--text-dim); }
 .note-chip{ font-size:.72rem; color:var(--text-faint); font-style:italic; }
 .link-btn{ border:none; background:none; color:var(--accent); font-family:inherit; font-size:.76rem; font-weight:700; cursor:pointer; padding:2px 0; }
 .link-btn:hover{ text-decoration:underline; }
+a.link-btn{ text-decoration:none; }
 .prog-ctrl{ display:flex; align-items:center; gap:8px; }
 .step{
   width:30px; height:30px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text);
@@ -855,9 +856,9 @@ footer a{ color:var(--text-dim); }
     if(!btn) return;
     setChar(btn.dataset.char);
   });
-  function setChar(c){
+  function setChar(c, keepSaved){
     selectedChar = c;
-    try{ localStorage.setItem("forge-char", selectedChar); }catch(e){}
+    if(!keepSaved){ try{ localStorage.setItem("forge-char", selectedChar); }catch(e){} }
     applyCharUI();
     state.char = selectedChar;
     refreshIng1();
@@ -1533,6 +1534,10 @@ footer a{ color:var(--text-dim); }
     { key:"support", label:L("Soutien", "Support"),      orb:"#e5392f" }
   ];
   var PROG_CHARS = ["Terra","Ventus","Aqua"];
+  // "Comment l'obtenir" opens a new browser tab on "Partir d'une capacité" (ability id = French name)
+  function howUrl(a){
+    return location.href.split(/[?#]/)[0] + "?lang=" + LANG + "&tab=ability&char=" + progChar + "&ability=" + encodeURIComponent(a.id);
+  }
 
   var progress = { Terra:{}, Ventus:{}, Aqua:{} };
   try{
@@ -1613,7 +1618,7 @@ footer a{ color:var(--text-dim); }
           pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+L(' : ',': ')+i+' '+L('sur','of')+' '+a.max+'"'+(a.fixed?' disabled':'')+'></button>';
         }
         var meta = a.src
-          ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><button type="button" class="link-btn" data-how="1">'+L('Comment l’obtenir →','How to get it →')+'</button>'
+          ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><a class="link-btn" href="'+howUrl(a)+'" target="_blank" rel="noopener">'+L('Comment l’obtenir →','How to get it →')+'</a>'
           : '<span class="note-chip">'+a.note+'</span>';
         html += '<div class="prog-row'+(full?' is-done':'')+'" data-ab="'+ABILITIES.indexOf(a)+'">'
           + '<div><div class="prog-name">'+a.name+(full?' <span class="done-mark">&#10003;</span>':'')+'</div>'
@@ -1658,11 +1663,6 @@ footer a{ color:var(--text-dim); }
       setCount(a, n === k ? n - 1 : n); // re-clicking the last filled box unfills it
     } else if(step){
       setCount(a, k + (+step.dataset.step));
-    } else if(e.target.closest("[data-how]")){
-      setChar(progChar);
-      showTab("ability");
-      selectAbility(a.name);
-      window.scrollTo({ top:0, behavior:"smooth" });
     }
   });
   document.getElementById("progFilter").addEventListener("click", function(e){
@@ -1974,5 +1974,16 @@ footer a{ color:var(--text-dim); }
   document.getElementById("globalSearch").addEventListener("input", function(e){ state.q = e.target.value; buildGroups(); });
 
   buildGroups();
+
+  /* Page opened from "Comment l'obtenir": ?tab=ability&char=…&ability=<French id>.
+     The character is applied without overwriting the one saved for the other tabs. */
+  (function(){
+    var p = {};
+    location.search.replace(/[?&]([^=&]+)=([^&]*)/g, function(_, k, v){ p[k] = decodeURIComponent(v.replace(/\+/g, " ")); });
+    if(p.tab !== "ability") return;
+    if(PROG_CHARS.indexOf(p.char) !== -1) setChar(p.char, true);
+    showTab("ability");
+    if(p.ability) selectAbility(LANG === "en" ? (I18N_EN.abilities[p.ability] || p.ability) : p.ability);
+  })();
 })();
 </script>
