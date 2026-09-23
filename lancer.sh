@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Linux uniquement (sous Windows : « Windows - creer le raccourci.bat »).
 # Ouvre la Forge de Commandes dans une nouvelle fenêtre du navigateur par défaut.
 # Aucun serveur nécessaire : index.html est autonome.
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
