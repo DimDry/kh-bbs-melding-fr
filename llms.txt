@@ -14,7 +14,7 @@ It covers all 296 melding recipes: which two commands meld into which command, t
 
 - Meld Commands: pick two commands (+ optional crystal) to get the exact result and ability; explorer of every recipe, filterable by category (Attack, Magic, Action, Shotlock) and crystal.
 - Start from an Ability: which command pairs and crystal give a wanted ability (e.g. Second Chance, Once More, EXP Walker, Leaf Bracer).
-- Get a Command: which pairs meld into a wanted command.
+- Get a Command: which pairs meld into a wanted command, plus every other way to get it (chests per world, Command Shop price and unlock condition, Mirage Arena Medal Shop, Command Board, stickers, rewards). Also covers the 91 commands no meld gives: items (Potion, Elixir…), ice creams, friendship commands, action commands and shotlocks. Final Mix / HD 2.5-only content is marked.
 - Progress: per-character tracker of permanent abilities with in-game maximums (e.g. Treasure Magnet ×5, HP Boost ×3), saved in the browser, with export/import.
 
 ## Sources
