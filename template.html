@@ -267,7 +267,7 @@ header.top{
 .filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
 .tab{
   border:1px solid var(--border); background:var(--surface); color:var(--text-dim);
-  padding:7px 14px; border-radius:999px; font-size:.83rem; font-weight:600; cursor:pointer;
+  padding:7px 14px; border-radius:999px; font-family:inherit; font-size:.83rem; font-weight:600; cursor:pointer;
 }
 .tab[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); }
 .tab .n{ opacity:.75; font-weight:500; margin-left:3px; }
@@ -324,6 +324,63 @@ header.top{
 footer{ margin-top:48px; padding-top:18px; border-top:1px solid var(--border); color:var(--text-faint); font-size:.78rem; }
 footer a{ color:var(--text-dim); }
 
+
+/* ---------- progress tab ---------- */
+.prog-chars{ display:grid; grid-template-columns:repeat(auto-fit, minmax(210px,1fr)); gap:12px; margin-top:22px; }
+.prog-char{
+  text-align:left; font-family:inherit; color:var(--text); cursor:pointer;
+  background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px 18px; box-shadow:var(--shadow);
+  --c:var(--accent); --c-soft:var(--accent-soft);
+}
+.prog-char.char-terra{ --c:var(--char-terra); --c-soft:var(--char-terra-soft); }
+.prog-char.char-ventus{ --c:var(--char-ventus); --c-soft:var(--char-ventus-soft); }
+.prog-char.char-aqua{ --c:var(--char-aqua); --c-soft:var(--char-aqua-soft); }
+.prog-char:hover{ border-color:var(--c); }
+.prog-char[aria-pressed="true"]{ border-color:var(--c); box-shadow:0 0 0 1.5px var(--c) inset, var(--shadow); background:var(--c-soft); }
+.prog-char-top{ display:flex; align-items:baseline; justify-content:space-between; gap:8px; }
+.prog-char h3{ font-size:1.2rem; font-weight:700; color:var(--c); }
+.prog-pct{ font-family:"JetBrains Mono", monospace; font-weight:600; font-size:1.05rem; }
+.prog-sub{ font-size:.78rem; color:var(--text-dim); margin-top:2px; }
+.bar{ height:7px; border-radius:99px; background:var(--surface-3); overflow:hidden; margin-top:10px; }
+.bar > span{ display:block; height:100%; background:var(--c, var(--accent)); border-radius:99px; transition:width .2s ease; }
+
+.prog-toolbar{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin:18px 0 4px; }
+.prog-toolbar .spacer{ margin-left:auto; }
+.btn-ghost{
+  border:1px solid var(--border); background:var(--surface); color:var(--text-dim); font-family:inherit;
+  font-size:.8rem; font-weight:600; padding:7px 12px; border-radius:9px; cursor:pointer;
+}
+.btn-ghost:hover{ color:var(--text); border-color:var(--accent); }
+.btn-ghost.is-danger{ color:var(--bad); border-color:var(--bad); background:var(--bad-soft); }
+
+.prog-group{ margin-top:22px; }
+.prog-group-head{ display:flex; align-items:baseline; gap:10px; margin-bottom:8px; }
+.prog-group-head h3{ font-size:1.1rem; font-weight:700; }
+.prog-list{ background:var(--surface); border:1px solid var(--border); border-radius:14px; box-shadow:var(--shadow); overflow:hidden; }
+.prog-row{ display:grid; grid-template-columns:minmax(0,1fr) auto; gap:6px 16px; align-items:center; padding:12px 16px; border-top:1px solid var(--border); }
+.prog-row:first-child{ border-top:none; }
+.prog-row.is-done{ background:color-mix(in srgb, var(--ok-soft) 55%, transparent); }
+.prog-name{ font-weight:700; display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+.prog-name .done-mark{ color:var(--ok); font-size:.85rem; }
+.prog-desc{ font-size:.8rem; color:var(--text-dim); margin-top:2px; }
+.prog-meta{ display:flex; gap:6px; flex-wrap:wrap; margin-top:6px; align-items:center; }
+.crystal-chip{ font-size:.7rem; font-weight:700; color:var(--gold); background:var(--surface-2); padding:2px 8px; border-radius:7px; text-transform:uppercase; letter-spacing:.05em; }
+.note-chip{ font-size:.72rem; color:var(--text-faint); font-style:italic; }
+.link-btn{ border:none; background:none; color:var(--accent); font-family:inherit; font-size:.76rem; font-weight:700; cursor:pointer; padding:2px 0; }
+.link-btn:hover{ text-decoration:underline; }
+.prog-ctrl{ display:flex; align-items:center; gap:8px; }
+.step{
+  width:30px; height:30px; border-radius:8px; border:1px solid var(--border); background:var(--surface-2); color:var(--text);
+  font-size:1rem; font-weight:700; cursor:pointer; line-height:1;
+}
+.step:hover:not(:disabled){ border-color:var(--accent); color:var(--accent); }
+.step:disabled{ opacity:.35; cursor:default; }
+.pips{ display:flex; gap:4px; }
+.pip{ width:14px; height:14px; border-radius:4px; border:1.5px solid var(--border); background:transparent; cursor:pointer; padding:0; }
+.pip.on{ background:var(--c, var(--accent)); border-color:var(--c, var(--accent)); }
+.prog-count{ font-family:"JetBrains Mono", monospace; font-size:.85rem; min-width:3ch; text-align:right; color:var(--text-dim); }
+@media (max-width:560px){ .prog-row{ grid-template-columns:1fr; } .prog-ctrl{ justify-content:flex-end; } }
+
 ::selection{ background:var(--accent-soft); color:var(--text); }
 </style>
 
@@ -355,6 +412,7 @@ footer a{ color:var(--text-dim); }
     <button type="button" class="tabnav-btn" role="tab" data-tab="mix" aria-selected="true">Mixer des commandes</button>
     <button type="button" class="tabnav-btn" role="tab" data-tab="ability" aria-selected="false">Partir d'une capacité</button>
     <button type="button" class="tabnav-btn" role="tab" data-tab="target" aria-selected="false">Obtenir une commande</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="progress" aria-selected="false">Avancement</button>
   </nav>
 
   <section class="char-select" aria-label="Sélection du personnage">
@@ -489,8 +547,29 @@ footer a{ color:var(--text-dim); }
 
   </div>
 
+
+  <div class="tab-panel" data-panel="progress" hidden>
+
+  <section class="calc" aria-label="Avancement des capacités">
+    <h2>Avancement des capacités</h2>
+    <p class="lede">Comme le menu «&nbsp;Capacités&nbsp;» du jeu : note, pour chaque personnage, les capacités que tu as rendues permanentes (commande montée au niveau max). Certaines se cumulent — clique sur les cases ou utilise − / +. Ta progression est enregistrée dans ce navigateur.</p>
+    <div class="prog-chars" id="progChars"></div>
+    <div class="prog-toolbar">
+      <div class="filters" id="progFilter" style="margin:0;">
+        <button class="tab" data-pf="all" aria-pressed="true">Toutes</button>
+        <button class="tab" data-pf="todo" aria-pressed="false">Restantes</button>
+        <button class="tab" data-pf="done" aria-pressed="false">Complètes</button>
+      </div>
+      <span class="spacer"></span>
+      <button type="button" class="btn-ghost" id="progReset">Réinitialiser ce personnage</button>
+    </div>
+    <div id="progGroups"></div>
+  </section>
+
+  </div>
+
   <footer>
-    Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse.
+    Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Maximums des capacités : <a href="https://www.khwiki.com/Abilities_(KHBBS)" target="_blank" rel="noopener">KHWiki</a>, recoupés avec <a href="https://www.destinyislands.com/bbs-fm/abilities/" target="_blank" rel="noopener">Destiny Islands</a>. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse.
   </footer>
 </div>
 
@@ -552,7 +631,10 @@ footer a{ color:var(--text-dim); }
   charButtons.addEventListener("click", function(e){
     var btn = e.target.closest(".char-btn");
     if(!btn) return;
-    selectedChar = btn.dataset.char;
+    setChar(btn.dataset.char);
+  });
+  function setChar(c){
+    selectedChar = c;
     try{ localStorage.setItem("forge-char", selectedChar); }catch(e){}
     applyCharUI();
     state.char = selectedChar;
@@ -560,16 +642,20 @@ footer a{ color:var(--text-dim); }
     buildGroups();
     refreshCmd1();
     refreshTargetCmd1();
-  });
+  }
 
   /* ---------- tab navigation ---------- */
   var tabButtons = document.querySelectorAll(".tabnav-btn");
   var tabPanels = document.querySelectorAll(".tab-panel");
+  var charSelectSection = document.querySelector(".char-select");
+  function showTab(name){
+    tabButtons.forEach(function(b){ b.setAttribute("aria-selected", b.dataset.tab===name ? "true" : "false"); });
+    tabPanels.forEach(function(p){ p.hidden = (p.dataset.panel !== name); });
+    // the progress tab has its own per-character cards
+    charSelectSection.hidden = (name === "progress");
+  }
   tabButtons.forEach(function(btn){
-    btn.addEventListener("click", function(){
-      tabButtons.forEach(function(b){ b.setAttribute("aria-selected", b===btn ? "true" : "false"); });
-      tabPanels.forEach(function(p){ p.hidden = (p.dataset.panel !== btn.dataset.tab); });
-    });
+    btn.addEventListener("click", function(){ showTab(btn.dataset.tab); });
   });
 
   /* ---------- crystal select options (calculator + explorer filter) ---------- */
@@ -967,6 +1053,183 @@ footer a{ color:var(--text-dim); }
   targetCmdInput.addEventListener("input", refreshTargetCmd1);
   targetCmd1.addEventListener("input", refreshTargetCmd2);
   targetCmd2.addEventListener("input", runTargetSearch);
+
+
+  /* ---------- progress tracker ---------- */
+  // Maximums: KHWiki « Abilities (KHBBS) », recoupés avec destinyislands.com (BbS Final Mix).
+  // Noms et descriptions FR : khdestiny.fr. "src" = clé cristal, ou null si hors mixage.
+  var ABILITIES = [
+    { group:"prize", name:"Attraction",         max:5, src:"hun",  desc:"Attire automatiquement les récompenses alentour." },
+    { group:"prize", name:"Profusion de HP",    max:3, src:"hun",  desc:"Augmente le nombre de sphères de HP laissées par les ennemis." },
+    { group:"prize", name:"Profusion liens-D",  max:3, src:"abo",  desc:"Augmente le nombre de cristaux de lien-D laissés par les ennemis." },
+    { group:"prize", name:"Chance",             max:5, src:"abo",  desc:"Augmente le nombre de coffres laissés par les ennemis." },
+    { group:"stat",  name:"Booster HP",         max:3, src:"soo",  desc:"Augmente vos HP." },
+    { group:"stat",  name:"Booster Feu",        max:3, src:"shim", desc:"Augmente les dégâts des commandes Brasier." },
+    { group:"stat",  name:"Booster Glace",      max:3, src:"shim", desc:"Augmente les dégâts des commandes Glacier." },
+    { group:"stat",  name:"Booster Foudre",     max:3, src:"shim", desc:"Augmente les dégâts des commandes Foudre." },
+    { group:"stat",  name:"Booster Soin",       max:3, src:"shim", desc:"Augmente les HP régénérés par les commandes Soin." },
+    { group:"stat",  name:"Booster Objet",      max:3, src:"soo",  desc:"Augmente l'efficacité des commandes d'objets de guérison." },
+    { group:"stat",  name:"Accélérateur",       max:5, src:"flee", desc:"Réduit la recharge des commandes d'attaque." },
+    { group:"stat",  name:"Accélérateur mana",  max:5, src:"flee", desc:"Réduit la recharge des commandes magiques." },
+    { group:"stat",  name:"Booster fin combo",  max:2, src:"puls", desc:"Augmente les dégâts du dernier coup des combos." },
+    { group:"stat",  name:"Booster CdG",        max:2, src:"puls", desc:"Augmente les dégâts du coup de grâce." },
+    { group:"stat",  name:"Ecran Brasier",      max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Brasier." },
+    { group:"stat",  name:"Ecran Glacier",      max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Glacier." },
+    { group:"stat",  name:"Ecran Foudre",       max:2, src:"shim", desc:"Augmente la résistance aux attaques de type Foudre." },
+    { group:"stat",  name:"Ecran obscur",       max:2, src:"shim", desc:"Augmente la résistance aux attaques de ténèbres." },
+    { group:"stat",  name:"Recharge réduite",   max:1, src:"flee", desc:"Réduit la recharge de toutes les commandes quand les HP passent sous 25 %." },
+    { group:"stat",  name:"Défenseur",          max:1, src:"soo",  desc:"Augmente la Défense quand les HP passent sous 25 %." },
+    { group:"support", name:"Combo",            max:3, src:"well", desc:"Ajoute un coup aux combos au sol." },
+    { group:"support", name:"Combo aérien",     max:3, src:"well", desc:"Ajoute un coup aux combos aériens." },
+    { group:"support", name:"Prime EXP",        max:1, src:"abo",  desc:"Double l'EXP gagnée quand les HP passent sous 25 %." },
+    { group:"support", name:"Marche EXP",       max:1, src:"abo",  desc:"1 EXP gagné à chaque pas effectué." },
+    { group:"support", name:"Vaillance",        max:1, src:"soo",  desc:"Régénère la jauge de concentration quand vous subissez des dégâts." },
+    { group:"support", name:"Dernières forces", max:1, src:"puls", desc:"Vous conservez 1 HP après une attaque qui aurait dû vous terrasser." },
+    { group:"support", name:"Dernière chance",  max:1, src:"well", desc:"Vous conservez 1 HP tout au long d'un combo qui aurait dû vous terrasser." },
+    { group:"support", name:"Pétale garde",     max:1, src:"puls", desc:"Aucun dégât subi pendant l'utilisation des commandes Soin." },
+    { group:"support", name:"Scan",             max:1, src:null,   desc:"Affiche les HP de l'ennemi visé.",
+      note:"Pas de mixage : déjà installée sur la commande de départ (Quick Blitz en VO)." },
+    { group:"support", name:"EXP nulle",        max:1, src:null,   desc:"Empêche de gagner de l'EXP.", optional:true,
+      note:"Mode Critique uniquement, installée d'office — non comptée dans le total." }
+  ];
+  var PROG_GROUPS = [
+    { key:"prize",   label:"Récompenses" },
+    { key:"stat",    label:"Statistiques" },
+    { key:"support", label:"Soutien" }
+  ];
+  var PROG_CHARS = ["Terra","Ventus","Aqua"];
+
+  var progress = { Terra:{}, Ventus:{}, Aqua:{} };
+  try{
+    var savedProg = JSON.parse(localStorage.getItem("forge-progress") || "null");
+    if(savedProg) PROG_CHARS.forEach(function(c){ if(savedProg[c]) progress[c] = savedProg[c]; });
+  }catch(e){}
+  function saveProgress(){
+    try{ localStorage.setItem("forge-progress", JSON.stringify(progress)); }catch(e){}
+  }
+  var progChar = PROG_CHARS.indexOf(selectedChar) !== -1 ? selectedChar : "Terra";
+  var progFilter = "all";
+
+  function countOf(c, a){ return Math.min(progress[c][a.name] || 0, a.max); }
+  function charTotals(c){
+    var got = 0, max = 0, done = 0, n = 0;
+    ABILITIES.forEach(function(a){
+      if(a.optional) return;
+      var k = countOf(c, a);
+      got += k; max += a.max; n++;
+      if(k >= a.max) done++;
+    });
+    return { got:got, max:max, done:done, n:n };
+  }
+  function setCount(a, value){
+    var v = Math.max(0, Math.min(a.max, value));
+    if(v) progress[progChar][a.name] = v; else delete progress[progChar][a.name];
+    saveProgress();
+    renderProgress();
+  }
+
+  var progCharsEl = document.getElementById("progChars");
+  var progGroupsEl = document.getElementById("progGroups");
+  var progResetBtn = document.getElementById("progReset");
+  var resetArmed = false;
+
+  function renderProgress(){
+    progCharsEl.innerHTML = PROG_CHARS.map(function(c){
+      var t = charTotals(c);
+      var pct = Math.round(100 * t.got / t.max);
+      return '<button type="button" class="prog-char char-'+c.toLowerCase()+'" data-pc="'+c+'" aria-pressed="'+(c===progChar)+'">'
+        + '<div class="prog-char-top"><h3>'+c+'</h3><span class="prog-pct">'+pct+'&nbsp;%</span></div>'
+        + '<div class="prog-sub">'+t.got+' / '+t.max+' niveaux · '+t.done+' / '+t.n+' capacités au max</div>'
+        + '<div class="bar"><span style="width:'+pct+'%"></span></div>'
+        + '</button>';
+    }).join("");
+
+    var cVar = "var(--char-"+progChar.toLowerCase()+")";
+    var html = "";
+    PROG_GROUPS.forEach(function(g){
+      var list = ABILITIES.filter(function(a){
+        if(a.group !== g.key) return false;
+        var full = countOf(progChar, a) >= a.max;
+        if(progFilter === "todo") return !full && !a.optional;
+        if(progFilter === "done") return full;
+        return true;
+      });
+      if(!list.length) return;
+      var all = ABILITIES.filter(function(a){ return a.group === g.key && !a.optional; });
+      var gDone = all.filter(function(a){ return countOf(progChar, a) >= a.max; }).length;
+      html += '<div class="prog-group"><div class="prog-group-head"><h3>'+g.label+'</h3><span class="count-note">'+gDone+' / '+all.length+' au max</span></div>'
+        + '<div class="prog-list" style="--c:'+cVar+'">';
+      list.forEach(function(a){
+        var k = countOf(progChar, a);
+        var full = k >= a.max;
+        var pips = "";
+        for(var i=1;i<=a.max;i++){
+          pips += '<button type="button" class="pip'+(i<=k?' on':'')+'" data-set="'+i+'" aria-label="'+a.name+' : '+i+' sur '+a.max+'"></button>';
+        }
+        var meta = a.src
+          ? '<span class="crystal-chip">'+CRYSTAL_LABELS[a.src]+'</span><button type="button" class="link-btn" data-how="1">Comment l’obtenir →</button>'
+          : '<span class="note-chip">'+a.note+'</span>';
+        html += '<div class="prog-row'+(full?' is-done':'')+'" data-ab="'+ABILITIES.indexOf(a)+'">'
+          + '<div><div class="prog-name">'+a.name+(full?' <span class="done-mark">&#10003;</span>':'')+'</div>'
+          + '<div class="prog-desc">'+a.desc+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</div>'
+          + '<div class="prog-meta">'+meta+'</div></div>'
+          + '<div class="prog-ctrl">'
+          + '<button type="button" class="step" data-step="-1" '+(k<=0?'disabled':'')+' aria-label="Retirer">−</button>'
+          + '<span class="pips">'+pips+'</span>'
+          + '<button type="button" class="step" data-step="1" '+(full?'disabled':'')+' aria-label="Ajouter">+</button>'
+          + '<span class="prog-count">'+k+'/'+a.max+'</span>'
+          + '</div></div>';
+      });
+      html += '</div></div>';
+    });
+    progGroupsEl.innerHTML = html || '<p class="empty-hint">Rien à afficher avec ce filtre.</p>';
+
+    progResetBtn.textContent = resetArmed ? "Confirmer la remise à zéro de "+progChar : "Réinitialiser "+progChar;
+    progResetBtn.classList.toggle("is-danger", resetArmed);
+  }
+
+  progCharsEl.addEventListener("click", function(e){
+    var b = e.target.closest(".prog-char");
+    if(!b) return;
+    progChar = b.dataset.pc;
+    resetArmed = false;
+    renderProgress();
+  });
+  progGroupsEl.addEventListener("click", function(e){
+    var row = e.target.closest(".prog-row");
+    if(!row) return;
+    var a = ABILITIES[+row.dataset.ab];
+    var k = countOf(progChar, a);
+    var pip = e.target.closest(".pip");
+    var step = e.target.closest(".step");
+    if(pip){
+      var n = +pip.dataset.set;
+      setCount(a, n === k ? n - 1 : n); // re-clicking the last filled box unfills it
+    } else if(step){
+      setCount(a, k + (+step.dataset.step));
+    } else if(e.target.closest("[data-how]")){
+      setChar(progChar);
+      showTab("ability");
+      abilityInput.value = a.name;
+      refreshCmd1();
+      window.scrollTo({ top:0, behavior:"smooth" });
+    }
+  });
+  document.getElementById("progFilter").addEventListener("click", function(e){
+    var b = e.target.closest(".tab");
+    if(!b) return;
+    progFilter = b.dataset.pf;
+    this.querySelectorAll(".tab").forEach(function(x){ x.setAttribute("aria-pressed", x===b ? "true" : "false"); });
+    renderProgress();
+  });
+  progResetBtn.addEventListener("click", function(){
+    if(!resetArmed){ resetArmed = true; renderProgress(); return; }
+    progress[progChar] = {};
+    resetArmed = false;
+    saveProgress();
+    renderProgress();
+  });
+  renderProgress();
 
   /* ---------- explorer ---------- */
   var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };

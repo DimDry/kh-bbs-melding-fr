@@ -8,6 +8,7 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 - **Sélection du personnage** (Terra / Ventus / Aqua / Tous) : filtre l'ensemble de l'app sur ce que ce personnage peut réellement mixer.
 - **Onglet « Mixer des commandes »** : un calculateur (2 commandes + cristal optionnel → résultat exact) et un explorateur filtrable/triable de toutes les recettes.
+- **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage).
 - **Onglet « Partir d'une capacité »** : choisis la capacité que tu veux obtenir, l'app te montre les paires de commandes à mixer et le cristal nécessaire.
 
 ## Utiliser le site
