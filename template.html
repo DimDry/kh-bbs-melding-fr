@@ -1,0 +1,830 @@
+<title>Forge de Commandes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f3f1fa;
+  --surface:#ffffff;
+  --surface-2:#ece6f8;
+  --surface-3:#e2daf3;
+  --border:#d9d0ec;
+  --text:#1d1832;
+  --text-dim:#5c5474;
+  --text-faint:#8a81a3;
+  --accent:#6d4fe0;
+  --accent-contrast:#ffffff;
+  --accent-soft:#ece5fc;
+  --gold:#9c6e1f;
+  --cat-attack:#c1502f;   --cat-attack-soft:#f8e5de;
+  --cat-magic:#1f6f9c;    --cat-magic-soft:#dfeef6;
+  --cat-action:#3f8f68;   --cat-action-soft:#deefe6;
+  --cat-shotlock:#9c6e1f; --cat-shotlock-soft:#f3ead4;
+  --char-terra:#8a6425;  --char-terra-soft:#f2e7d1;
+  --char-ventus:#3272b8; --char-ventus-soft:#dfebf8;
+  --char-aqua:#1c8f83;   --char-aqua-soft:#dbf0ec;
+  --ok:#1f7a49; --ok-soft:#ddf1e3;
+  --warn:#93650f; --warn-soft:#f5ead2;
+  --bad:#a8392f; --bad-soft:#f7ded9;
+  --shadow: 0 1px 2px rgba(30, 20, 60, .06), 0 8px 24px -12px rgba(30, 20, 60, .18);
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#131025;
+    --surface:#1c1734;
+    --surface-2:#251f42;
+    --surface-3:#2e2751;
+    --border:#3a3260;
+    --text:#efe9fb;
+    --text-dim:#ab9fcb;
+    --text-faint:#7d729d;
+    --accent:#a48cf7;
+    --accent-contrast:#181229;
+    --accent-soft:#2c2452;
+    --gold:#e2b94f;
+    --cat-attack:#ec8a68;   --cat-attack-soft:#3b2721;
+    --cat-magic:#7ac1e6;    --cat-magic-soft:#1c313f;
+    --cat-action:#7fd2a8;   --cat-action-soft:#1c3527;
+    --cat-shotlock:#e2b94f; --cat-shotlock-soft:#3a3016;
+    --char-terra:#d9a752;  --char-terra-soft:#382c17;
+    --char-ventus:#7ebaef; --char-ventus-soft:#182a3c;
+    --char-aqua:#5cd9c8;   --char-aqua-soft:#123330;
+    --ok:#69d69c; --ok-soft:#1c3627;
+    --warn:#e4bb63; --warn-soft:#3a2f18;
+    --bad:#ec8b81; --bad-soft:#3b211e;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#131025;
+  --surface:#1c1734;
+  --surface-2:#251f42;
+  --surface-3:#2e2751;
+  --border:#3a3260;
+  --text:#efe9fb;
+  --text-dim:#ab9fcb;
+  --text-faint:#7d729d;
+  --accent:#a48cf7;
+  --accent-contrast:#181229;
+  --accent-soft:#2c2452;
+  --gold:#e2b94f;
+  --cat-attack:#ec8a68;   --cat-attack-soft:#3b2721;
+  --cat-magic:#7ac1e6;    --cat-magic-soft:#1c313f;
+  --cat-action:#7fd2a8;   --cat-action-soft:#1c3527;
+  --cat-shotlock:#e2b94f; --cat-shotlock-soft:#3a3016;
+  --char-terra:#d9a752;  --char-terra-soft:#382c17;
+  --char-ventus:#7ebaef; --char-ventus-soft:#182a3c;
+  --char-aqua:#5cd9c8;   --char-aqua-soft:#123330;
+  --ok:#69d69c; --ok-soft:#1c3627;
+  --warn:#e4bb63; --warn-soft:#3a2f18;
+  --bad:#ec8b81; --bad-soft:#3b211e;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 28px -12px rgba(0,0,0,.55);
+  color-scheme: dark;
+}
+
+*{ box-sizing:border-box; }
+[hidden]{ display:none !important; }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Manrope", ui-sans-serif, system-ui, sans-serif;
+  line-height:1.45;
+}
+h1,h2,h3{ font-family:"Spectral", Georgia, serif; text-wrap:balance; margin:0; }
+.mono{ font-family:"JetBrains Mono", ui-monospace, monospace; font-variant-numeric:tabular-nums; }
+a{ color:var(--accent); }
+
+.wrap{ max-width:1180px; margin:0 auto; padding:0 20px 64px; }
+
+/* ---------- header ---------- */
+header.top{
+  position:sticky; top:0; z-index:20;
+  background:color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom:1px solid var(--border);
+}
+.top-inner{
+  max-width:1180px; margin:0 auto; padding:16px 20px;
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+}
+.brand{ display:flex; align-items:center; gap:10px; margin-right:auto; }
+.brand svg{ width:30px; height:30px; flex:none; }
+.brand-text h1{ font-size:1.32rem; font-weight:700; letter-spacing:.2px; }
+.brand-text p{ margin:1px 0 0; font-size:.72rem; color:var(--text-faint); text-transform:uppercase; letter-spacing:.09em; }
+
+.search-box{
+  position:relative; flex:1 1 220px; max-width:340px;
+}
+.search-box input{
+  width:100%; padding:9px 12px 9px 34px; border-radius:10px;
+  border:1px solid var(--border); background:var(--surface); color:var(--text);
+  font-family:inherit; font-size:.9rem;
+}
+.search-box input:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.search-box svg{ position:absolute; left:10px; top:50%; transform:translateY(-50%); width:15px; height:15px; color:var(--text-faint); pointer-events:none; }
+
+.theme-btn{
+  border:1px solid var(--border); background:var(--surface); color:var(--text-dim);
+  border-radius:10px; padding:8px 10px; cursor:pointer; font-size:.8rem; display:flex; gap:6px; align-items:center;
+}
+.theme-btn:hover{ color:var(--text); border-color:var(--accent); }
+
+/* ---------- tab navigation ---------- */
+.tabnav{
+  display:flex; gap:22px; margin-top:26px; border-bottom:1px solid var(--border);
+  overflow-x:auto;
+}
+.tabnav-btn{
+  border:none; background:none; color:var(--text-dim); font-family:"Manrope", sans-serif; font-weight:700;
+  font-size:.95rem; padding:12px 2px; cursor:pointer; position:relative; white-space:nowrap;
+}
+.tabnav-btn::after{ content:""; position:absolute; left:0; right:0; bottom:-1px; height:2px; background:transparent; border-radius:2px; }
+.tabnav-btn:hover{ color:var(--text); }
+.tabnav-btn[aria-selected="true"]{ color:var(--accent); }
+.tabnav-btn[aria-selected="true"]::after{ background:var(--accent); }
+
+/* ---------- character selector ---------- */
+.char-select{
+  margin-top:22px; background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; padding:18px 24px; box-shadow:var(--shadow);
+  display:flex; align-items:center; gap:20px; flex-wrap:wrap;
+}
+.char-label h2{ font-size:1.05rem; font-weight:700; }
+.char-label p{ margin:3px 0 0; font-size:.8rem; color:var(--text-dim); max-width:38ch; }
+.char-buttons{ display:flex; gap:8px; flex-wrap:wrap; margin-left:auto; }
+.char-btn{
+  display:inline-flex; align-items:center; gap:7px; border:1px solid var(--border); background:var(--surface-2);
+  color:var(--text-dim); padding:9px 16px; border-radius:999px; font-family:inherit; font-size:.87rem; font-weight:700;
+  cursor:pointer;
+}
+.char-btn .char-dot{ width:9px; height:9px; border-radius:50%; background:currentColor; opacity:.55; }
+.char-btn:hover{ border-color:var(--accent); color:var(--text); }
+.char-btn[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); }
+.char-btn.char-terra[aria-pressed="true"]{ background:var(--char-terra); border-color:var(--char-terra); color:#1c1408; }
+.char-btn.char-ventus[aria-pressed="true"]{ background:var(--char-ventus); border-color:var(--char-ventus); color:#0d1c29; }
+.char-btn.char-aqua[aria-pressed="true"]{ background:var(--char-aqua); border-color:var(--char-aqua); color:#062522; }
+.char-btn[aria-pressed="true"] .char-dot{ opacity:1; background:currentColor; }
+@media (max-width:640px){ .char-select{ flex-direction:column; align-items:stretch; } .char-buttons{ margin-left:0; } }
+
+/* ---------- calculator ---------- */
+.calc{
+  margin-top:28px; background:var(--surface); border:1px solid var(--border);
+  border-radius:18px; padding:22px 24px; box-shadow:var(--shadow);
+}
+.calc h2{ font-size:1.3rem; font-weight:600; }
+.calc .lede{ margin:5px 0 18px; color:var(--text-dim); font-size:.87rem; max-width:62ch; }
+
+.calc-row{ display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:end; }
+@media (max-width:640px){ .calc-row{ grid-template-columns:1fr; } .calc-plus{ justify-self:center; } }
+.field label{ display:block; font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--text-faint); margin-bottom:6px; font-weight:700; }
+.field input{
+  width:100%; padding:11px 13px; border-radius:11px; border:1px solid var(--border);
+  background:var(--surface-2); color:var(--text); font-family:inherit; font-size:.95rem;
+}
+.field input:focus{ outline:2px solid var(--accent); outline-offset:1px; background:var(--surface); }
+.calc-plus{
+  width:34px; height:34px; border-radius:50%; background:var(--accent-soft); color:var(--accent);
+  display:flex; align-items:center; justify-content:center; font-weight:800; font-size:1.1rem; margin-bottom:2px;
+}
+
+.calc-crystal-row{ margin-top:14px; max-width:360px; }
+.field select{
+  width:100%; padding:11px 13px; border-radius:11px; border:1px solid var(--border);
+  background:var(--surface-2); color:var(--text); font-family:inherit; font-size:.95rem;
+}
+.field select:focus{ outline:2px solid var(--accent); outline-offset:1px; background:var(--surface); }
+
+.calc-result{ margin-top:18px; }
+
+.ability-callout{
+  display:flex; align-items:center; gap:12px; margin:12px 0 14px; padding:14px 16px;
+  border-radius:12px; background:var(--accent-soft); border:1px solid var(--accent);
+}
+.ability-callout .ac-icon{
+  width:34px; height:34px; border-radius:9px; background:var(--accent); color:var(--accent-contrast);
+  display:flex; align-items:center; justify-content:center; flex:none; font-size:1.05rem;
+}
+.ability-callout .ac-text{ font-size:.78rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:.06em; font-weight:700; }
+.ability-callout .ac-ability{ font-family:"Spectral", Georgia, serif; font-size:1.2rem; font-weight:700; color:var(--text); }
+.ability-callout.is-empty{ background:var(--surface-3); border-color:var(--border); }
+.ability-callout.is-empty .ac-icon{ background:var(--surface); color:var(--text-faint); border:1px solid var(--border); }
+.ability-callout.is-empty .ac-ability{ font-size:.92rem; color:var(--text-dim); font-family:inherit; font-weight:600; }
+
+.crystal-cell.is-selected{ background:var(--accent-soft); box-shadow:0 0 0 1.5px var(--accent) inset; }
+.crystal-cell.is-selected .cname{ color:var(--accent); }
+.empty-hint{ color:var(--text-faint); font-size:.85rem; padding:10px 2px; }
+.match-card{
+  border:1px solid var(--border); border-radius:14px; padding:16px 18px; background:var(--surface-2);
+  margin-bottom:10px;
+}
+.match-head{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.match-head h3{ font-size:1.15rem; font-weight:700; }
+.no-match{
+  border:1px dashed var(--border); border-radius:14px; padding:16px 18px; color:var(--text-dim); font-size:.9rem;
+}
+
+.slot-pair{ display:flex; align-items:stretch; gap:10px; margin-top:10px; }
+.slot{
+  flex:1; border:1px solid var(--border); background:var(--surface-3); border-radius:10px;
+  padding:9px 14px; font-weight:700; text-align:center; font-size:.92rem;
+}
+.slot-pair .plus-sm{ display:flex; align-items:center; }
+.count-line{ color:var(--text-faint); font-size:.82rem; margin:2px 0 12px; }
+.field-ability{ max-width:420px; }
+
+/* badges & pills */
+.chip{
+  display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:999px;
+  font-size:.72rem; font-weight:700; letter-spacing:.02em; white-space:nowrap;
+}
+.chip-attack{ background:var(--cat-attack-soft); color:var(--cat-attack); }
+.chip-magic{ background:var(--cat-magic-soft); color:var(--cat-magic); }
+.chip-action{ background:var(--cat-action-soft); color:var(--cat-action); }
+.chip-shotlock{ background:var(--cat-shotlock-soft); color:var(--cat-shotlock); }
+.chip-dot{ width:7px; height:7px; border-radius:50%; background:currentColor; }
+
+.rate{ font-family:"JetBrains Mono", monospace; font-weight:700; padding:3px 9px; border-radius:8px; font-size:.78rem; }
+.rate-ok{ background:var(--ok-soft); color:var(--ok); }
+.rate-warn{ background:var(--warn-soft); color:var(--warn); }
+.rate-bad{ background:var(--bad-soft); color:var(--bad); }
+
+.avail{ font-size:.72rem; padding:3px 9px; border-radius:8px; background:var(--surface-3); color:var(--text-dim); font-weight:600; }
+
+.ingtxt{ font-weight:600; }
+.ingtxt .lv{ color:var(--text-faint); font-weight:500; font-size:.85em; margin-left:2px; }
+
+/* ---------- explorer ---------- */
+.explorer{ margin-top:36px; }
+.explorer-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+.explorer-head h2{ font-size:1.3rem; font-weight:600; }
+.count-note{ color:var(--text-faint); font-size:.82rem; }
+
+.filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:18px; }
+.tab{
+  border:1px solid var(--border); background:var(--surface); color:var(--text-dim);
+  padding:7px 14px; border-radius:999px; font-size:.83rem; font-weight:600; cursor:pointer;
+}
+.tab[aria-pressed="true"]{ background:var(--accent); border-color:var(--accent); color:var(--accent-contrast); }
+.tab .n{ opacity:.75; font-weight:500; margin-left:3px; }
+.filters .sep{ width:1px; background:var(--border); margin:4px 4px; }
+
+.sortbar{ margin-left:auto; display:flex; align-items:center; gap:8px; }
+.sortbar select{
+  border:1px solid var(--border); background:var(--surface); color:var(--text);
+  border-radius:9px; padding:6px 9px; font-family:inherit; font-size:.82rem;
+}
+
+.groups{ display:flex; flex-direction:column; gap:10px; }
+.group{ border:1px solid var(--border); border-radius:14px; background:var(--surface); overflow:hidden; box-shadow:var(--shadow); }
+.group-head{
+  width:100%; display:flex; align-items:center; gap:12px; padding:14px 18px; background:none; border:none; cursor:pointer;
+  color:var(--text); text-align:left; font-family:inherit;
+}
+.group-head:hover{ background:var(--surface-2); }
+.group-head h3{ font-size:1.05rem; font-weight:700; flex:1; }
+.group-head .caret{ transition:transform .15s ease; color:var(--text-faint); flex:none; }
+.group[data-open="true"] .caret{ transform:rotate(90deg); }
+.group-body{ display:none; padding:0 18px 16px; }
+.group[data-open="true"] .group-body{ display:block; }
+
+.variant{ border-top:1px solid var(--border); padding:12px 0; }
+.variant:first-child{ border-top:none; padding-top:6px; }
+.variant-top{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; }
+.variant-ing{ display:flex; align-items:center; gap:8px; flex-wrap:wrap; font-size:.92rem; }
+.plus-sm{ color:var(--text-faint); font-weight:700; }
+.variant-meta{ display:flex; gap:7px; align-items:center; margin-left:auto; flex-wrap:wrap; }
+
+.crystal-toggle{
+  border:1px solid var(--border); background:transparent; color:var(--text-dim); font-family:inherit;
+  font-size:.74rem; padding:3px 9px; border-radius:7px; cursor:pointer; display:inline-flex; align-items:center; gap:5px;
+}
+.crystal-toggle:hover{ color:var(--accent); border-color:var(--accent); }
+
+.ability-chip{
+  display:inline-flex; align-items:center; gap:5px; padding:3px 10px; border-radius:8px;
+  font-size:.78rem; font-weight:700; background:var(--accent-soft); color:var(--accent);
+}
+.ability-chip.is-empty{ background:var(--surface-3); color:var(--text-faint); font-weight:600; }
+
+.crystal-table{ margin-top:10px; display:none; border-top:1px dashed var(--border); padding-top:10px; }
+.variant[data-cx-open="true"] .crystal-table{ display:grid; }
+.crystal-table{ grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:8px; }
+.crystal-cell{ background:var(--surface-2); border-radius:9px; padding:7px 10px; }
+.crystal-cell .cname{ font-size:.68rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold); font-weight:700; }
+.crystal-cell .cabil{ font-size:.85rem; margin-top:2px; font-weight:600; }
+.no-crystal-note{ font-size:.78rem; color:var(--text-faint); margin-top:8px; font-style:italic; }
+
+.empty-state{ text-align:center; padding:40px 20px; color:var(--text-faint); }
+
+footer{ margin-top:48px; padding-top:18px; border-top:1px solid var(--border); color:var(--text-faint); font-size:.78rem; }
+footer a{ color:var(--text-dim); }
+
+::selection{ background:var(--accent-soft); color:var(--text); }
+</style>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M12 2 L20 7 L20 17 L12 22 L4 17 L4 7 Z" stroke="var(--accent)" stroke-width="1.6" fill="var(--accent-soft)"/>
+        <path d="M12 2 L12 22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="1" opacity=".5"/>
+      </svg>
+      <div class="brand-text">
+        <h1>Forge de Commandes</h1>
+        <p>Kingdom Hearts Birth by Sleep &middot; Fusions de commandes</p>
+      </div>
+    </div>
+    <div class="search-box">
+      <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.6"/><path d="M13.6 13.6 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      <input id="globalSearch" type="text" placeholder="Chercher une commande…" autocomplete="off">
+    </div>
+    <button class="theme-btn" id="themeToggle" type="button" title="Changer de thème">
+      <span id="themeIcon">&#9789;</span> <span id="themeLabel">Thème</span>
+    </button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <nav class="tabnav" role="tablist" aria-label="Navigation">
+    <button type="button" class="tabnav-btn" role="tab" data-tab="mix" aria-selected="true">Mixer des commandes</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="ability" aria-selected="false">Partir d'une capacité</button>
+  </nav>
+
+  <section class="char-select" aria-label="Sélection du personnage">
+    <div class="char-label">
+      <h2>Ton personnage</h2>
+      <p>Certaines fusions ne sont accessibles qu'à un seul personnage — choisis le tien pour ne voir que ce qu'il peut réellement mixer.</p>
+    </div>
+    <div class="char-buttons" id="charButtons" role="group" aria-label="Choisir un personnage">
+      <button type="button" class="char-btn" data-char="all" aria-pressed="true"><span class="char-dot"></span>Tous</button>
+      <button type="button" class="char-btn char-terra" data-char="Terra" aria-pressed="false"><span class="char-dot"></span>Terra</button>
+      <button type="button" class="char-btn char-ventus" data-char="Ventus" aria-pressed="false"><span class="char-dot"></span>Ventus</button>
+      <button type="button" class="char-btn char-aqua" data-char="Aqua" aria-pressed="false"><span class="char-dot"></span>Aqua</button>
+    </div>
+  </section>
+
+  <div class="tab-panel" data-panel="mix">
+
+  <section class="calc" aria-label="Calculateur de fusion">
+    <h2>Calculateur de fusion</h2>
+    <p class="lede">Choisis deux commandes que tu possèdes pour voir immédiatement le résultat de leur fusion. Ajoute un cristal pour savoir exactement quelle capacité il produira.</p>
+    <div class="calc-row">
+      <div class="field">
+        <label for="ing1">Commande 1</label>
+        <input id="ing1" type="text" list="cmdList" placeholder="ex. Coup éclair" autocomplete="off">
+      </div>
+      <div class="calc-plus" aria-hidden="true">+</div>
+      <div class="field">
+        <label for="ing2">Commande 2</label>
+        <input id="ing2" type="text" list="cmdList" placeholder="ex. Séisme" autocomplete="off">
+      </div>
+    </div>
+    <div class="calc-crystal-row">
+      <div class="field field-crystal">
+        <label for="crystalSel">Cristal inséré (optionnel)</label>
+        <select id="crystalSel">
+          <option value="">Aucun — voir les 7 capacités possibles</option>
+        </select>
+      </div>
+    </div>
+    <datalist id="cmdList"></datalist>
+    <div class="calc-result" id="calcResult">
+      <p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu'elles donnent.</p>
+    </div>
+  </section>
+
+  <section class="explorer" aria-label="Explorateur de fusions">
+    <div class="explorer-head">
+      <h2>Toutes les fusions possibles</h2>
+      <span class="count-note" id="countNote"></span>
+    </div>
+    <div class="filters" id="filters">
+      <button class="tab" data-cat="all" aria-pressed="true">Toutes <span class="n" id="n-all"></span></button>
+      <button class="tab" data-cat="attack" aria-pressed="false">Attaque <span class="n" id="n-attack"></span></button>
+      <button class="tab" data-cat="magic" aria-pressed="false">Magie <span class="n" id="n-magic"></span></button>
+      <button class="tab" data-cat="action" aria-pressed="false">Action <span class="n" id="n-action"></span></button>
+      <button class="tab" data-cat="shotlock" aria-pressed="false">Tirs visés <span class="n" id="n-shotlock"></span></button>
+      <div class="sortbar">
+        <label for="explorerCrystalSel" style="font-size:.78rem;color:var(--text-faint);">Cristal</label>
+        <select id="explorerCrystalSel">
+          <option value="">Toutes les capacités</option>
+        </select>
+        <label for="sortSel" style="font-size:.78rem;color:var(--text-faint);">Trier</label>
+        <select id="sortSel">
+          <option value="az">Alphabétique</option>
+          <option value="rate">Taux de réussite</option>
+          <option value="variants">Nombre de recettes</option>
+        </select>
+      </div>
+    </div>
+    <div class="groups" id="groups"></div>
+    <div class="empty-state" id="emptyState" style="display:none;">Aucune fusion ne correspond à ta recherche.</div>
+  </section>
+
+  </div>
+
+  <div class="tab-panel" data-panel="ability" hidden>
+
+  <section class="calc" aria-label="Recherche par capacité">
+    <h2>Partir d'une capacité</h2>
+    <p class="lede">Choisis la capacité que tu veux obtenir sur une commande : on te montre les paires à mixer, et avec quel cristal.</p>
+    <div class="field field-ability">
+      <label for="abilityInput">Capacité recherchée</label>
+      <input id="abilityInput" type="text" list="abilityList" placeholder="ex. Combo aérien" autocomplete="off">
+    </div>
+    <datalist id="abilityList"></datalist>
+    <div class="calc-result" id="abilityResult">
+      <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
+    </div>
+  </section>
+
+  </div>
+
+  <footer>
+    Données de mixage recopiées depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Vérifie toujours en jeu avant une fusion coûteuse — de petites erreurs de recopie restent possibles.
+  </footer>
+</div>
+
+<script id="recipes-data" type="application/json">__RECIPES_JSON__</script>
+<script>
+(function(){
+  "use strict";
+  var RECIPES = JSON.parse(document.getElementById("recipes-data").textContent);
+
+  var CRYSTAL_LABELS = {
+    shim:"Cristal chatoyant", flee:"Cristal fugace", puls:"Cristal vibrant",
+    well:"Cristal ressourçant", soo:"Cristal apaisant", hun:"Cristal affamé", abo:"Cristal abondant"
+  };
+  var CRYSTAL_ORDER = ["shim","flee","puls","well","soo","hun","abo"];
+  var CAT_LABEL = { attack:"Attaque", magic:"Magie", action:"Action", shotlock:"Tir visé" };
+
+  /* ---------- theme toggle ---------- */
+  var root = document.documentElement;
+  var themeBtn = document.getElementById("themeToggle");
+  var themeIcon = document.getElementById("themeIcon");
+  var themeLabel = document.getElementById("themeLabel");
+  function applyThemeUI(){
+    var t = root.getAttribute("data-theme");
+    if(t === "dark"){ themeIcon.textContent = "☀"; themeLabel.textContent = "Clair"; }
+    else if(t === "light"){ themeIcon.textContent = "☽"; themeLabel.textContent = "Sombre"; }
+    else { themeIcon.textContent = "◑"; themeLabel.textContent = "Thème"; }
+  }
+  try{
+    var saved = localStorage.getItem("forge-theme");
+    if(saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+  }catch(e){}
+  applyThemeUI();
+  themeBtn.addEventListener("click", function(){
+    var cur = root.getAttribute("data-theme");
+    var next = cur === "dark" ? "light" : (cur === "light" ? null : "dark");
+    if(next){ root.setAttribute("data-theme", next); } else { root.removeAttribute("data-theme"); }
+    try{ if(next) localStorage.setItem("forge-theme", next); else localStorage.removeItem("forge-theme"); }catch(e){}
+    applyThemeUI();
+  });
+
+  /* ---------- character selection (shared by calculator + explorer) ---------- */
+  var selectedChar = "all";
+  try{
+    var savedChar = localStorage.getItem("forge-char");
+    if(savedChar) selectedChar = savedChar;
+  }catch(e){}
+  function matchesChar(avail, char){
+    if(char === "all") return true;
+    if(avail === "Tous") return true;
+    return avail.indexOf(char) !== -1;
+  }
+  var charButtons = document.getElementById("charButtons");
+  function applyCharUI(){
+    charButtons.querySelectorAll(".char-btn").forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.char === selectedChar ? "true" : "false");
+    });
+  }
+  applyCharUI();
+  charButtons.addEventListener("click", function(e){
+    var btn = e.target.closest(".char-btn");
+    if(!btn) return;
+    selectedChar = btn.dataset.char;
+    try{ localStorage.setItem("forge-char", selectedChar); }catch(e){}
+    applyCharUI();
+    state.char = selectedChar;
+    runCalc();
+    buildGroups();
+    runAbilitySearch();
+  });
+
+  /* ---------- tab navigation ---------- */
+  var tabButtons = document.querySelectorAll(".tabnav-btn");
+  var tabPanels = document.querySelectorAll(".tab-panel");
+  tabButtons.forEach(function(btn){
+    btn.addEventListener("click", function(){
+      tabButtons.forEach(function(b){ b.setAttribute("aria-selected", b===btn ? "true" : "false"); });
+      tabPanels.forEach(function(p){ p.hidden = (p.dataset.panel !== btn.dataset.tab); });
+    });
+  });
+
+  /* ---------- command name list for datalist + search ---------- */
+  var names = {};
+  RECIPES.forEach(function(r){ names[r.result]=1; names[r.i1]=1; names[r.i2]=1; });
+  var nameList = Object.keys(names).sort(function(a,b){ return a.localeCompare(b); });
+  var dl = document.getElementById("cmdList");
+  nameList.forEach(function(n){ var o=document.createElement("option"); o.value=n; dl.appendChild(o); });
+
+  /* ---------- crystal select options (calculator + explorer filter) ---------- */
+  var crystalSel = document.getElementById("crystalSel");
+  var explorerCrystalSel = document.getElementById("explorerCrystalSel");
+  CRYSTAL_ORDER.forEach(function(k){
+    var o = document.createElement("option");
+    o.value = k; o.textContent = CRYSTAL_LABELS[k];
+    crystalSel.appendChild(o);
+    var o2 = document.createElement("option");
+    o2.value = k; o2.textContent = CRYSTAL_LABELS[k];
+    explorerCrystalSel.appendChild(o2);
+  });
+
+  /* ---------- helpers ---------- */
+  function norm(s){ return (s||"").trim().toLowerCase(); }
+  function rateClass(r){ return r>=90 ? "rate-ok" : (r>=50 ? "rate-warn" : "rate-bad"); }
+  function catChip(cat){
+    return '<span class="chip chip-'+cat+'"><span class="chip-dot"></span>'+CAT_LABEL[cat]+'</span>';
+  }
+  function ingHtml(name){
+    return '<span class="ingtxt">'+name+'</span>';
+  }
+  function crystalTableHtml(cx, highlightKey){
+    if(!cx || !Object.keys(cx).length){
+      return '<p class="no-crystal-note">Cette fusion n’accepte pas de cristal (commande de tir visé).</p>';
+    }
+    var html = '<div class="crystal-table" style="display:grid;">';
+    CRYSTAL_ORDER.forEach(function(k){
+      if(!cx[k]) return;
+      var sel = (highlightKey && k === highlightKey) ? ' is-selected' : '';
+      html += '<div class="crystal-cell'+sel+'"><div class="cname">'+CRYSTAL_LABELS[k]+'</div><div class="cabil">'+cx[k]+'</div></div>';
+    });
+    html += '</div>';
+    return html;
+  }
+  function abilityCalloutHtml(cx, key){
+    var ability = cx ? cx[key] : null;
+    if(ability){
+      return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">'+CRYSTAL_LABELS[key]+' &rarr; capacité obtenue</div><div class="ac-ability">'+ability+'</div></div></div>';
+    }
+    var reason = (cx && Object.keys(cx).length) ? 'ce cristal n’a pas été trouvé pour cette recette' : 'commande de tir visé, aucun cristal possible';
+    return '<div class="ability-callout is-empty"><span class="ac-icon">&#8212;</span><div><div class="ac-text">Aucune capacité</div><div class="ac-ability">'+reason+'</div></div></div>';
+  }
+
+  /* ---------- calculator ---------- */
+  var ing1 = document.getElementById("ing1");
+  var ing2 = document.getElementById("ing2");
+  var calcResult = document.getElementById("calcResult");
+
+  function runCalc(){
+    var a = norm(ing1.value), b = norm(ing2.value);
+    if(!a || !b){
+      calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
+      return;
+    }
+    var pairMatches = RECIPES.filter(function(r){
+      var ra = norm(r.i1), rb = norm(r.i2);
+      return (ra===a && rb===b) || (ra===b && rb===a);
+    });
+    var matches = pairMatches.filter(function(r){ return matchesChar(r.avail, selectedChar); });
+    // dedupe identical results
+    var seen = {}; var uniq = [];
+    matches.forEach(function(r){
+      var key = r.result+"|"+r.rate+"|"+r.avail+"|"+r.cat;
+      if(!seen[key]){ seen[key]=1; uniq.push(r); }
+    });
+    if(!uniq.length){
+      if(pairMatches.length && selectedChar !== "all"){
+        calcResult.innerHTML = '<div class="no-match">Cette fusion existe, mais pas pour <strong>'+selectedChar+'</strong> — regarde l’onglet «&nbsp;Tous&nbsp;» pour voir qui peut la réaliser.</div>';
+      } else {
+        calcResult.innerHTML = '<div class="no-match">Aucune recette connue pour cette combinaison. Vérifie l’orthographe, ou ces deux commandes ne se combinent pas ensemble.</div>';
+      }
+      return;
+    }
+    var selectedCrystal = crystalSel.value;
+    var html = "";
+    uniq.forEach(function(r){
+      html += '<div class="match-card">'
+        + '<div class="match-head">'
+        + catChip(r.cat)
+        + '<h3>&#8594; '+r.result+'</h3>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
+        + '<span class="avail">'+r.avail+'</span>'
+        + '</div>'
+        + '<p style="margin:10px 0 0;color:var(--text-dim);font-size:.88rem;">'+ingHtml(r.i1)+' <span class="plus-sm">+</span> '+ingHtml(r.i2)+'</p>'
+        + (selectedCrystal ? abilityCalloutHtml(r.cx, selectedCrystal) : '')
+        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx, selectedCrystal)+'</div>'
+        + '</div>';
+    });
+    calcResult.innerHTML = html;
+  }
+  ing1.addEventListener("input", runCalc);
+  ing2.addEventListener("input", runCalc);
+  crystalSel.addEventListener("change", runCalc);
+
+  /* ---------- ability finder (reverse lookup) ---------- */
+  function crystalNeededHtml(key){
+    return '<div class="ability-callout"><span class="ac-icon">&#9670;</span><div><div class="ac-text">Cristal à insérer</div><div class="ac-ability">'+CRYSTAL_LABELS[key]+'</div></div></div>';
+  }
+
+  var abilityMap = {};
+  RECIPES.forEach(function(r){
+    Object.keys(r.cx||{}).forEach(function(k){
+      var a = r.cx[k], n = norm(a);
+      if(!abilityMap[n]) abilityMap[n] = a;
+    });
+  });
+  var abilityNames = Object.keys(abilityMap).map(function(n){ return abilityMap[n]; }).sort(function(a,b){ return a.localeCompare(b); });
+  var abilityDL = document.getElementById("abilityList");
+  abilityNames.forEach(function(a){ var o=document.createElement("option"); o.value=a; abilityDL.appendChild(o); });
+
+  var abilityInput = document.getElementById("abilityInput");
+  var abilityResult = document.getElementById("abilityResult");
+
+  function runAbilitySearch(){
+    var q = norm(abilityInput.value);
+    if(!q){
+      abilityResult.innerHTML = '<p class="empty-hint">Choisis une capacité dans la liste pour voir comment l’obtenir.</p>';
+      return;
+    }
+    var hits = [];
+    RECIPES.forEach(function(r){
+      if(!matchesChar(r.avail, selectedChar)) return;
+      Object.keys(r.cx||{}).forEach(function(k){
+        if(norm(r.cx[k]) === q) hits.push({ r:r, key:k });
+      });
+    });
+    if(!hits.length){
+      var existsElsewhere = RECIPES.some(function(r){
+        return Object.keys(r.cx||{}).some(function(k){ return norm(r.cx[k]) === q; });
+      });
+      if(existsElsewhere && selectedChar !== "all"){
+        abilityResult.innerHTML = '<div class="no-match">Cette capacité s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
+      } else {
+        abilityResult.innerHTML = '<div class="no-match">Aucune fusion connue ne procure cette capacité. Choisis-la dans la liste proposée pour être sûr de l’orthographe exacte.</div>';
+      }
+      return;
+    }
+    hits.sort(function(x,y){ return y.r.rate - x.r.rate; });
+    var html = '<p class="count-line">'+hits.length+' façon'+(hits.length>1?'s':'')+' d’obtenir cette capacité'+(selectedChar!=="all" ? ' avec '+selectedChar : '')+'.</p>';
+    hits.forEach(function(h){
+      var r = h.r;
+      html += '<div class="match-card">'
+        + '<div class="match-head">'
+        + catChip(r.cat)
+        + '<h3>&#8594; '+r.result+'</h3>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
+        + '<span class="avail">'+r.avail+'</span>'
+        + '</div>'
+        + '<div class="slot-pair">'
+        + '<span class="slot">'+ingHtml(r.i1)+'</span>'
+        + '<span class="plus-sm">+</span>'
+        + '<span class="slot">'+ingHtml(r.i2)+'</span>'
+        + '</div>'
+        + crystalNeededHtml(h.key)
+        + '</div>';
+    });
+    abilityResult.innerHTML = html;
+  }
+  abilityInput.addEventListener("input", runAbilitySearch);
+
+  /* ---------- explorer ---------- */
+  var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };
+  var groupsEl = document.getElementById("groups");
+  var emptyState = document.getElementById("emptyState");
+  var countNote = document.getElementById("countNote");
+
+  function updateCategoryCounts(){
+    var counts = { all:0, attack:0, magic:0, action:0, shotlock:0 };
+    RECIPES.forEach(function(r){
+      if(!matchesChar(r.avail, state.char)) return;
+      counts.all++; counts[r.cat] = (counts[r.cat]||0)+1;
+    });
+    ["all","attack","magic","action","shotlock"].forEach(function(c){
+      var el = document.getElementById("n-"+c);
+      if(el) el.textContent = "("+counts[c]+")";
+    });
+  }
+
+  function buildGroups(){
+    updateCategoryCounts();
+    var q = norm(state.q);
+    var filtered = RECIPES.filter(function(r){
+      if(state.cat !== "all" && r.cat !== state.cat) return false;
+      if(!matchesChar(r.avail, state.char)) return false;
+      if(q && norm(r.result).indexOf(q)===-1 && norm(r.i1).indexOf(q)===-1 && norm(r.i2).indexOf(q)===-1) return false;
+      return true;
+    });
+
+    var byResult = {};
+    filtered.forEach(function(r){
+      if(!byResult[r.result]) byResult[r.result] = { result:r.result, cat:r.cat, variants:[] };
+      byResult[r.result].variants.push(r);
+    });
+    var groupsArr = Object.keys(byResult).map(function(k){ return byResult[k]; });
+
+    if(state.sort === "az"){
+      groupsArr.sort(function(a,b){ return a.result.localeCompare(b.result); });
+    } else if(state.sort === "rate"){
+      groupsArr.sort(function(a,b){
+        var ma = Math.max.apply(null, a.variants.map(function(v){return v.rate;}));
+        var mb = Math.max.apply(null, b.variants.map(function(v){return v.rate;}));
+        return mb - ma;
+      });
+    } else if(state.sort === "variants"){
+      groupsArr.sort(function(a,b){ return b.variants.length - a.variants.length; });
+    }
+
+    var charNote = state.char !== "all" ? " • personnage : " + state.char : "";
+    countNote.textContent = filtered.length + " recette" + (filtered.length>1?"s":"") + " • " + groupsArr.length + " commande" + (groupsArr.length>1?"s":"") + " obtenable" + (groupsArr.length>1?"s":"") + charNote;
+
+    if(!groupsArr.length){
+      groupsEl.innerHTML = "";
+      emptyState.style.display = "block";
+      return;
+    }
+    emptyState.style.display = "none";
+
+    var html = "";
+    groupsArr.forEach(function(g, gi){
+      html += '<div class="group" data-open="false" data-idx="'+gi+'">'
+        + '<button class="group-head" type="button" aria-expanded="false">'
+        + '<svg class="caret" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M6 3 L11 8 L6 13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        + catChip(g.cat)
+        + '<h3>'+g.result+'</h3>'
+        + '<span class="count-note">'+g.variants.length+' recette'+(g.variants.length>1?'s':'')+'</span>'
+        + '</button>'
+        + '<div class="group-body">';
+      g.variants.forEach(function(v, vi){
+        var hasCx = Object.keys(v.cx||{}).length > 0;
+        var metaExtra;
+        if(state.crystal){
+          var ability = v.cx && v.cx[state.crystal];
+          metaExtra = ability
+            ? '<span class="ability-chip">&#9670; '+ability+'</span>'
+            : '<span class="ability-chip is-empty">&#8212; pas de cristal</span>';
+        } else {
+          metaExtra = hasCx ? '<button type="button" class="crystal-toggle">Cristaux</button>' : '';
+        }
+        html += '<div class="variant" data-open-cx="false" data-gi="'+gi+'" data-vi="'+vi+'">'
+          + '<div class="variant-top">'
+          + '<span class="variant-ing">'+ingHtml(v.i1)+'<span class="plus-sm">+</span>'+ingHtml(v.i2)+'</span>'
+          + '<span class="variant-meta">'
+          + '<span class="rate '+rateClass(v.rate)+'">'+v.rate+'%</span>'
+          + '<span class="avail">'+v.avail+'</span>'
+          + metaExtra
+          + '</span>'
+          + '</div>'
+          + '<div class="crystal-table-wrap"></div>'
+          + '</div>';
+      });
+      html += '</div></div>';
+    });
+    groupsEl.innerHTML = html;
+
+    // wire up group toggles
+    groupsEl.querySelectorAll(".group-head").forEach(function(btn){
+      btn.addEventListener("click", function(){
+        var grp = btn.closest(".group");
+        var open = grp.getAttribute("data-open") === "true";
+        grp.setAttribute("data-open", open ? "false" : "true");
+        btn.setAttribute("aria-expanded", open ? "false" : "true");
+      });
+    });
+    // wire up crystal toggles, injecting table lazily
+    groupsEl.querySelectorAll(".variant").forEach(function(vEl){
+      var gi = +vEl.getAttribute("data-gi"), vi = +vEl.getAttribute("data-vi");
+      var v = groupsArr[gi].variants[vi];
+      var toggle = vEl.querySelector(".crystal-toggle");
+      if(!toggle) return;
+      var wrap = vEl.querySelector(".crystal-table-wrap");
+      var built = false;
+      toggle.addEventListener("click", function(){
+        var isOpen = vEl.getAttribute("data-cx-open") === "true";
+        if(!built){ wrap.innerHTML = crystalTableHtml(v.cx); built = true; }
+        vEl.setAttribute("data-cx-open", isOpen ? "false" : "true");
+        wrap.querySelector(".crystal-table") && (wrap.querySelector(".crystal-table").style.display = isOpen ? "none" : "grid");
+        toggle.textContent = isOpen ? "Cristaux" : "Masquer";
+      });
+    });
+  }
+
+  document.getElementById("filters").addEventListener("click", function(e){
+    var btn = e.target.closest(".tab");
+    if(!btn || !btn.dataset.cat) return;
+    state.cat = btn.dataset.cat;
+    document.querySelectorAll('.tab[data-cat]').forEach(function(b){ b.setAttribute("aria-pressed", b===btn ? "true":"false"); });
+    buildGroups();
+  });
+  document.getElementById("sortSel").addEventListener("change", function(e){ state.sort = e.target.value; buildGroups(); });
+  document.getElementById("explorerCrystalSel").addEventListener("change", function(e){ state.crystal = e.target.value; buildGroups(); });
+  document.getElementById("globalSearch").addEventListener("input", function(e){ state.q = e.target.value; buildGroups(); });
+
+  buildGroups();
+})();
+</script>
