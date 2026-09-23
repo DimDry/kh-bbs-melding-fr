@@ -11,20 +11,20 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 - **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage).
 - **Onglet « Partir d'une capacité »** : choisis la capacité que tu veux obtenir, l'app te montre les paires de commandes à mixer et le cristal nécessaire.
 
-## Utiliser le site
+## Démarrage rapide
 
-Le fichier `index.html` est autonome (toutes les données sont intégrées dedans) : il peut être ouvert directement dans un navigateur, ou servi par n'importe quel serveur statique.
+1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip), puis extraire le dossier.
+2. Double-cliquer sur **`index.html`**.
 
-```bash
-python3 -m http.server 8000
-# puis ouvrir http://localhost:8000
-```
+C'est tout : pas d'installation, pas de serveur, pas de Python. Ça marche sous Windows, Linux et macOS, dans n'importe quel navigateur récent. `index.html` est autonome (toutes les données sont intégrées). Hors connexion, l'app fonctionne aussi, seules les polices changent.
 
-### Lancement en un clic (Linux, avec environnement de bureau)
+> Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. Garde le dossier au même endroit et ouvre-le toujours avec le même navigateur pour la retrouver.
 
-`./toggle.sh` bascule l'app : démarre le serveur local et l'ouvre dans le navigateur s'il est fermé, l'arrête s'il tourne déjà.
+### Raccourci sur le Bureau (optionnel)
 
-Un raccourci bureau (`~/Bureau/Forge de Commandes.desktop`) appelle ce script — pratique pour ouvrir/fermer l'app d'un double-clic, sans terminal.
+- **Windows** : double-cliquer une fois sur `Windows - creer le raccourci.bat`. Un raccourci « Forge de Commandes » avec son icône apparaît sur le Bureau. Si Windows affiche « Windows a protégé votre ordinateur », cliquer sur *Informations complémentaires* puis *Exécuter quand même* (le script est lisible dans un éditeur de texte).
+- **Linux** : lancer une fois `bash installer-linux.sh`. L'app est ajoutée au menu des applications et au Bureau, et s'ouvre dans une nouvelle fenêtre.
+- **macOS** : clic droit sur `index.html` → *Créer un alias*, puis glisser l'alias sur le Bureau ou dans le Dock.
 
 ## Régénérer index.html après une modification des données ou du gabarit
 
