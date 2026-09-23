@@ -25,6 +25,7 @@ def build_standalone(fragment):
         "<head>\n"
         "<meta charset=\"UTF-8\">\n"
         "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n"
+        "<link rel=\"icon\" type=\"image/svg+xml\" href=\"icon.svg\">\n"
         + head + "</style>\n"
         "</head>\n"
         "<body>\n"
