@@ -266,7 +266,8 @@ header.top{
 
 /* ---------- explorer ---------- */
 .explorer{ margin-top:36px; }
-.explorer-head{ display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:14px; }
+.explorer-head{ display:flex; align-items:center; gap:12px 16px; flex-wrap:wrap; margin-bottom:14px; }
+.explorer-head .count-note{ margin-left:auto; }
 .explorer-head h2{ font-size:1.3rem; font-weight:600; }
 .count-note{ color:var(--text-faint); font-size:.82rem; }
 
@@ -450,10 +451,6 @@ footer a{ color:var(--text-dim); }
         <p>Kingdom Hearts Birth by Sleep &middot; Fusions de commandes</p>
       </div>
     </div>
-    <div class="search-box">
-      <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.6"/><path d="M13.6 13.6 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-      <input id="globalSearch" type="text" placeholder="Chercher une commande…" autocomplete="off">
-    </div>
     <button class="theme-btn" id="themeToggle" type="button" title="Changer de thème">
       <span id="themeIcon">&#9789;</span> <span id="themeLabel">Thème</span>
     </button>
@@ -520,6 +517,10 @@ footer a{ color:var(--text-dim); }
   <section class="explorer" aria-label="Explorateur de fusions">
     <div class="explorer-head">
       <h2>Toutes les fusions possibles</h2>
+      <div class="search-box">
+        <svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6.2" stroke="currentColor" stroke-width="1.6"/><path d="M13.6 13.6 18 18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <input id="globalSearch" type="search" placeholder="Chercher une commande…" autocomplete="off" aria-label="Chercher une commande dans les fusions">
+      </div>
       <span class="count-note" id="countNote"></span>
     </div>
     <div class="filters" id="filters">
