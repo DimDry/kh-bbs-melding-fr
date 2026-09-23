@@ -1,4 +1,5 @@
 @echo off
+rem Windows uniquement (sous Linux : installer-linux.sh).
 rem Cree un raccourci "Forge de Commandes" sur le Bureau, puis ouvre l'application.
 rem A lancer une seule fois : ensuite, utilise le raccourci du Bureau.
 set "APPDIR=%~dp0"
