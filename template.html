@@ -377,12 +377,16 @@ footer a{ color:var(--text-dim); }
     <div class="calc-row">
       <div class="field">
         <label for="ing1">Commande 1</label>
-        <input id="ing1" type="text" list="cmdList" placeholder="ex. Coup éclair" autocomplete="off">
+        <select id="ing1">
+          <option value="">Choisis une commande…</option>
+        </select>
       </div>
       <div class="calc-plus" aria-hidden="true">+</div>
       <div class="field">
         <label for="ing2">Commande 2</label>
-        <input id="ing2" type="text" list="cmdList" placeholder="ex. Séisme" autocomplete="off">
+        <select id="ing2" disabled>
+          <option value="">Choisis d'abord la commande 1…</option>
+        </select>
       </div>
     </div>
     <div class="calc-crystal-row">
@@ -393,7 +397,6 @@ footer a{ color:var(--text-dim); }
         </select>
       </div>
     </div>
-    <datalist id="cmdList"></datalist>
     <div class="calc-result" id="calcResult">
       <p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu'elles donnent.</p>
     </div>
@@ -528,7 +531,7 @@ footer a{ color:var(--text-dim); }
     try{ localStorage.setItem("forge-char", selectedChar); }catch(e){}
     applyCharUI();
     state.char = selectedChar;
-    runCalc();
+    refreshIng1();
     buildGroups();
     refreshCmd1();
   });
@@ -542,13 +545,6 @@ footer a{ color:var(--text-dim); }
       tabPanels.forEach(function(p){ p.hidden = (p.dataset.panel !== btn.dataset.tab); });
     });
   });
-
-  /* ---------- command name list for datalist + search ---------- */
-  var names = {};
-  RECIPES.forEach(function(r){ names[r.result]=1; names[r.i1]=1; names[r.i2]=1; });
-  var nameList = Object.keys(names).sort(function(a,b){ return a.localeCompare(b); });
-  var dl = document.getElementById("cmdList");
-  nameList.forEach(function(n){ var o=document.createElement("option"); o.value=n; dl.appendChild(o); });
 
   /* ---------- crystal select options (calculator + explorer filter) ---------- */
   var crystalSel = document.getElementById("crystalSel");
@@ -598,6 +594,37 @@ footer a{ color:var(--text-dim); }
   var ing2 = document.getElementById("ing2");
   var calcResult = document.getElementById("calcResult");
 
+  function refreshIng1(){
+    var pool = RECIPES.filter(function(r){ return matchesChar(r.avail, selectedChar); });
+    var names1 = {};
+    pool.forEach(function(r){ names1[r.i1]=1; names1[r.i2]=1; });
+    var prev = ing1.value;
+    fillSelect(ing1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
+    if(prev && names1[prev]) ing1.value = prev;
+    refreshIng2();
+  }
+
+  function refreshIng2(){
+    var c1 = norm(ing1.value);
+    if(!c1){
+      fillSelect(ing2, [], "Choisis d'abord la commande 1…");
+      ing2.disabled = true;
+      calcResult.innerHTML = '<p class="empty-hint">Sélectionne deux commandes pour découvrir ce qu’elles donnent.</p>';
+      return;
+    }
+    var pool = RECIPES.filter(function(r){
+      if(!matchesChar(r.avail, selectedChar)) return false;
+      return norm(r.i1)===c1 || norm(r.i2)===c1;
+    });
+    var names2 = {};
+    pool.forEach(function(r){ names2[norm(r.i1)===c1 ? r.i2 : r.i1] = 1; });
+    var prev = ing2.value;
+    fillSelect(ing2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }), "Choisis une commande…");
+    ing2.disabled = false;
+    if(prev && names2[prev]) ing2.value = prev;
+    runCalc();
+  }
+
   function runCalc(){
     var a = norm(ing1.value), b = norm(ing2.value);
     if(!a || !b){
@@ -640,9 +667,10 @@ footer a{ color:var(--text-dim); }
     });
     calcResult.innerHTML = html;
   }
-  ing1.addEventListener("input", runCalc);
-  ing2.addEventListener("input", runCalc);
+  ing1.addEventListener("change", refreshIng2);
+  ing2.addEventListener("change", runCalc);
   crystalSel.addEventListener("change", runCalc);
+  refreshIng1();
 
   /* ---------- ability finder (reverse lookup) ---------- */
   function crystalNeededHtml(key){
