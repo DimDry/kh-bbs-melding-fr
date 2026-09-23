@@ -414,6 +414,15 @@ footer a{ color:var(--text-dim); }
 }
 .prog-panel textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; }
 .panel-actions{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+.ab-prog{
+  margin-top:14px; padding:12px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2);
+  display:flex; align-items:center; gap:10px 16px; flex-wrap:wrap; --c:var(--accent);
+}
+.ab-prog.char-terra{ --c:var(--char-terra); } .ab-prog.char-ventus{ --c:var(--char-ventus); } .ab-prog.char-aqua{ --c:var(--char-aqua); }
+.ab-prog-label{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; font-weight:700; color:var(--c); }
+.ab-prog-name{ font-weight:700; }
+.ab-prog-hint{ flex-basis:100%; font-size:.78rem; color:var(--text-faint); margin:0; }
+.ab-prog.is-empty{ color:var(--text-dim); font-size:.85rem; }
 .panel-msg{ font-size:.8rem; font-weight:600; }
 .panel-msg.ok{ color:var(--ok); }
 .panel-msg.bad{ color:var(--bad); }
@@ -557,6 +566,7 @@ footer a{ color:var(--text-dim); }
     <div class="panel-actions" style="margin-top:12px;">
       <button type="button" class="btn-ghost" id="abilityClear">Tout effacer</button>
     </div>
+    <div class="ab-prog" id="abilityProg" hidden></div>
     <div class="calc-result" id="abilityResult">
       <p class="empty-hint">Choisis une capacité dans la liste pour voir comment l'obtenir.</p>
     </div>
@@ -727,6 +737,7 @@ footer a{ color:var(--text-dim); }
     buildGroups();
     refreshCmd1();
     refreshTargetCmd1();
+    renderAbilityProg();
   }
 
   /* ---------- tab navigation ---------- */
@@ -801,6 +812,13 @@ footer a{ color:var(--text-dim); }
       saved = input.value;
       savedPh = input.placeholder;
       if(saved){ input.placeholder = saved; input.value = ""; }
+    });
+    // after a pick the field keeps focus, so no new "focus" event: empty it again on the next click
+    input.addEventListener("mousedown", function(){
+      if(document.activeElement !== input || !input.value) return;
+      saved = input.value;
+      input.placeholder = saved;
+      input.value = "";
     });
     input.addEventListener("blur", function(){
       if(input.value !== saved) input.value = saved;
@@ -1070,6 +1088,7 @@ footer a{ color:var(--text-dim); }
       abilityCmd2.value = "";
     }
     refreshCmd1();
+    renderAbilityProg();
   }
   pickField(abilityInput, selectAbility);
   pickField(abilityCmd1, refreshCmd2);
@@ -1077,6 +1096,7 @@ footer a{ color:var(--text-dim); }
   document.getElementById("abilityClear").addEventListener("click", function(){
     abilityInput.value = ""; abilityCmd1.value = ""; abilityCmd2.value = "";
     refreshCmd1();
+    renderAbilityProg();
   });
 
   /* ---------- target command finder (reverse lookup by result) ---------- */
@@ -1290,9 +1310,10 @@ footer a{ color:var(--text-dim); }
     });
     return { got:got, max:max, done:done, n:n };
   }
-  function setCount(a, value){
+  function setCount(a, value, c){
+    c = c || progChar;
     var v = Math.max(0, Math.min(a.max, value));
-    if(v) progress[progChar][a.name] = v; else delete progress[progChar][a.name];
+    if(v) progress[c][a.name] = v; else delete progress[c][a.name];
     saveProgress();
     renderProgress();
   }
@@ -1354,6 +1375,7 @@ footer a{ color:var(--text-dim); }
     });
     progGroupsEl.innerHTML = html || '<p class="empty-hint">Rien à afficher avec ce filtre.</p>';
 
+    renderAbilityProg();
     progResetBtn.textContent = resetArmed ? "Confirmer la remise à zéro de "+progChar : "Réinitialiser "+progChar;
     progResetBtn.classList.toggle("is-danger", resetArmed);
   }
@@ -1398,6 +1420,42 @@ footer a{ color:var(--text-dim); }
     resetArmed = false;
     saveProgress();
     renderProgress();
+  });
+
+
+  /* progress strip in the "Partir d'une capacité" tab, for the character chosen at the top */
+  var abilityProgEl = document.getElementById("abilityProg");
+  function abilityByName(name){
+    var n = norm(name), hit = null;
+    ABILITIES.some(function(a){ if(norm(a.name) === n){ hit = a; return true; } });
+    return hit;
+  }
+  function renderAbilityProg(){
+    var a = abilityByName(abilityInput.value);
+    abilityProgEl.hidden = !a;
+    if(!a) return;
+    if(PROG_CHARS.indexOf(selectedChar) === -1){
+      abilityProgEl.className = "ab-prog is-empty";
+      abilityProgEl.innerHTML = 'Choisis Terra, Ventus ou Aqua en haut de la page pour noter «&nbsp;'+a.name+'&nbsp;» dans ton avancement.';
+      return;
+    }
+    var c = selectedChar, k = countOf(c, a), full = k >= a.max, pips = "";
+    for(var i=1;i<=a.max;i++) pips += '<span class="pip'+(i<=k?' on':'')+'" aria-hidden="true"></span>';
+    abilityProgEl.className = "ab-prog char-" + c.toLowerCase();
+    abilityProgEl.innerHTML =
+        '<span class="ab-prog-label">Avancement de '+c+'</span>'
+      + '<span class="ab-prog-name">'+a.name+'</span>'
+      + '<span class="pips">'+pips+'</span>'
+      + '<span class="prog-count">'+k+'/'+a.max+'</span>'
+      + '<button type="button" class="step" data-abstep="-1" '+(k<=0?'disabled':'')+' aria-label="Retirer">−</button>'
+      + '<button type="button" class="btn-primary" data-abstep="1" '+(full?'disabled':'')+'>'+(full ? 'Complète ✓' : 'Valider (+1)')+'</button>'
+      + '<p class="ab-prog-hint">Valide une fois la commande qui porte la capacité montée au niveau max.'+(a.max>1 ? ' Cumulable jusqu’à '+a.max+' fois.' : '')+'</p>';
+  }
+  abilityProgEl.addEventListener("click", function(e){
+    var b = e.target.closest("[data-abstep]");
+    var a = abilityByName(abilityInput.value);
+    if(!b || !a || PROG_CHARS.indexOf(selectedChar) === -1) return;
+    setCount(a, countOf(selectedChar, a) + (+b.dataset.abstep), selectedChar);
   });
 
   /* export / import / help panels */
