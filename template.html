@@ -354,6 +354,7 @@ footer a{ color:var(--text-dim); }
   <nav class="tabnav" role="tablist" aria-label="Navigation">
     <button type="button" class="tabnav-btn" role="tab" data-tab="mix" aria-selected="true">Mixer des commandes</button>
     <button type="button" class="tabnav-btn" role="tab" data-tab="ability" aria-selected="false">Partir d'une capacité</button>
+    <button type="button" class="tabnav-btn" role="tab" data-tab="target" aria-selected="false">Obtenir une commande</button>
   </nav>
 
   <section class="char-select" aria-label="Sélection du personnage">
@@ -459,6 +460,35 @@ footer a{ color:var(--text-dim); }
 
   </div>
 
+  <div class="tab-panel" data-panel="target" hidden>
+
+  <section class="calc" aria-label="Obtenir une commande">
+    <h2>Obtenir une commande</h2>
+    <p class="lede">Choisis la commande que tu veux obtenir : on te montre les paires à mixer pour y arriver.</p>
+    <div class="ability-filters">
+      <div class="field field-ability">
+        <label for="targetCmdInput">1. Commande recherchée</label>
+        <input id="targetCmdInput" type="text" list="targetCmdList" autocomplete="off" placeholder="Tape ou choisis une commande…">
+        <datalist id="targetCmdList"></datalist>
+      </div>
+      <div class="field field-ability">
+        <label for="targetCmd1">2. Première commande</label>
+        <input id="targetCmd1" type="text" list="targetCmd1List" autocomplete="off" disabled placeholder="Choisis d'abord une commande…">
+        <datalist id="targetCmd1List"></datalist>
+      </div>
+      <div class="field field-ability">
+        <label for="targetCmd2">3. Commande à combiner avec elle</label>
+        <input id="targetCmd2" type="text" list="targetCmd2List" autocomplete="off" disabled placeholder="Choisis d'abord la première commande…">
+        <datalist id="targetCmd2List"></datalist>
+      </div>
+    </div>
+    <div class="calc-result" id="targetResult">
+      <p class="empty-hint">Choisis une commande dans la liste pour voir comment l'obtenir.</p>
+    </div>
+  </section>
+
+  </div>
+
   <footer>
     Données recopiées fidèlement (vérifié par recoupement) depuis les tableaux de <a href="https://www.khdestiny.fr/kingdom-hearts-birth-by-sleep-mixage.html" target="_blank" rel="noopener">Kingdom Hearts Destiny</a> (khdestiny.fr) pour Kingdom Hearts Birth by Sleep. Certains noms d'ingrédients sont abrégés, exactement comme sur le site source. L'effet d'un cristal ne s'active qu'une fois la commande obtenue montée à son niveau maximum. Quelques taux de réussite varient légèrement selon les compilations communautaires (Final Mix inclus) — vérifie en jeu avant une fusion coûteuse.
   </footer>
@@ -529,6 +559,7 @@ footer a{ color:var(--text-dim); }
     refreshIng1();
     buildGroups();
     refreshCmd1();
+    refreshTargetCmd1();
   });
 
   /* ---------- tab navigation ---------- */
@@ -818,6 +849,124 @@ footer a{ color:var(--text-dim); }
   abilityInput.addEventListener("input", refreshCmd1);
   abilityCmd1.addEventListener("input", refreshCmd2);
   abilityCmd2.addEventListener("input", runAbilitySearch);
+
+  /* ---------- target command finder (reverse lookup by result) ---------- */
+  var resultNamesSet = {};
+  RECIPES.forEach(function(r){ resultNamesSet[r.result] = 1; });
+  var resultNameList = Object.keys(resultNamesSet).sort(function(a,b){ return a.localeCompare(b); });
+  var targetCmdInput = document.getElementById("targetCmdInput");
+  fillDatalist(document.getElementById("targetCmdList"), resultNameList);
+
+  var targetCmd1 = document.getElementById("targetCmd1");
+  var targetCmd2 = document.getElementById("targetCmd2");
+  var targetResultEl = document.getElementById("targetResult");
+
+  function recipesForResult(resultName){
+    return RECIPES.filter(function(r){
+      if(!matchesChar(r.avail, selectedChar)) return false;
+      return r.result === resultName;
+    });
+  }
+
+  function refreshTargetCmd1(){
+    var target = targetCmdInput.value;
+    var dl1 = document.getElementById("targetCmd1List");
+    if(!target){
+      fillDatalist(dl1, []);
+      targetCmd1.disabled = true;
+      targetCmd1.value = "";
+      targetCmd1.placeholder = "Choisis d'abord une commande…";
+      targetResultEl.innerHTML = '<p class="empty-hint">Choisis une commande dans la liste pour voir comment l’obtenir.</p>';
+      refreshTargetCmd2();
+      return;
+    }
+    var pool = recipesForResult(target);
+    if(!pool.length){
+      fillDatalist(dl1, []);
+      targetCmd1.disabled = true;
+      targetCmd1.value = "";
+      targetCmd1.placeholder = "Aucune commande (indisponible)";
+      var existsElsewhere = resultNamesSet[target];
+      if(existsElsewhere && selectedChar !== "all"){
+        targetResultEl.innerHTML = '<div class="no-match">Cette commande s’obtient par mixage, mais pas pour <strong>'+selectedChar+'</strong>. Essaie un autre personnage ou «&nbsp;Tous&nbsp;».</div>';
+      } else {
+        targetResultEl.innerHTML = '<div class="no-match">Aucune fusion connue ne donne cette commande. Choisis-la dans la liste proposée.</div>';
+      }
+      refreshTargetCmd2();
+      return;
+    }
+    var names1 = {};
+    pool.forEach(function(r){ names1[r.i1]=1; names1[r.i2]=1; });
+    var prev1 = targetCmd1.value;
+    fillDatalist(dl1, Object.keys(names1).sort(function(a,b){ return a.localeCompare(b); }));
+    targetCmd1.disabled = false;
+    targetCmd1.placeholder = "Tape ou choisis une commande…";
+    if(!(prev1 && names1[prev1])) targetCmd1.value = "";
+    targetResultEl.innerHTML = '<p class="empty-hint">Choisis une première commande dans la liste ci-dessus.</p>';
+    refreshTargetCmd2();
+  }
+
+  function refreshTargetCmd2(){
+    var target = targetCmdInput.value;
+    var c1 = norm(targetCmd1.value);
+    var dl2 = document.getElementById("targetCmd2List");
+    if(!target || !c1){
+      fillDatalist(dl2, []);
+      targetCmd2.disabled = true;
+      targetCmd2.value = "";
+      targetCmd2.placeholder = "Choisis d'abord la première commande…";
+      renderTargetMatches([]);
+      return;
+    }
+    var pool = recipesForResult(target).filter(function(r){ return norm(r.i1)===c1 || norm(r.i2)===c1; });
+    var names2 = {};
+    pool.forEach(function(r){ names2[norm(r.i1)===c1 ? r.i2 : r.i1] = 1; });
+    var prev2 = targetCmd2.value;
+    fillDatalist(dl2, Object.keys(names2).sort(function(a,b){ return a.localeCompare(b); }));
+    targetCmd2.disabled = false;
+    targetCmd2.placeholder = "Choisis la commande à combiner…";
+    if(!(prev2 && names2[prev2])) targetCmd2.value = "";
+    targetResultEl.innerHTML = '<p class="empty-hint">Choisis la commande à combiner avec «&nbsp;'+targetCmd1.value+'&nbsp;».</p>';
+  }
+
+  function runTargetSearch(){
+    var target = targetCmdInput.value;
+    var c1 = norm(targetCmd1.value);
+    var c2 = norm(targetCmd2.value);
+    if(!target || !c1 || !c2) return;
+    var hits = recipesForResult(target).filter(function(r){
+      var ra = norm(r.i1), rb = norm(r.i2);
+      return (ra===c1 && rb===c2) || (ra===c2 && rb===c1);
+    });
+    renderTargetMatches(hits);
+  }
+
+  function renderTargetMatches(hits){
+    if(!hits.length) return;
+    hits = hits.slice().sort(function(x,y){ return y.rate - x.rate; });
+    var html = '<p class="count-line">'+hits.length+' recette'+(hits.length>1?'s':'')+' trouvée'+(hits.length>1?'s':'')+(selectedChar!=="all" ? ' pour '+selectedChar : '')+'.</p>';
+    hits.forEach(function(r){
+      html += '<div class="match-card">'
+        + '<div class="match-head">'
+        + catChip(r.cat)
+        + '<h3>&#8594; '+r.result+'</h3>'
+        + '<span class="rate '+rateClass(r.rate)+'">'+r.rate+'% de réussite</span>'
+        + '<span class="avail">'+r.avail+'</span>'
+        + '</div>'
+        + '<div class="slot-pair">'
+        + '<span class="slot">'+ingHtml(r.i1)+'</span>'
+        + '<span class="plus-sm">+</span>'
+        + '<span class="slot">'+ingHtml(r.i2)+'</span>'
+        + '</div>'
+        + '<div style="margin-top:10px;">'+crystalTableHtml(r.cx)+'</div>'
+        + '</div>';
+    });
+    targetResultEl.innerHTML = html;
+  }
+
+  targetCmdInput.addEventListener("input", refreshTargetCmd1);
+  targetCmd1.addEventListener("input", refreshTargetCmd2);
+  targetCmd2.addEventListener("input", runTargetSearch);
 
   /* ---------- explorer ---------- */
   var state = { cat:"all", char:selectedChar, q:"", sort:"az", crystal:"" };
