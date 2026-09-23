@@ -22,7 +22,7 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 ### Windows
 
-1. [**Télécharger l'app (ZIP)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip).
+1. [**Télécharger l'app (ZIP, V.1)**](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/tags/v1.0.zip).
 2. **Extraire le ZIP** : clic droit sur le fichier téléchargé → *Extraire tout…* → *Extraire*.
    ⚠️ Étape obligatoire : si tu ouvres le ZIP et lances un fichier depuis l'intérieur, Windows ne copie que ce fichier dans un dossier temporaire, et l'app ou le raccourci ne fonctionnent pas.
 3. Dans le **dossier extrait**, au choix :
@@ -34,7 +34,7 @@ Ne déplace pas le dossier après avoir créé le raccourci, sinon le raccourci 
 
 ### Linux
 
-1. [Télécharger le ZIP](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/heads/main.zip) et l'extraire (ou `git clone` le dépôt).
+1. [Télécharger le ZIP](https://github.com/DimDry/kh-bbs-melding-fr/archive/refs/tags/v1.0.zip) et l'extraire (ou `git clone` le dépôt).
 2. Double-cliquer sur **`index.html`**.
 3. Optionnel : lancer une fois `bash installer-linux.sh` pour ajouter l'app au menu des applications et au Bureau (elle s'ouvre alors dans une nouvelle fenêtre).
 
