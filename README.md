@@ -8,7 +8,7 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 - **Sélection du personnage** (Terra / Ventus / Aqua / Tous) : filtre l'ensemble de l'app sur ce que ce personnage peut réellement mixer.
 - **Onglet « Mixer des commandes »** : un calculateur (2 commandes + cristal optionnel → résultat exact) et un explorateur filtrable/triable de toutes les recettes.
-- **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage).
+- **Onglet « Avancement »** : comme le menu « Capacités » du jeu, coche par personnage les capacités rendues permanentes, y compris les cumuls (ex. Attraction ×5, Booster Objet ×3). Maximums tirés de [KHWiki](https://www.khwiki.com/Abilities_(KHBBS)), recoupés avec [Destiny Islands](https://www.destinyislands.com/bbs-fm/abilities/). La progression est enregistrée dans le navigateur (localStorage), avec export/import (code à copier ou fichier .json) pour la sauvegarder ou la transférer sur un autre appareil.
 - **Onglet « Partir d'une capacité »** : choisis la capacité que tu veux obtenir, l'app te montre les paires de commandes à mixer et le cristal nécessaire.
 
 ## Démarrage rapide
@@ -18,7 +18,7 @@ Données recopiées depuis les tableaux de mixage de [Kingdom Hearts Destiny](ht
 
 C'est tout : pas d'installation, pas de serveur, pas de Python. Ça marche sous Windows, Linux et macOS, dans n'importe quel navigateur récent. `index.html` est autonome (toutes les données sont intégrées). Hors connexion, l'app fonctionne aussi, seules les polices changent.
 
-> Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. Garde le dossier au même endroit et ouvre-le toujours avec le même navigateur pour la retrouver.
+> Ta progression (onglet « Avancement ») est enregistrée dans le navigateur. Pour la sauvegarder ou la passer sur un autre appareil, utilise les boutons « Exporter » et « Importer » de l’onglet (le bouton « ? » explique le fonctionnement).
 
 ### Raccourci sur le Bureau (optionnel)
 

@@ -387,6 +387,36 @@ footer a{ color:var(--text-dim); }
 .prog-count{ font-family:"JetBrains Mono", monospace; font-size:.85rem; min-width:3ch; text-align:right; color:var(--text-dim); }
 @media (max-width:560px){ .prog-row{ grid-template-columns:1fr; } .prog-ctrl{ justify-content:flex-end; } }
 
+.help-btn{
+  width:30px; height:30px; border-radius:50%; border:1px solid var(--border); background:var(--surface);
+  color:var(--accent); font-family:inherit; font-weight:800; font-size:.9rem; cursor:pointer; flex:none;
+}
+.help-btn:hover, .help-btn[aria-expanded="true"]{ border-color:var(--accent); background:var(--accent-soft); }
+.btn-ghost[aria-expanded="true"]{ color:var(--accent); border-color:var(--accent); background:var(--accent-soft); }
+.btn-primary{
+  border:1px solid var(--accent); background:var(--accent); color:var(--accent-contrast); font-family:inherit;
+  font-size:.8rem; font-weight:700; padding:7px 12px; border-radius:9px; cursor:pointer;
+}
+.btn-primary:disabled{ opacity:.45; cursor:default; }
+.prog-panel{
+  margin-top:12px; padding:14px 16px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2);
+  font-size:.85rem;
+}
+.prog-panel h4{ margin:0 0 6px; font-size:.92rem; }
+.prog-panel p{ margin:0 0 10px; color:var(--text-dim); }
+.prog-panel ul{ margin:0; padding-left:18px; color:var(--text-dim); }
+.prog-panel li{ margin:4px 0; }
+.prog-panel li strong{ color:var(--text); }
+.prog-panel textarea{
+  width:100%; min-height:74px; resize:vertical; padding:9px 11px; border-radius:9px; border:1px solid var(--border);
+  background:var(--surface); color:var(--text); font-family:"JetBrains Mono", monospace; font-size:.76rem; word-break:break-all;
+}
+.prog-panel textarea:focus{ outline:2px solid var(--accent); outline-offset:1px; }
+.panel-actions{ display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-top:10px; }
+.panel-msg{ font-size:.8rem; font-weight:600; }
+.panel-msg.ok{ color:var(--ok); }
+.panel-msg.bad{ color:var(--bad); }
+
 ::selection{ background:var(--accent-soft); color:var(--text); }
 </style>
 </head>
@@ -570,7 +600,43 @@ footer a{ color:var(--text-dim); }
         <button class="tab" data-pf="done" aria-pressed="false">Complètes</button>
       </div>
       <span class="spacer"></span>
+      <button type="button" class="btn-ghost" id="progExportBtn" aria-expanded="false" aria-controls="progExport">Exporter</button>
+      <button type="button" class="btn-ghost" id="progImportBtn" aria-expanded="false" aria-controls="progImport">Importer</button>
       <button type="button" class="btn-ghost" id="progReset">Réinitialiser ce personnage</button>
+      <button type="button" class="help-btn" id="progHelpBtn" aria-expanded="false" aria-controls="progHelp" title="Comment ça marche ?" aria-label="Comment ça marche ?">?</button>
+    </div>
+
+    <div class="prog-panel" id="progHelp" hidden>
+      <h4>Comment fonctionne la sauvegarde ?</h4>
+      <ul>
+        <li><strong>Automatique, dans ce navigateur :</strong> chaque case cochée est enregistrée tout de suite sur cet appareil. Tu la retrouves en revenant sur l’app avec le même navigateur, sans compte ni connexion.</li>
+        <li><strong>Pas de synchronisation :</strong> rien n’est envoyé sur Internet. Un autre navigateur, un autre appareil ou une navigation privée repartent de zéro, et vider les données du navigateur efface la progression.</li>
+        <li><strong>Exporter :</strong> produit un code (à copier) ou un fichier <span class="mono">.json</span> qui contient la progression des 3 personnages. Garde-le comme sauvegarde, ou envoie-le-toi pour l’utiliser ailleurs.</li>
+        <li><strong>Importer :</strong> colle ce code ou choisis le fichier sur l’autre appareil. La progression importée <em>remplace</em> celle déjà présente.</li>
+      </ul>
+    </div>
+
+    <div class="prog-panel" id="progExport" hidden>
+      <h4>Exporter ta progression</h4>
+      <p>Ce code contient la progression de Terra, Ventus et Aqua. Copie-le ou télécharge-le, puis importe-le sur un autre appareil ou navigateur.</p>
+      <textarea id="progExportCode" readonly aria-label="Code de sauvegarde"></textarea>
+      <div class="panel-actions">
+        <button type="button" class="btn-primary" id="progCopy">Copier le code</button>
+        <button type="button" class="btn-ghost" id="progDownload">Télécharger le fichier</button>
+        <span class="panel-msg" id="progExportMsg" role="status"></span>
+      </div>
+    </div>
+
+    <div class="prog-panel" id="progImport" hidden>
+      <h4>Importer une progression</h4>
+      <p>Colle un code de sauvegarde ou choisis un fichier exporté. Attention : la progression actuelle des 3 personnages sera remplacée.</p>
+      <textarea id="progImportCode" placeholder="Colle ton code ici…" aria-label="Code à importer"></textarea>
+      <div class="panel-actions">
+        <button type="button" class="btn-primary" id="progImportGo" disabled>Importer</button>
+        <button type="button" class="btn-ghost" id="progImportFileBtn">Choisir un fichier…</button>
+        <input type="file" id="progImportFile" accept=".json,application/json,text/plain" hidden>
+        <span class="panel-msg" id="progImportMsg" role="status"></span>
+      </div>
     </div>
     <div id="progGroups"></div>
   </section>
@@ -1237,6 +1303,117 @@ footer a{ color:var(--text-dim); }
     resetArmed = false;
     saveProgress();
     renderProgress();
+  });
+
+  /* export / import / help panels */
+  var PANELS = [
+    { btn:document.getElementById("progHelpBtn"),   el:document.getElementById("progHelp") },
+    { btn:document.getElementById("progExportBtn"), el:document.getElementById("progExport"), onOpen:fillExport },
+    { btn:document.getElementById("progImportBtn"), el:document.getElementById("progImport"), onOpen:resetImport }
+  ];
+  PANELS.forEach(function(p){
+    p.btn.addEventListener("click", function(){
+      var opening = p.el.hidden;
+      PANELS.forEach(function(q){ q.el.hidden = true; q.btn.setAttribute("aria-expanded","false"); });
+      if(opening){
+        p.el.hidden = false; p.btn.setAttribute("aria-expanded","true");
+        if(p.onOpen) p.onOpen();
+      }
+    });
+  });
+
+  // Save code: "FORGE1:" + base64(UTF-8 JSON). Plain JSON (from the .json file) is accepted too.
+  function encodeProgress(){
+    var json = JSON.stringify({ app:"forge-de-commandes", v:1, progress:progress });
+    var bytes = new TextEncoder().encode(json), bin = "";
+    bytes.forEach(function(b){ bin += String.fromCharCode(b); });
+    return "FORGE1:" + btoa(bin);
+  }
+  function decodeProgress(text){
+    text = (text || "").trim();
+    var json = text;
+    if(/^FORGE1:/.test(text)){
+      var bin = atob(text.slice(7).replace(/\s+/g,""));
+      var bytes = new Uint8Array(bin.length);
+      for(var i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+      json = new TextDecoder().decode(bytes);
+    }
+    var data = JSON.parse(json);
+    var src = data && data.progress;
+    if(!src || typeof src !== "object") throw new Error("format");
+    // keep only known characters/abilities, clamp to each ability's max
+    var clean = { Terra:{}, Ventus:{}, Aqua:{} }, total = 0;
+    PROG_CHARS.forEach(function(c){
+      var cp = src[c] || {};
+      ABILITIES.forEach(function(a){
+        var n = Math.floor(Number(cp[a.name]) || 0);
+        n = Math.max(0, Math.min(a.max, n));
+        if(n){ clean[c][a.name] = n; total += n; }
+      });
+    });
+    return { progress:clean, total:total };
+  }
+
+  var exportCode = document.getElementById("progExportCode");
+  var exportMsg = document.getElementById("progExportMsg");
+  function fillExport(){ exportCode.value = encodeProgress(); exportMsg.textContent = ""; }
+  function flash(el, text, ok){ el.textContent = text; el.className = "panel-msg " + (ok ? "ok" : "bad"); }
+  document.getElementById("progCopy").addEventListener("click", function(){
+    fillExport();
+    var done = function(){ flash(exportMsg, "Code copié ✓", true); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(exportCode.value).then(done, function(){
+        exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, "Copie impossible : sélectionne le code et fais Ctrl+C.", false);
+      });
+    } else {
+      exportCode.select(); document.execCommand("copy") ? done() : flash(exportMsg, "Copie impossible : sélectionne le code et fais Ctrl+C.", false);
+    }
+  });
+  document.getElementById("progDownload").addEventListener("click", function(){
+    var json = JSON.stringify({ app:"forge-de-commandes", v:1, progress:progress }, null, 2);
+    var url = URL.createObjectURL(new Blob([json], { type:"application/json" }));
+    var a = document.createElement("a");
+    a.href = url; a.download = "forge-progression-" + new Date().toISOString().slice(0,10) + ".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    flash(exportMsg, "Fichier téléchargé ✓", true);
+  });
+
+  var importCode = document.getElementById("progImportCode");
+  var importGo = document.getElementById("progImportGo");
+  var importMsg = document.getElementById("progImportMsg");
+  var importFile = document.getElementById("progImportFile");
+  var importArmed = false;
+  function resetImport(){
+    importArmed = false;
+    importGo.textContent = "Importer";
+    importGo.disabled = !importCode.value.trim();
+    importMsg.textContent = "";
+  }
+  importCode.addEventListener("input", resetImport);
+  document.getElementById("progImportFileBtn").addEventListener("click", function(){ importFile.click(); });
+  importFile.addEventListener("change", function(){
+    var f = importFile.files && importFile.files[0];
+    if(!f) return;
+    f.text().then(function(t){ importCode.value = t; resetImport(); importFile.value = ""; });
+  });
+  importGo.addEventListener("click", function(){
+    var parsed;
+    try{ parsed = decodeProgress(importCode.value); }
+    catch(e){ flash(importMsg, "Code invalide : vérifie qu’il a été copié en entier.", false); return; }
+    if(!importArmed){
+      importArmed = true;
+      importGo.textContent = "Confirmer : remplacer ma progression";
+      flash(importMsg, parsed.total + " niveau" + (parsed.total>1?"x":"") + " de capacités trouvés.", true);
+      return;
+    }
+    progress = parsed.progress;
+    saveProgress();
+    resetArmed = false;
+    renderProgress();
+    importCode.value = "";
+    resetImport();
+    flash(importMsg, "Progression importée ✓", true);
   });
   renderProgress();
 
